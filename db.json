@@ -1,0 +1,22 @@
+{
+    "personas": [
+        {
+            "tipo": "administrador",
+            "nombre": "admin",
+            "contrasena": "admin",
+            "id": 1
+        },
+        {
+            "tipo": "profesor",
+            "nombre": "rico",
+            "contrasena": "123456",
+            "id": 2
+        },
+        {
+            "tipo": "alumno",
+            "nombre": "matias",
+            "contrasena": "matias",
+            "id": 3
+        }
+    ]
+}
