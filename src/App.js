@@ -6,6 +6,7 @@ import InicioEval from './components/alumno/InicioEval';
 import Navegacion from './components/common/Navegacion';
 import Admin from './components/administrador/Admin';
 import { useState, useEffect } from 'react';
+import NuevoUsuario from './components/nuevoUsuario/NuevoUsuario';
 
 
 
@@ -37,6 +38,9 @@ console.log(personas);
       <Switch>
         <Route exact path="/">
           <Inicio personas={personas}></Inicio>
+        </Route>
+        <Route exact path="/nuevoUsuario">
+            <NuevoUsuario></NuevoUsuario>
         </Route>
         <div>
           <Navegacion></Navegacion>

@@ -69,7 +69,9 @@ const Inicio = (props) => {
                             <div className="text-center">
                                 <Button variant='primary' type='submit' className='w-25'>Ingresar</Button>
                             </div>
-
+                            <div className="text-center my-3">
+                                <Button variant='primary' href="/nuevousuario" className='w-25'>Nuevo Usuario</Button>
+                            </div>
                         </Col>
                     </Row>
                 </Form>
