@@ -6,14 +6,14 @@ import Swal from 'sweetalert2';
 const Inicio = (props) => {
     //console.log(props.personas)
     // creo consts para almacenar el usuario, la contraseña y una bandera para verificar
-    const [esUsuario, setEsUsuario] = useState(false);
+
     const [usuario, setUsuario] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [error, setError] = useState(false);
+    const [tipoUsuario, setTipoUsuario] = useState("");
 
-
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
+        let esUsuario = false;
         e.preventDefault();
         //  validar los datos
         if (usuario.trim() === '' || contrasena.trim() === '') {
@@ -24,24 +24,40 @@ const Inicio = (props) => {
             // quitar cartel de error
             setError(false);
             // verificar si el usuario existe
+
             for (const i in props.personas) {
-                if (props.personas[i].nombre === usuario && props.personas[i].contrasena === contrasena) {
+                if (props.personas[i].usuario === usuario && props.personas[i].password === contrasena) {
                     console.log("existe");
                     console.log(props.personas[i].tipo)
-                    setEsUsuario(true);
-                } else {
-                    console.log("no existe");
-                    Swal.fire(
-                        'error',
-                        'Usuario o contraseña invalido',
-                        'error'
+                    setTipoUsuario(props.personas[i].tipo
                     )
+                    esUsuario = true;
+                    if (props.personas[i].tipo === "administrador") {
+                        const ruta="/administrador/"+props.personas[i].UI;
+                        window.location.href = ruta;
+                    }
+                    if (props.personas[i].tipo === "alumno") {
+                        const ruta="/alumno/"+props.personas[i].UI;
+                        window.location.href = ruta;
+                    }
+                    if (props.personas[i].tipo === "profesor") {
+                        const ruta="/profesor/"+props.personas[i].UI;
+                        window.location.href = ruta;
+                    }
+
                 }
+            }
+            if (esUsuario === false) {
+                console.log("no existe");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Usuario o contraseña no validos',
+
+                })
             }
 
         }
-
-
     }
 
 

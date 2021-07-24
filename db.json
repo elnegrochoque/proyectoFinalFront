@@ -1,22 +1,114 @@
 {
-    "personas": [
-        {
-            "tipo": "administrador",
-            "nombre": "admin",
-            "contrasena": "admin",
-            "id": 1
-        },
-        {
-            "tipo": "profesor",
-            "nombre": "rico",
-            "contrasena": "123456",
-            "id": 2
-        },
-        {
-            "tipo": "alumno",
-            "nombre": "matias",
-            "contrasena": "matias",
-            "id": 3
-        }
-    ]
+  "personas": [
+    {
+      "tipo": "administrador",
+      "usuario": "admin",
+      "password": "admin",
+      "UI": "123",
+      "DNI": "12345678",
+      "email": "hola@gmail.com",
+      "apellido": "perez",
+      "nombre": "juan",
+      "id": 1
+    },
+    {
+      "tipo": "profesor",
+      "usuario": "rico",
+      "password": "123",
+      "UI": "123",
+      "DNI": "12345678",
+      "email": "hola@gmail.com",
+      "apellido": "rico",
+      "nombre": "ernesto",
+      "id": 2
+    },
+    {
+      "tipo": "alumno",
+      "usuario": "matias",
+      "password": "matias",
+      "UI": "123",
+      "DNI": "12345678",
+      "email": "hola@gmail.com",
+      "apellido": "choquevilca",
+      "nombre": "matias",
+      "id": 3
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 4
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 5
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 6
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 7
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "a",
+      "passwordPersona": "a",
+      "UIPersona": "1",
+      "DNIPersona": "1",
+      "emailPersona": "asdlas@xn--asdlas-ywa.com",
+      "nombrePersona": "a",
+      "apellidoPersona": "a",
+      "id": 8
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "a",
+      "passwordPersona": "a",
+      "UIPersona": "1",
+      "DNIPersona": "1",
+      "emailPersona": "asdlas@xn--asdlas-ywa.com",
+      "nombrePersona": "a",
+      "apellidoPersona": "a",
+      "id": 9
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "a",
+      "passwordPersona": "a",
+      "UIPersona": "123",
+      "DNIPersona": "1321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "asd",
+      "apellidoPersona": "asd",
+      "id": 10
+    }
+  ]
 }

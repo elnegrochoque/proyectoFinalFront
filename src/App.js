@@ -37,17 +37,17 @@ console.log(personas);
     <Router>
       <Switch>
         <Route exact path="/">
-          <Inicio personas={personas}></Inicio>
+          <Inicio personas={personas} consultarAPI={consultarAPI}></Inicio>
         </Route>
         <Route exact path="/nuevoUsuario">
-            <NuevoUsuario></NuevoUsuario>
+            <NuevoUsuario personas={personas} consultarAPI={consultarAPI}></NuevoUsuario>
         </Route>
         <div>
           <Navegacion></Navegacion>
           <Route exact path="/alumno">
             <InicioEval></InicioEval>
           </Route>
-          <Route exact path="/administrador">
+          <Route exact path="/administrador/:id">
             <Admin></Admin>
           </Route>
         </div>
