@@ -53,9 +53,9 @@ const Inicio = (props) => {
             <h1 className="text-center">Sistema de evaluaciones</h1>
             <Container>
                 <Form onSubmit={handleSubmit}>
-                {(error === true) ? (<Alert variant={'danger'}>
-              Todos los campos son obligatorios
-            </Alert>) : null}
+                    {(error === true) ? (<Alert variant={'danger'}>
+                        Todos los campos son obligatorios
+                    </Alert>) : null}
                     <Row className="justify-content-center">
                         <Col lg="8">
                             <Form.Group controlId="formNombre">
