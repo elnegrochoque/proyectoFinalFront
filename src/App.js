@@ -7,6 +7,7 @@ import Navegacion from './components/common/Navegacion';
 import Admin from './components/administrador/Admin';
 import { useState, useEffect } from 'react';
 import NuevoUsuario from './components/nuevoUsuario/NuevoUsuario';
+import NuevoUsuarioAdmin from './components/administrador/NuevoUsuarioAdmin';
 
 
 
@@ -44,13 +45,17 @@ console.log(personas);
         </Route>
         <div>
           <Navegacion></Navegacion>
-          <Route exact path="/alumno">
+          <Route exact path="/alumno/:id">
             <InicioEval></InicioEval>
           </Route>
           <Route exact path="/administrador/:id">
-            <Admin></Admin>
+            <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
+          </Route>
+          <Route exact path="/nuevousuarioadmin">
+            <NuevoUsuarioAdmin personas={personas} consultarAPI={consultarAPI}></NuevoUsuarioAdmin>
           </Route>
         </div>
+        
       </Switch>
 
     </Router>

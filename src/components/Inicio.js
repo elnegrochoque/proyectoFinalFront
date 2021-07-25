@@ -26,22 +26,22 @@ const Inicio = (props) => {
             // verificar si el usuario existe
 
             for (const i in props.personas) {
-                if (props.personas[i].usuario === usuario && props.personas[i].password === contrasena) {
+                if (props.personas[i].usuarioPersona === usuario && props.personas[i].passwordPersona === contrasena) {
                     console.log("existe");
                     console.log(props.personas[i].tipo)
                     setTipoUsuario(props.personas[i].tipo
                     )
                     esUsuario = true;
                     if (props.personas[i].tipo === "administrador") {
-                        const ruta="/administrador/"+props.personas[i].UI;
+                        const ruta="/administrador/"+props.personas[i].UIPersona;
                         window.location.href = ruta;
                     }
-                    if (props.personas[i].tipo === "alumno") {
-                        const ruta="/alumno/"+props.personas[i].UI;
+                    if (props.personas[i].tipo === "estudiante") {
+                        const ruta="/alumno/"+props.personas[i].UIPersona;
                         window.location.href = ruta;
                     }
                     if (props.personas[i].tipo === "profesor") {
-                        const ruta="/profesor/"+props.personas[i].UI;
+                        const ruta="/profesor/"+props.personas[i].UIPersona;
                         window.location.href = ruta;
                     }
 

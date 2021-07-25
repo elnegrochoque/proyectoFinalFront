@@ -2,35 +2,35 @@
   "personas": [
     {
       "tipo": "administrador",
-      "usuario": "admin",
-      "password": "admin",
-      "UI": "123",
-      "DNI": "12345678",
-      "email": "hola@gmail.com",
-      "apellido": "perez",
-      "nombre": "juan",
+      "usuarioPersona": "admin",
+      "passwordPersona": "admin",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
       "id": 1
     },
     {
       "tipo": "profesor",
-      "usuario": "rico",
-      "password": "123",
-      "UI": "123",
-      "DNI": "12345678",
-      "email": "hola@gmail.com",
-      "apellido": "rico",
-      "nombre": "ernesto",
+      "usuarioPersona": "rico",
+      "passwordPersona": "123",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
       "id": 2
     },
     {
       "tipo": "alumno",
-      "usuario": "matias",
-      "password": "matias",
-      "UI": "123",
-      "DNI": "12345678",
-      "email": "hola@gmail.com",
-      "apellido": "choquevilca",
-      "nombre": "matias",
+      "usuarioPersona": "matias",
+      "passwordPersona": "matias",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
       "id": 3
     },
     {
@@ -109,6 +109,28 @@
       "nombrePersona": "asd",
       "apellidoPersona": "asd",
       "id": 10
+    },
+    {
+      "tipo": "administrador",
+      "usuarioPersona": "matias",
+      "passwordPersona": "123456",
+      "UIPersona": "181183",
+      "DNIPersona": "12345678",
+      "emailPersona": "elnegrchoque@gmail.com",
+      "nombrePersona": "matias",
+      "apellidoPersona": "choquevilca",
+      "id": 11
+    },
+    {
+      "tipo": "profesor",
+      "usuarioPersona": "antonio",
+      "passwordPersona": "123465",
+      "UIPersona": "6546",
+      "DNIPersona": "54655646",
+      "emailPersona": "alkdsa@gmial.com",
+      "nombrePersona": "prueba2",
+      "apellidoPersona": "prueba2",
+      "id": 12
     }
   ]
 }
