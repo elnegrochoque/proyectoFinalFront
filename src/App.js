@@ -8,6 +8,7 @@ import Admin from './components/administrador/Admin';
 import { useState, useEffect } from 'react';
 import NuevoUsuario from './components/nuevoUsuario/NuevoUsuario';
 import NuevoUsuarioAdmin from './components/administrador/NuevoUsuarioAdmin';
+import EditarPersona from './components/administrador/EditarPersona';
 
 
 
@@ -51,7 +52,10 @@ console.log(personas);
           <Route exact path="/administrador/:id">
             <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
           </Route>
-          <Route exact path="/nuevousuarioadmin">
+          <Route exact path="/administrador/:id/editar/:id">
+            <EditarPersona personas={personas} consultarAPI={consultarAPI}></EditarPersona>
+          </Route>
+          <Route exact path="/administrador/:id/nuevousuarioadmin">
             <NuevoUsuarioAdmin personas={personas} consultarAPI={consultarAPI}></NuevoUsuarioAdmin>
           </Route>
         </div>

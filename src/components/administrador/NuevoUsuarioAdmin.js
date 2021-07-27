@@ -3,6 +3,8 @@ import { Form, Button, Col, Row, Container, DropdownButton } from "react-bootstr
 import { useState } from "react";
 import { withRouter, useParams } from "react-router-dom";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import Swal from 'sweetalert2';
+
 const NuevoUsuarioAdmin = (props) => {
     const { id } = useParams();
     const URL = process.env.REACT_APP_API_URL;
@@ -15,8 +17,10 @@ const NuevoUsuarioAdmin = (props) => {
     const [apellidoPersona, setApellidoPersona] = useState("");
     const [tipoPersona, setTipoPersona] = useState("profesor");
     const handleSubmit = async (e) => {
+      
         e.preventDefault();
         console.log(props.personas);
+
         // validamos que todos los campos esten llenos
         if (usuarioPersona.trim() === "" ||
             passwordPersona.trim() === "" ||
@@ -52,9 +56,14 @@ const NuevoUsuarioAdmin = (props) => {
                 const respuesta = await fetch(URL, parametros);
 
                 if ((await respuesta.status) === 201) {
-
-
-                    props.history.push('/admin');
+                    Swal.fire(
+                        'Usuario creado',
+                        'El producto seleccionado fue correctamente elminado',
+                        'success'
+                    )
+                    props.consultarAPI();
+                    const urlAnterior="/administrador/"+id
+                    props.history.push(urlAnterior);
                 }
             } catch (error) {
                 console.log(error);
@@ -65,8 +74,7 @@ const NuevoUsuarioAdmin = (props) => {
         }
     }
     const cambiarTipoUsuario = (e) => {
-        console.log(e.target)
-   
+    
         setTipoPersona(e.target.name)
     }
 
@@ -121,7 +129,7 @@ const NuevoUsuarioAdmin = (props) => {
                         onChange={(e) => setNombrePersona(e.target.value)} />
                 </Form.Group>
 
-                <DropdownButton id="dropdown-basic-button" variant="dark" title={tipoPersona} size="lg">
+                <DropdownButton id="dropdown-basic-button" variant="dark" title={tipoPersona} value="profesor" size="lg">
 
                     <DropdownItem  value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
                         administrador

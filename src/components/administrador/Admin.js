@@ -3,20 +3,21 @@ import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Swal from "sweetalert2";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ItemPersona from './ItemPersona';
 
 const Admin = (props) => {
     console.log(props.personas)
 
     const [lista, setLista] = useState([]);
-
+    const {id}=useParams();
+    const urlCrearUsuario="/administrador/"+id+"/nuevousuarioadmin"
     return (
         <Fragment>
             <Row className="m-5">
                 <Col ><h3 className=" font-weight-bold">Administrador</h3></Col>
                 <Col> 
-                <Link to="/nuevousuarioadmin" className='btn btn-dark mr-2 text-light'>
+                <Link to={urlCrearUsuario} className='btn btn-dark mr-2 text-light'>
                     +Nueva Usuario
                 </Link></Col>
                 <Table striped bordered hover size="sm" className="my-4">
@@ -30,7 +31,7 @@ const Admin = (props) => {
 
                     </thead>
                     <tbody key="tbody">
-                        {props.personas.map((persona)=><ItemPersona persona={persona} key={persona.id}></ItemPersona>)}
+                        {props.personas.map((persona)=><ItemPersona persona={persona} key={persona.id} consultarAPI={props.consultarAPI} idAdmin={id}></ItemPersona>)}
                         
                     </tbody>
                 </Table>
