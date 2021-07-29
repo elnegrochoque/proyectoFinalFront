@@ -9,6 +9,8 @@ import { useState, useEffect } from 'react';
 import NuevoUsuario from './components/nuevoUsuario/NuevoUsuario';
 import NuevoUsuarioAdmin from './components/administrador/NuevoUsuarioAdmin';
 import EditarPersona from './components/administrador/EditarPersona';
+import PrincipalProfesor from './components/profesor/PrincipalProfesor';
+import CrearEvaluacion from './components/profesor/CrearEvaluacion';
 
 
 
@@ -48,6 +50,12 @@ console.log(personas);
           <Navegacion></Navegacion>
           <Route exact path="/alumno/:id">
             <InicioEval></InicioEval>
+          </Route>
+          <Route exact path="/profesor/:id">
+            <PrincipalProfesor personas={personas} consultarAPI={consultarAPI}></PrincipalProfesor>
+          </Route>
+          <Route exact path="/profesor/:id/crearevaluacion">
+            <CrearEvaluacion></CrearEvaluacion>
           </Route>
           <Route exact path="/administrador/:id">
             <Admin personas={personas} consultarAPI={consultarAPI}></Admin>

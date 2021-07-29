@@ -100,15 +100,21 @@
       "id": 12
     },
     {
+      "nombrePersona": "1",
       "tipo": "profesor",
-      "usuarioPersona": "vivi",
-      "passwordPersona": "vivi",
+      "usuarioPersona": "profe",
+      "passwordPersona": "profe",
       "UIPersona": "123456789",
       "DNIPersona": "321654987983",
       "emailPersona": "elngrochoque@gmail.com",
-      "nombrePersona": "1",
       "apellidoPersona": "1",
       "id": 13
+    }
+  ],
+  "evaluaciones": [
+    {
+      "nombreEvaluacion": "",
+      "id": 1
     }
   ]
 }

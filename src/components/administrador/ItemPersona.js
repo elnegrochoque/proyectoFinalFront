@@ -73,7 +73,7 @@ const ItemPersona = (props) => {
             <td className="text-center col-3">
                 <Button className="mx-3" variant="danger" onClick={() => eliminarPersona(props.persona.id)}>BORRAR</Button>
                 <Link to={`${props.idAdmin}/editar/${props.persona.id}`} className="btn btn-warning mr-2">
-                    Editar
+                    EDITAR
                 </Link>
             </td>
         </tr>

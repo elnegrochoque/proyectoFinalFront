@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Image, Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import isologotipo_unsta from "F:/facultad/proyecto4/front/proyecto4/src/img/isologotipo_unsta.png"
 import Swal from 'sweetalert2';
@@ -33,15 +33,15 @@ const Inicio = (props) => {
                     )
                     esUsuario = true;
                     if (props.personas[i].tipo === "administrador") {
-                        const ruta="/administrador/"+props.personas[i].UIPersona;
+                        const ruta="/administrador/"+props.personas[i].id;
                         window.location.href = ruta;
                     }
                     if (props.personas[i].tipo === "estudiante") {
-                        const ruta="/alumno/"+props.personas[i].UIPersona;
+                        const ruta="/alumno/"+props.personas[i].id;
                         window.location.href = ruta;
                     }
                     if (props.personas[i].tipo === "profesor") {
-                        const ruta="/profesor/"+props.personas[i].UIPersona;
+                        const ruta="/profesor/"+props.personas[i].id;
                         window.location.href = ruta;
                     }
 
