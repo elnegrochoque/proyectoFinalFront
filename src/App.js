@@ -16,7 +16,7 @@ import CrearEvaluacion from './components/profesor/CrearEvaluacion';
 
 function App() {
   
-  const URL = process.env.REACT_APP_API_URL;
+  const URL = process.env.REACT_APP_API_URL+"personas";
   const [personas, setPersonas] = useState([]);
   useEffect(() => {
     consultarAPI();

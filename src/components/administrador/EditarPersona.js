@@ -7,7 +7,7 @@ import { Container, Form, Button, Alert, Row, Col, DropdownButton, FormGroup } f
 const EditarPersona = (props) => {
 
     const { id } = useParams();
-    const URL = process.env.REACT_APP_API_URL;
+    const URL = process.env.REACT_APP_API_URL+"personas";
     const [persona, setPersona] = useState({});
     const usuarioPersonaRef = useRef("");
     const passwordPersonaRef = useRef("");

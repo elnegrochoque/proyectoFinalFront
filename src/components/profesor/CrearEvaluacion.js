@@ -6,7 +6,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useParams } from 'react-router-dom';
 
 const CrearEvaluacion = () => {
-    const URL = "http://localhost:3004/evaluaciones";
+    const URL = process.env.REACT_APP_API_URL+"evaluaciones";
     const [nomreEvaluacion, setNombreEvaluacion] = useState("");
   
 

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const NuevoUsuarioAdmin = (props) => {
     const { id } = useParams();
-    const URL = process.env.REACT_APP_API_URL;
+    const URL = process.env.REACT_APP_API_URL+"personas";
     const [usuarioPersona, setUsuarioPersona] = useState("");
     const [passwordPersona, setPasswordPersona] = useState("");
     const [UIPersona, setUIPersona] = useState("");
@@ -101,8 +101,8 @@ const NuevoUsuarioAdmin = (props) => {
                 </Row>
                 <Row>
                     <Form.Group as={Col} controlId="formGridAddress1">
-                        <Form.Label>UI</Form.Label>
-                        <Form.Control type="number" placeholder="UI123456"
+                        <Form.Label>Codigo de profesor o alumno</Form.Label>
+                        <Form.Control type="number" placeholder="123456"
                             onChange={(e) => setUIPersona(e.target.value)} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridAddress1">

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const ItemPersona = (props) => {
 
     const eliminarPersona = (id) => {
-        const URL = process.env.REACT_APP_API_URL + '/' + id;
+        const URL = process.env.REACT_APP_API_URL + 'personas/' + id;
         Swal.fire({
             title: '¿Está seguro?',
             text: "Se borrara permanentemente",
