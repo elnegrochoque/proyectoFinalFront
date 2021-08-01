@@ -58,7 +58,17 @@ const NuevoUsuarioAdmin = (props) => {
                 if ((await respuesta.status) === 201) {
                     Swal.fire(
                         'Usuario creado',
-                        'El producto seleccionado fue correctamente elminado',
+                        'El producto seleccionado fue correctamente creado',
+                        'success'
+                    )
+                    props.consultarAPI();
+                    const urlAnterior="/administrador/"+id
+                    props.history.push(urlAnterior);
+                }
+                if ((await respuesta.status) === 200) {
+                    Swal.fire(
+                        'Usuario creado',
+                        'El producto seleccionado fue correctamente creado',
                         'success'
                     )
                     props.consultarAPI();

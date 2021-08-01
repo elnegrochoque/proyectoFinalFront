@@ -31,7 +31,7 @@ const Admin = (props) => {
 
                     </thead>
                     <tbody key="tbody">
-                        {props.personas.map((persona)=><ItemPersona persona={persona} key={persona.id} consultarAPI={props.consultarAPI} idAdmin={id}></ItemPersona>)}
+                        {props.personas.map((persona)=><ItemPersona persona={persona} key={persona._id} consultarAPI={props.consultarAPI} idAdmin={id}></ItemPersona>)}
                         
                     </tbody>
                 </Table>

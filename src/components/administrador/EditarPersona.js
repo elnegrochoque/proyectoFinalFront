@@ -22,17 +22,18 @@ const EditarPersona = (props) => {
     useEffect(() => {
         
         setTipoPersona(persona.tipo)
-        consultarNoticia();
+        consultarPersona();
        
     }, []);
 
-    const consultarNoticia = async () => {
+    const consultarPersona = async () => {
         try {
             const respuesta = await fetch(URL + '/' + id);
             if (respuesta.status === 200) {
                 const resultado = await respuesta.json();
                 setPersona(resultado);
                 auxiliarTipoPersona=persona.tipo
+                console.log(persona)
                 console.log(auxiliarTipoPersona);
             }
         } catch (error) {

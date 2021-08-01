@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 const CrearEvaluacion = () => {
     const URL = process.env.REACT_APP_API_URL+"evaluaciones";
     const [nomreEvaluacion, setNombreEvaluacion] = useState("");
-  
+const {id}=useParams();
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
@@ -37,6 +37,10 @@ const CrearEvaluacion = () => {
         }
 
     }
+    const volverAtras=()=>{
+        const urlAnterior="/profesor/"+id
+        window.location.href = urlAnterior;
+    }
     return (
         <Fragment>
             <Container>
@@ -48,9 +52,11 @@ const CrearEvaluacion = () => {
                     </FormGroup>
                     <div className="text-center">
                     <Button variant="primary" type="submit">
-                        Crear Usuario
+                        Crear Evaluacion
                     </Button>
-
+                    <Button variant="primary" onClick={volverAtras}>
+                        Atras
+                    </Button>
                 </div>
                 </Form>
             </Container>

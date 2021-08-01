@@ -29,19 +29,19 @@ const Inicio = (props) => {
                 if (props.personas[i].usuarioPersona === usuario && props.personas[i].passwordPersona === contrasena) {
                     console.log("existe");
                     console.log(props.personas[i].tipo)
-                    setTipoUsuario(props.personas[i].tipo
-                    )
+                    setTipoUsuario(props.personas[i].tipo)
                     esUsuario = true;
                     if (props.personas[i].tipo === "administrador") {
-                        const ruta="/administrador/"+props.personas[i].id;
+                        const ruta="/administrador/"+props.personas[i]._id;
                         window.location.href = ruta;
                     }
-                    if (props.personas[i].tipo === "estudiante") {
-                        const ruta="/alumno/"+props.personas[i].id;
+                    if (props.personas[i].tipo === "alumno") {
+                        const ruta="/alumno/"+props.personas[i]._id;
                         window.location.href = ruta;
+                        console.log("alumsniii")
                     }
                     if (props.personas[i].tipo === "profesor") {
-                        const ruta="/profesor/"+props.personas[i].id;
+                        const ruta="/profesor/"+props.personas[i]._id;
                         window.location.href = ruta;
                     }
 
