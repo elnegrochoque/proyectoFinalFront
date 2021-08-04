@@ -19,14 +19,21 @@ const CrearEvaluacion = () => {
     //const [notaEvaluacion, setNotaEvaluacion] = useState("");
     //const [idAlumnoEvaluacion, setIdAlumnoEvaluacion] = useState("");
     const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState(false);
-
+    const [cantidadPreguntasEvaluacion, setCantidadPreguntasEvaluacion] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("crear")
         const evaluacion = {
             nombreEvaluacion: nombreEvaluacion,
-            
+            materiaEvaluacion: materiaEvaluacion,
+                fechaInicioEvaluacion: fechaInicioEvaluacion,
+            horaInicioEvaluacion: horaInicioEvaluacion,
+                fechaFinEvaluacion: fechaFinEvaluacion,
+            horaFinEvaluacion:horaFinEvaluacion,
+                mezclarPreguntasEvaluacion:mezclarPreguntasEvaluacion,
+            libreNavegacionEvaluacion: libreNavegacionEvaluacion,
+                cantidadPreguntasEvaluacion:cantidadPreguntasEvaluacion
         };
         try {
             const parametros = {
@@ -81,33 +88,36 @@ const CrearEvaluacion = () => {
                     <Row className="mx-1" >
                         <FormGroup className="mr-4">
                             <Form.Label>Fecha de Inicio de Evaluacion</Form.Label>
-                            <Form.Control type="date" placeholder="Parcial 1" onChange={(e) => setFechaInicioEvaluacion(e.target.value)}></Form.Control>
+                            <Form.Control type="date" onChange={(e) => setFechaInicioEvaluacion(e.target.value)}></Form.Control>
                         </FormGroup>
                         <FormGroup >
                             <Form.Label>Hora de Inicio</Form.Label>
-                            <Form.Control type="time" placeholder="Parcial 1" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
+                            <Form.Control type="time" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
                         </FormGroup>
 
                     </Row>
                     <Row className="mx-1">
                         <FormGroup className="mr-5">
                             <Form.Label>Fecha de Fin de Evaluacion</Form.Label>
-                            <Form.Control type="date" placeholder="Parcial 1" onChange={(e) => setFechaFinEvaluacion(e.target.value)}></Form.Control>
+                            <Form.Control type="date" onChange={(e) => setFechaFinEvaluacion(e.target.value)}></Form.Control>
                         </FormGroup>
                         <FormGroup >
                             <Form.Label>Hora de Fin</Form.Label>
-                            <Form.Control type="time" placeholder="Parcial 1" onChange={(e) => setHoraFinEvaluacion(e.target.value)}></Form.Control>
+                            <Form.Control type="time" onChange={(e) => setHoraFinEvaluacion(e.target.value)}></Form.Control>
                         </FormGroup>
                     </Row>
-                
+                    <FormGroup>
+                        <Form.Label>Cantidad de Preguntas</Form.Label>
+                        <Form.Control className="col-4" type="number" placeholder="10" onChange={(e) => setCantidadPreguntasEvaluacion(e.target.value)}></Form.Control>
+                    </FormGroup>
                     <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
                         <Form.Check
                             type="switch"
                             label="Mezclar Preguntas"
                             onChange={(e) => onChangeMezclar(e)} />
-                        
+
                     </FormGroup>
-                    <FormGroup controlId="formBasicCheckbox2">
+                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
                         <Form.Check
                             type="switch"
                             label="Navegacion libre (puede retroceder a la pregunta anterior)"
