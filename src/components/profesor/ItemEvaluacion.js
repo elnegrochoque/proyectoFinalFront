@@ -64,10 +64,9 @@ const ItemEvaluacion = (props) => {
             
             <td className="text-center col-3">
             <Button className="mx-3" variant="danger" onClick={() => eliminarEvaluacion(props.evaluacion._id)}>BORRAR</Button>
-                {/* 
-                <Link to={`${props.idAdmin}/editar/${props.persona._id}`} className="btn btn-warning mr-2">
+                <Link to={`/profesor/${props.idProfesor}/modificarevaluaciones/editar/${props.evaluacion._id}`} className="btn btn-warning mr-2">
                     EDITAR
-                </Link> */}
+                </Link> 
             </td>
         </tr>
 
