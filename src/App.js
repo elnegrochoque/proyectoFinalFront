@@ -12,6 +12,7 @@ import EditarPersona from './components/administrador/EditarPersona';
 import PrincipalProfesor from './components/profesor/PrincipalProfesor';
 import CrearEvaluacion from './components/profesor/CrearEvaluacion';
 import EvaluacionNuevaProfesor from './components/profesor/EvaluacionNuevaProfesor';
+import ModificarEvaluacion from './components/profesor/ModificarEvaluacion';
 
 
 
@@ -60,6 +61,9 @@ console.log(personas);
           </Route>
           <Route exact path="/profesor/:id/crearevaluacion/:id">
             <EvaluacionNuevaProfesor></EvaluacionNuevaProfesor>
+          </Route>
+          <Route exact path="/profesor/:id/modificarevaluaciones">
+            <ModificarEvaluacion></ModificarEvaluacion>
           </Route>
           <Route exact path="/administrador/:id">
             <Admin personas={personas} consultarAPI={consultarAPI}></Admin>

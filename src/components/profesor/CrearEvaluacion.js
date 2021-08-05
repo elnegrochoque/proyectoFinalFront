@@ -20,20 +20,21 @@ const CrearEvaluacion = () => {
     //const [idAlumnoEvaluacion, setIdAlumnoEvaluacion] = useState("");
     const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState(false);
     const [cantidadPreguntasEvaluacion, setCantidadPreguntasEvaluacion] = useState(false);
-
+    const IDProfesor=id;
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("crear")
         const evaluacion = {
+            IDProfesor:IDProfesor,
             nombreEvaluacion: nombreEvaluacion,
             materiaEvaluacion: materiaEvaluacion,
-                fechaInicioEvaluacion: fechaInicioEvaluacion,
+            fechaInicioEvaluacion: fechaInicioEvaluacion,
             horaInicioEvaluacion: horaInicioEvaluacion,
-                fechaFinEvaluacion: fechaFinEvaluacion,
-            horaFinEvaluacion:horaFinEvaluacion,
-                mezclarPreguntasEvaluacion:mezclarPreguntasEvaluacion,
+            fechaFinEvaluacion: fechaFinEvaluacion,
+            horaFinEvaluacion: horaFinEvaluacion,
+            mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
             libreNavegacionEvaluacion: libreNavegacionEvaluacion,
-                cantidadPreguntasEvaluacion:cantidadPreguntasEvaluacion
+            cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion
         };
         try {
             const parametros = {
@@ -45,12 +46,16 @@ const CrearEvaluacion = () => {
             };
             // ejecutar la solicitud o request
             const respuesta = await fetch(URL, parametros);
+            const resultado = await respuesta.json();
+            console.log(resultado[0]._id)
 
             if ((await respuesta.status) === 201) {
 
                 console.log("todo bien")
 
             }
+            const ruta="/profesor/"+id+"/crearevaluacion/"+resultado[0]._id;
+            window.location.href = ruta;
         } catch (error) {
             console.log(error);
         }
@@ -107,7 +112,7 @@ const CrearEvaluacion = () => {
                         </FormGroup>
                     </Row>
                     <FormGroup>
-                        <Form.Label>Cantidad de Preguntas</Form.Label>
+                        <Form.Label>Cantidad de Preguntas Visibles (son la cantidad de preguntas que vera el alumno)</Form.Label>
                         <Form.Control className="col-4" type="number" placeholder="10" onChange={(e) => setCantidadPreguntasEvaluacion(e.target.value)}></Form.Control>
                     </FormGroup>
                     <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
