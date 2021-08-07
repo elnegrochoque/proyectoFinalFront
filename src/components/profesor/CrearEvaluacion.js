@@ -62,8 +62,7 @@ const CrearEvaluacion = () => {
 
     }
     const volverAtras = () => {
-        const urlAnterior = "/profesor/" + id
-        window.location.href = urlAnterior;
+        window.history.back()
     }
     const onChangeMezclar = (e) => {
         console.log(e.target.checked)

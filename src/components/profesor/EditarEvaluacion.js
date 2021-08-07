@@ -188,7 +188,7 @@ const EditarEvaluacion = () => {
                             <Button className="mr-5" variant="primary" type="submit">
                                 Guardar lo editado
                             </Button>
-                            <Button variant="primary" onClick={volverAtras}>
+                            <Button variant="primary" onClick={volverAtras()}>
                                 Atras
                             </Button>
 

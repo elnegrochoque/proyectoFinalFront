@@ -8,7 +8,7 @@ const Navegacion = () => {
     
     return (
 
-        <Navbar bg="secondary" className="justify-content-between align-items-center" >
+        <Navbar bg="light" className="justify-content-between align-items-center" >
             <Navbar.Brand href="/">
                 <img
                     src={isologotipo_unsta}
@@ -20,8 +20,7 @@ const Navegacion = () => {
             </Navbar.Brand>
 
             <Row>
-                <Col className="align-self-center"><p className="text-center ">Nombre de usuario</p></Col>
-
+                
                 <div className="align-self-center"><Button href="/" className="mx-2 ">Cerrar sesion</Button>
                 </div>
             </Row>
