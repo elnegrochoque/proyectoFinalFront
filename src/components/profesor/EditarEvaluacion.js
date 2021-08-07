@@ -13,13 +13,14 @@ const EditarEvaluacion = () => {
     const horaInicioEvaluacionRef = useRef("");
     const fechaFinEvaluacionRef = useRef("");
     const horaFinEvaluacionRef = useRef("");
-    const mezclarPreguntasEvaluacionRef = useRef("");
-    const libreNavegacionEvaluacionRef = useRef("");
+    const [mezclarPreguntasEvaluacion, setMezclarPerguntasEvaluacion] = useState("");
+
+    const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState("");
     const cantidadPreguntasEvaluacionRef = useRef("");
+
     useEffect(() => {
 
         consultarEvaluacion();
-
     }, []);
 
     const consultarEvaluacion = async () => {
@@ -29,15 +30,81 @@ const EditarEvaluacion = () => {
                 const resultado = await respuesta.json();
                 setEvaluacion(resultado);
                 console.log(resultado);
+                setLibreNavegacionEvaluacion(resultado.libreNavegacionEvaluacion);
+                setMezclarPerguntasEvaluacion(resultado.mezclarPreguntasEvaluacion);
             }
         } catch (error) {
             console.log(error);
         }
     }
-    
-    const handleSubmit = () => {
-        console.log("hola")
+
+
+    const cambiarNavegacion = (e) => {
+        if (libreNavegacionEvaluacion === true) {
+            setLibreNavegacionEvaluacion(false)
+        } else {
+            setLibreNavegacionEvaluacion(true)
+        }
     }
+    const cambiarMezclarPreguntas = () => {
+        if (mezclarPreguntasEvaluacion === true) {
+            setMezclarPerguntasEvaluacion(false)
+        } else {
+            setMezclarPerguntasEvaluacion(true)
+        }
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        //armar el objeto a enviar
+        const evaluacionEditada = {
+            IDProfesor: evaluacion.IDProfesor,
+            nombreEvaluacion: nombreEvaluacionRef.current.value,
+            materiaEvaluacion: materiaEvaluacionRef.current.value,
+            fechaInicioEvaluacion: fechaInicioEvaluacionRef.current.value,
+            horaInicioEvaluacion: horaInicioEvaluacionRef.current.value,
+            fechaFinEvaluacion: fechaFinEvaluacionRef.current.value,
+            horaFinEvaluacion: horaFinEvaluacionRef.current.value,
+            mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
+            libreNavegacionEvaluacion: libreNavegacionEvaluacion,
+            cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value
+        }
+        try {
+            const respuesta = await fetch(URL + "/" + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(evaluacionEditada)
+            });
+
+            if (respuesta.status === 200 || respuesta.status === 201) {
+                Swal.fire(
+                    'Producto editado',
+                    'Los datos del producto fueron modificados',
+                    'success'
+                );
+                window.history.back();
+
+                // redireccionar a la pagina de lista de productos
+
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!'
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        // si algo falla mostrar alert de error
+        // si esta todo bien, enviar la peticion PUT a la api
+    };
+    const volverAtras=()=>{
+        window.history.back();
+    }
+
+
     return (
         <Fragment>
             <Container>
@@ -86,28 +153,32 @@ const EditarEvaluacion = () => {
                         <FormGroup >
                             <Form.Label>Hora de Fin</Form.Label>
                             <Form.Control type="time"
-                            defaultValue={evaluacion.horaFinEvaluacion}
-                            ref={horaFinEvaluacionRef}
+                                defaultValue={evaluacion.horaFinEvaluacion}
+                                ref={horaFinEvaluacionRef}
                             ></Form.Control>
                         </FormGroup>
                     </Row>
                     <FormGroup>
                         <Form.Label>Cantidad de Preguntas Visibles (son la cantidad de preguntas que vera el alumno)</Form.Label>
                         <Form.Control className="col-4" type="number" placeholder="10"
-                        defaultValue={evaluacion.cantidadPreguntasEvaluacion}
-                        ref={cantidadPreguntasEvaluacionRef}
+                            defaultValue={evaluacion.cantidadPreguntasEvaluacion}
+                            ref={cantidadPreguntasEvaluacionRef}
                         ></Form.Control>
                     </FormGroup>
                     <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
                         <Form.Check
+
+                            defaultChecked={evaluacion.mezclarPreguntasEvaluacion}
                             type="switch"
                             label="Mezclar Preguntas"
-                            
+                            onChange={cambiarMezclarPreguntas}
                         />
 
                     </FormGroup>
                     <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
                         <Form.Check
+                            onChange={cambiarNavegacion}
+                            defaultChecked={evaluacion.libreNavegacionEvaluacion}
                             type="switch"
                             label="Navegacion libre (puede retroceder a la pregunta anterior)"
                         />
@@ -117,7 +188,7 @@ const EditarEvaluacion = () => {
                             <Button className="mr-5" variant="primary" type="submit">
                                 Guardar lo editado
                             </Button>
-                            <Button variant="primary">
+                            <Button variant="primary" onClick={volverAtras}>
                                 Atras
                             </Button>
 
