@@ -1,9 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Swal from "sweetalert2";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Link, useParams } from 'react-router-dom';
+import { Container, Row, Col, Button, Form,  FormGroup } from 'react-bootstrap';
+
+import { useParams } from 'react-router-dom';
 
 const CrearEvaluacion = () => {
     const URL = process.env.REACT_APP_API_URL + "evaluaciones";

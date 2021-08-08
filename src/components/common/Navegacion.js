@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
 
-import {  Button, Col, Row } from "react-bootstrap";
+import {  Button, Row } from "react-bootstrap";
 import isologotipo_unsta from "F:/facultad/proyecto4/front/proyecto4/src/img/isologotipo_unsta.png"
 const Navegacion = () => {
 

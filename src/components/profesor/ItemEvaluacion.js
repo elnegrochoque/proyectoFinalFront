@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert } from 'react-bootstrap';
+import {  Button} from 'react-bootstrap';
 const ItemEvaluacion = (props) => {
     
     const eliminarEvaluacion = (id) => {

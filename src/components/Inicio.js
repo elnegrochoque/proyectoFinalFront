@@ -10,7 +10,6 @@ const Inicio = (props) => {
     const [usuario, setUsuario] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [error, setError] = useState(false);
-    const [tipoUsuario, setTipoUsuario] = useState("");
 
     const handleSubmit = (e) => {
         let esUsuario = false;
@@ -27,9 +26,7 @@ const Inicio = (props) => {
 
             for (const i in props.personas) {
                 if (props.personas[i].usuarioPersona === usuario && props.personas[i].passwordPersona === contrasena) {
-                    console.log("existe");
-                    console.log(props.personas[i].tipo)
-                    setTipoUsuario(props.personas[i].tipo)
+    
                     esUsuario = true;
                     if (props.personas[i].tipo === "administrador") {
                         const ruta="/administrador/"+props.personas[i]._id;

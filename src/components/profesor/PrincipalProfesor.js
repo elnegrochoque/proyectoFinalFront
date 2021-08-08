@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert } from 'react-bootstrap';
+import { Container,  Col, Button, } from 'react-bootstrap';
 import { useParams, withRouter } from 'react-router-dom';
 const PrincipalProfesor = () => {
     const { id } = useParams();

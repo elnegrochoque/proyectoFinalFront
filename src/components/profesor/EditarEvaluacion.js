@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Container, Row, Col, Button, Form, FormGroup } from 'react-bootstrap';
+
 import Swal from "sweetalert2";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 const EditarEvaluacion = () => {
     const { id } = useParams();
     const URL = process.env.REACT_APP_API_URL + "evaluaciones";
@@ -29,7 +29,7 @@ const EditarEvaluacion = () => {
             if (respuesta.status === 200) {
                 const resultado = await respuesta.json();
                 setEvaluacion(resultado);
-                console.log(resultado);
+
                 setLibreNavegacionEvaluacion(resultado.libreNavegacionEvaluacion);
                 setMezclarPerguntasEvaluacion(resultado.mezclarPreguntasEvaluacion);
             }
@@ -100,15 +100,21 @@ const EditarEvaluacion = () => {
         // si algo falla mostrar alert de error
         // si esta todo bien, enviar la peticion PUT a la api
     };
-    const volverAtras=()=>{
-        window.history.back();
+    const volverAtras = (e) => {
+        e.preventDefault();
+        window.history.back()
     }
 
+    const irAPreguntas = (e) => {
+        e.preventDefault();
+        const ruta = '/profesor/' + evaluacion.IDProfesor + '/crearevaluacion/' + evaluacion._id
+        window.location.href = ruta;
+    }
 
     return (
         <Fragment>
             <Container>
-                <h1>Crear Evaluacion</h1>
+                <h1>Editar Evaluacion</h1>
                 <Form onSubmit={handleSubmit}>
                     <Row as={Col}
                         md="3">
@@ -188,7 +194,10 @@ const EditarEvaluacion = () => {
                             <Button className="mr-5" variant="primary" type="submit">
                                 Guardar lo editado
                             </Button>
-                            <Button variant="primary" onClick={volverAtras()}>
+                            <Button className="mr-5" variant="primary" onClick={(e) => { irAPreguntas(e) }}>
+                                Ver Preguntas
+                            </Button>
+                            <Button variant="primary" onClick={(e) => { volverAtras(e) }}>
                                 Atras
                             </Button>
 

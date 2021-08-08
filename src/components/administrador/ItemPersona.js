@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 import { Link } from 'react-router-dom';
@@ -59,7 +59,7 @@ const ItemPersona = (props) => {
             }
         })
 
-    const urlEditarUsuario = "/administrador/"+props.idAdmin+"/editar/"+props.persona.id;
+    //const urlEditarUsuario = "/administrador/"+props.idAdmin+"/editar/"+props.persona.id;
 
 
 

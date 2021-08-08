@@ -1,10 +1,8 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Swal from "sweetalert2";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Link, useParams } from 'react-router-dom';
+import { Row, Col,  Button, Table, Modal, Form, FormGroup } from 'react-bootstrap';
+
+import {  useParams } from 'react-router-dom';
 import ItemPregunta from './ItemPregunta';
 const EvaluacionNuevaProfesor = () => {
 
@@ -29,7 +27,7 @@ const EvaluacionNuevaProfesor = () => {
         console.log("crear")
         const evaluacion = {
             IDEvaluacion: id,
-            enunciadoPregunta:enunciadoPregunta,
+            enunciadoPregunta: enunciadoPregunta,
             opcion1Pregunta: opcion1Pregunta,
             opcion2Pregunta: opcion2Pregunta,
             opcion3Pregunta: opcion3Pregunta,
@@ -75,30 +73,40 @@ const EvaluacionNuevaProfesor = () => {
             console.log(error);
         }
     }
+    const salirAtras = () => {
+        window.history.go(-2)
+    }
+
+
     return (
         <Fragment>
             <Row className="m-5">
                 <Col ><h3 className=" font-weight-bold">Preguntas</h3></Col>
+                <Col >
+                    <Button onClick={handleShow}>Nueva Pregunta</Button>
+                </Col>
                 <Col>
-                    <Button onClick={handleShow}>
-                        Nueva Pregunta</Button></Col>
+                    <Button onClick={salirAtras}>Guardar y salir</Button>
+                </Col>
+
                 <Table striped bordered hover size="sm" className="my-4">
                     <thead>
                         <tr>
-                            <th className="col-2">Numero Pregunta</th>
-                            <th>Enunciado</th>
+                            <th ></th>
+                            <th className="col-10">Enunciado</th>
 
                         </tr>
 
                     </thead>
                     <tbody key="tbody">
                         {listaPreguntas.map((pregunta) =>
-                        <ItemPregunta 
-                        pregunta={pregunta} 
-                        key={pregunta._id} 
-                        idProfesor={id}
-                        consultarPreguntasAPI={consultarPreguntasAPI}
-                        ></ItemPregunta>)}
+                            <ItemPregunta
+                                cantidadPreguntas={listaPreguntas.indexOf(pregunta) + 1}
+                                pregunta={pregunta}
+                                key={pregunta._id}
+                                idProfesor={id}
+                                consultarPreguntasAPI={consultarPreguntasAPI}
+                            ></ItemPregunta>)}
 
                     </tbody>
                 </Table>
@@ -145,7 +153,9 @@ const EvaluacionNuevaProfesor = () => {
                                 <Form.Control type="text" placeholder="Opcion 3" onChange={(e) => setOpcion3Pregunta(e.target.value)}></Form.Control>
                             </FormGroup>
                             <FormGroup className="col-1 d-flex  mt-4" controlId="formBasicCheckbox3">
-                                <Form.Check type="switch" className=" d-flex align-self-center" />
+                                <Form.Check type="switch" className=" d-flex align-self-center"
+                                    onClick={(e) => setOpcion3CorrectaPregunta(e.target.checked)} />
+
                             </FormGroup>
                         </Row>
                         <Row >
@@ -154,7 +164,8 @@ const EvaluacionNuevaProfesor = () => {
                                 <Form.Control type="text" placeholder="Opcion 4" onChange={(e) => setOpcion4Pregunta(e.target.value)}></Form.Control>
                             </FormGroup>
                             <FormGroup className="col-1 d-flex  mt-4" controlId="formBasicCheckbox4">
-                                <Form.Check type="switch" className=" d-flex align-self-center" />
+                                <Form.Check type="switch" className=" d-flex align-self-center"
+                                    onClick={(e) => setOpcion4CorrectaPregunta(e.target.checked)} />
                             </FormGroup>
                         </Row>
                     </Form>

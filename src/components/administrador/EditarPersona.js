@@ -1,13 +1,13 @@
-import React, { Fragment, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, withRouter } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import { Container, Form, Button, Alert, Row, Col, DropdownButton, FormGroup } from "react-bootstrap";
+import { Container, Form, Button, Row, Col, DropdownButton } from "react-bootstrap";
 const EditarPersona = (props) => {
 
     const { id } = useParams();
-    const URL = process.env.REACT_APP_API_URL+"personas";
+    const URL = process.env.REACT_APP_API_URL + "personas";
     const [persona, setPersona] = useState({});
     const usuarioPersonaRef = useRef("");
     const passwordPersonaRef = useRef("");
@@ -17,13 +17,13 @@ const EditarPersona = (props) => {
     const nombrePersonaRef = useRef("");
     const apellidoPersonaRef = useRef("");
     const tipoPersonaRef = useRef("")
-    const [tipoPersona, setTipoPersona]=useState("");
-    let auxiliarTipoPersona=persona.tipo
+    const [tipoPersona, setTipoPersona] = useState("");
+    let auxiliarTipoPersona = persona.tipo
     useEffect(() => {
-        
+
         setTipoPersona(persona.tipo)
         consultarPersona();
-       
+
     }, []);
 
     const consultarPersona = async () => {
@@ -32,7 +32,7 @@ const EditarPersona = (props) => {
             if (respuesta.status === 200) {
                 const resultado = await respuesta.json();
                 setPersona(resultado);
-                auxiliarTipoPersona=persona.tipo
+                auxiliarTipoPersona = persona.tipo
                 console.log(persona)
                 console.log(auxiliarTipoPersona);
             }
@@ -42,9 +42,9 @@ const EditarPersona = (props) => {
     }
     const cambiarTipoUsuario = (e) => {
         console.log(e.target.name);
-        persona.tipo=e.target.name;
+        persona.tipo = e.target.name;
         setTipoPersona(e.target.name)
-        auxiliarTipoPersona=e.target.name;
+        auxiliarTipoPersona = e.target.name;
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,7 +60,7 @@ const EditarPersona = (props) => {
             DNIPersona: DNIPersonaRef.current.value,
             emailPersona: emailPersonaRef.current.value,
             apellidoPersona: apellidoPersonaRef.current.value,
-            
+
 
         }
         try {
@@ -76,10 +76,10 @@ const EditarPersona = (props) => {
                     'Los datos del producto fueron modificados',
                     'success'
                 );
-               
+
                 // redireccionar a la pagina de lista de productos
                 props.consultarAPI();
-                const urlAnterior="/administrador/"+id
+                const urlAnterior = "/administrador/" + id
                 props.history.push(urlAnterior);
 
             } else {
@@ -151,7 +151,7 @@ const EditarPersona = (props) => {
                         defaultValue={persona.nombrePersona}
                         ref={nombrePersonaRef} />
                 </Form.Group>
-                <DropdownButton variant="dark" title={persona.tipo} value={persona.tipo}  ref={tipoPersonaRef}size="lg">
+                <DropdownButton variant="dark" title={persona.tipo} value={persona.tipo} ref={tipoPersonaRef} size="lg">
                     <DropdownItem value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
                         administrador
                     </DropdownItem>
@@ -177,4 +177,4 @@ const EditarPersona = (props) => {
     );
 };
 
-export default withRouter(EditarPersona) ;
+export default withRouter(EditarPersona);

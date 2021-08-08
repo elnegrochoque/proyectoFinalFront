@@ -1,9 +1,7 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert, FormGroup, FormLabel, FormCheck } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Swal from "sweetalert2";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Row, Col, Table} from 'react-bootstrap';
+
 import { Link, useParams } from 'react-router-dom';
 import ItemEvaluacion from './ItemEvaluacion';
 const ModificarEvaluacion = () => {
@@ -19,12 +17,11 @@ const ModificarEvaluacion = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setEvaluaciones(respuesta);
-            console.log(respuesta)
+     
         } catch (error) {
             console.log(error);
         }
     }
-    console.log(evaluaciones)
     return (
         <Fragment>
             <Row className="m-5">

@@ -1,15 +1,11 @@
-import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Dropdown, Button, Table, Modal, Form, Alert } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Swal from "sweetalert2";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import React, { Fragment} from 'react';
+import { Row, Col, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import ItemPersona from './ItemPersona';
 
 const Admin = (props) => {
     console.log(props.personas)
 
-    const [lista, setLista] = useState([]);
     const {id}=useParams();
     const urlCrearUsuario="/administrador/"+id+"/nuevousuarioadmin"
     return (
