@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Button, Form,  FormGroup } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, FormGroup, Alert } from 'react-bootstrap';
 
 import { useParams } from 'react-router-dom';
 
 const CrearEvaluacion = () => {
+    const [error, setError] = useState(false);
     const URL = process.env.REACT_APP_API_URL + "evaluaciones";
     const { id } = useParams();
     const [nombreEvaluacion, setNombreEvaluacion] = useState("");
@@ -18,56 +19,66 @@ const CrearEvaluacion = () => {
     //const [idAlumnoEvaluacion, setIdAlumnoEvaluacion] = useState("");
     const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState(false);
     const [cantidadPreguntasEvaluacion, setCantidadPreguntasEvaluacion] = useState(false);
-    const IDProfesor=id;
+    const IDProfesor = id;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("crear")
-        const evaluacion = {
-            IDProfesor:IDProfesor,
-            nombreEvaluacion: nombreEvaluacion,
-            materiaEvaluacion: materiaEvaluacion,
-            fechaInicioEvaluacion: fechaInicioEvaluacion,
-            horaInicioEvaluacion: horaInicioEvaluacion,
-            fechaFinEvaluacion: fechaFinEvaluacion,
-            horaFinEvaluacion: horaFinEvaluacion,
-            mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
-            libreNavegacionEvaluacion: libreNavegacionEvaluacion,
-            cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion
-        };
-        try {
-            const parametros = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(evaluacion)
+        if (nombreEvaluacion.trim() === '' 
+        || materiaEvaluacion.trim() === ''
+        || fechaInicioEvaluacion.trim() === ''
+        || horaInicioEvaluacion.trim() === ''
+        || fechaFinEvaluacion.trim() === ''
+        || horaFinEvaluacion.trim() === ''
+        || cantidadPreguntasEvaluacion.trim() === '') {
+            setError(true);
+            return;
+        } else {
+            const evaluacion = {
+                IDProfesor: IDProfesor,
+                nombreEvaluacion: nombreEvaluacion,
+                materiaEvaluacion: materiaEvaluacion,
+                fechaInicioEvaluacion: fechaInicioEvaluacion,
+                horaInicioEvaluacion: horaInicioEvaluacion,
+                fechaFinEvaluacion: fechaFinEvaluacion,
+                horaFinEvaluacion: horaFinEvaluacion,
+                mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
+                libreNavegacionEvaluacion: libreNavegacionEvaluacion,
+                cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion
             };
-            // ejecutar la solicitud o request
-            const respuesta = await fetch(URL, parametros);
-            const resultado = await respuesta.json();
-            console.log(resultado[0]._id)
+            try {
+                const parametros = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(evaluacion)
+                };
+                // ejecutar la solicitud o request
+                const respuesta = await fetch(URL, parametros);
+                const resultado = await respuesta.json();
+                console.log(resultado[0]._id)
 
-            if ((await respuesta.status) === 201) {
+                if ((await respuesta.status) === 201) {
 
-                console.log("todo bien")
 
+                }
+                const ruta = "/profesor/" + id + "/crearevaluacion/" + resultado[0]._id;
+                window.location.href = ruta;
+            } catch (error) {
+                console.log(error);
             }
-            const ruta="/profesor/"+id+"/crearevaluacion/"+resultado[0]._id;
-            window.location.href = ruta;
-        } catch (error) {
-            console.log(error);
-        }
 
+        }
     }
+
     const volverAtras = () => {
         window.history.back()
     }
     const onChangeMezclar = (e) => {
-        console.log(e.target.checked)
+
         setMezclarPerguntasEvaluacion(e.target.checked)
     }
     const onChangeNavegacionLibre = (e) => {
-        console.log(e.target.checked)
+
         setLibreNavegacionEvaluacion(e.target.checked)
     }
     return (
@@ -75,6 +86,9 @@ const CrearEvaluacion = () => {
             <Container>
                 <h1>Crear Evaluacion</h1>
                 <Form onSubmit={handleSubmit}>
+                    {(error === true) ? (<Alert variant={'danger'}>
+                        Todos los campos son obligatorios
+                    </Alert>) : null}
                     <Row as={Col}
                         md="3">
                         <FormGroup className="mr-3 ">

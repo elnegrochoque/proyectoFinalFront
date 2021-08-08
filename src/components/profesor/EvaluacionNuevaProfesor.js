@@ -67,7 +67,7 @@ const EvaluacionNuevaProfesor = () => {
             const consulta = await fetch(URL + "/" + id);
             const respuesta = await consulta.json();
             setListaPreguntas(respuesta);
-            console.log(respuesta)
+ 
 
         } catch (error) {
             console.log(error);

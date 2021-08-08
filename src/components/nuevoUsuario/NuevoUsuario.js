@@ -27,7 +27,7 @@ const NuevoUsuario = (props) => {
             alert("complete todos los campos")
         } else {
             const persona = {
-                tipo: "estudiante",
+                tipo: "alumno",
                 usuarioPersona: usuarioPersona,
                 passwordPersona: passwordPersona,
                 UIPersona: UIPersona,
@@ -49,7 +49,7 @@ const NuevoUsuario = (props) => {
                 const respuesta = await fetch(URL, parametros);
 
                 if ((await respuesta.status) === 201) {
-
+                    props.consultarAPI();
                     
                     props.history.push('/');
                 }

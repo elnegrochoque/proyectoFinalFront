@@ -30,6 +30,7 @@ function App() {
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
       setPersonas(respuesta);
+      console.log(personas)
     } catch (error) {
       console.log(error);
     }
