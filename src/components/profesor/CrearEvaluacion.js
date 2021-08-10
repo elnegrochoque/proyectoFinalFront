@@ -22,16 +22,19 @@ const CrearEvaluacion = () => {
     const IDProfesor = id;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (nombreEvaluacion.trim() === '' 
-        || materiaEvaluacion.trim() === ''
-        || fechaInicioEvaluacion.trim() === ''
-        || horaInicioEvaluacion.trim() === ''
-        || fechaFinEvaluacion.trim() === ''
-        || horaFinEvaluacion.trim() === ''
-        || cantidadPreguntasEvaluacion.trim() === '') {
+        if (nombreEvaluacion.trim() === ''
+            || materiaEvaluacion.trim() === ''
+            || fechaInicioEvaluacion.trim() === ''
+            || horaInicioEvaluacion.trim() === ''
+            || fechaFinEvaluacion.trim() === ''
+            || horaFinEvaluacion.trim() === ''
+            || cantidadPreguntasEvaluacion.trim() === '') {
             setError(true);
             return;
         } else {
+            const fechaYHoraInicioEvaluacion = new Date(fechaInicioEvaluacion + "T" + horaInicioEvaluacion);
+            const fechaYHoraFinEvaluacion = new Date(fechaFinEvaluacion + "T" + horaFinEvaluacion);
+
             const evaluacion = {
                 IDProfesor: IDProfesor,
                 nombreEvaluacion: nombreEvaluacion,
@@ -42,8 +45,11 @@ const CrearEvaluacion = () => {
                 horaFinEvaluacion: horaFinEvaluacion,
                 mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
                 libreNavegacionEvaluacion: libreNavegacionEvaluacion,
-                cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion
+                cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion,
+                fechaYHoraInicioEvaluacion: fechaYHoraInicioEvaluacion,
+                fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion
             };
+            console.log(evaluacion);
             try {
                 const parametros = {
                     method: "POST",

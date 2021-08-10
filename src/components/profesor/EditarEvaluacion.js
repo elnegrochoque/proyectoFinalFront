@@ -56,6 +56,12 @@ const EditarEvaluacion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         //armar el objeto a enviar
+        const fechaYHoraInicioEvaluacion =
+            new Date(fechaInicioEvaluacionRef.current.value +
+                "T" + horaInicioEvaluacionRef.current.value);
+        const fechaYHoraFinEvaluacion =
+            new Date(fechaFinEvaluacionRef.current.value +
+                "T" + horaFinEvaluacionRef.current.value);
         const evaluacionEditada = {
             IDProfesor: evaluacion.IDProfesor,
             nombreEvaluacion: nombreEvaluacionRef.current.value,
@@ -66,7 +72,9 @@ const EditarEvaluacion = () => {
             horaFinEvaluacion: horaFinEvaluacionRef.current.value,
             mezclarPreguntasEvaluacion: mezclarPreguntasEvaluacion,
             libreNavegacionEvaluacion: libreNavegacionEvaluacion,
-            cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value
+            cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value,
+            fechaYHoraInicioEvaluacion: fechaYHoraInicioEvaluacion,
+            fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion
         }
         try {
             const respuesta = await fetch(URL + "/" + id, {

@@ -25,7 +25,7 @@ const EditarPersona = (props) => {
         consultarPersona();
 
     }, []);
-
+    
     const consultarPersona = async () => {
         try {
             const respuesta = await fetch(URL + '/' + id);

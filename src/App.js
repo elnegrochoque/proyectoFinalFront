@@ -14,6 +14,8 @@ import CrearEvaluacion from './components/profesor/CrearEvaluacion';
 import EvaluacionNuevaProfesor from './components/profesor/EvaluacionNuevaProfesor';
 import ModificarEvaluacion from './components/profesor/ModificarEvaluacion';
 import EditarEvaluacion from './components/profesor/EditarEvaluacion';
+import EvaluacionAlumno from './components/alumno/EvaluacionAlumno';
+import PreguntaAlumno from './components/alumno/PreguntaAlumno';
 
 
 
@@ -30,7 +32,7 @@ function App() {
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
       setPersonas(respuesta);
-      console.log(personas)
+     
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +50,14 @@ function App() {
         <Route exact path="/alumno/:id">
           <Navegacion></Navegacion>
           <InicioEval></InicioEval>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion">
+          <Navegacion></Navegacion>
+          <EvaluacionAlumno></EvaluacionAlumno>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:numeroPregunta">
+          <Navegacion></Navegacion>
+          <PreguntaAlumno></PreguntaAlumno>
         </Route>
         <Route exact path="/profesor/:id">
           <Navegacion></Navegacion>

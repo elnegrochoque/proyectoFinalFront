@@ -1,13 +1,13 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Table} from 'react-bootstrap';
+import { Row, Col, Table } from 'react-bootstrap';
 
 import { Link, useParams } from 'react-router-dom';
 import ItemEvaluacion from './ItemEvaluacion';
 const ModificarEvaluacion = () => {
 
     const { id } = useParams();
-    const URL = process.env.REACT_APP_API_URL + "evaluaciones/profesor/"+id;
+    const URL = process.env.REACT_APP_API_URL + "evaluaciones/profesor/" + id;
     const [evaluaciones, setEvaluaciones] = useState([]);
     useEffect(() => {
         consultarAPIEvaluaciones();
@@ -17,7 +17,7 @@ const ModificarEvaluacion = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setEvaluaciones(respuesta);
-     
+
         } catch (error) {
             console.log(error);
         }
@@ -35,18 +35,18 @@ const ModificarEvaluacion = () => {
                         <tr>
                             <th>Materia</th>
                             <th>Nombre Evaluacion</th>
-
+                            <th>Codigo</th>
                         </tr>
 
                     </thead>
                     <tbody key="tbody">
                         {evaluaciones.map((evaluacion) =>
-                        <ItemEvaluacion 
-                        evaluacion={evaluacion} 
-                        key={evaluacion._id} 
-                        idProfesor={id}
-                        consultarAPI={consultarAPIEvaluaciones}
-                        ></ItemEvaluacion>)}
+                            <ItemEvaluacion
+                                evaluacion={evaluacion}
+                                key={evaluacion._id}
+                                idProfesor={id}
+                                consultarAPI={consultarAPIEvaluaciones}
+                            ></ItemEvaluacion>)}
 
                     </tbody>
                 </Table>
