@@ -17,6 +17,9 @@ const CrearEvaluacion = () => {
     const [mezclarPreguntasEvaluacion, setMezclarPerguntasEvaluacion] = useState(false);
     //const [notaEvaluacion, setNotaEvaluacion] = useState("");
     //const [idAlumnoEvaluacion, setIdAlumnoEvaluacion] = useState("");
+    const [duracionEvaluacion, setDuracionEvaluacion] = useState("")
+    const [duracionEvaluacionMilisegundos, setDuracionEvaluacionMilisegundos] = useState(0)
+    
     const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState(false);
     const [cantidadPreguntasEvaluacion, setCantidadPreguntasEvaluacion] = useState(false);
     const IDProfesor = id;
@@ -28,7 +31,8 @@ const CrearEvaluacion = () => {
             || horaInicioEvaluacion.trim() === ''
             || fechaFinEvaluacion.trim() === ''
             || horaFinEvaluacion.trim() === ''
-            || cantidadPreguntasEvaluacion.trim() === '') {
+            || cantidadPreguntasEvaluacion.trim() === ''
+            || duracionEvaluacion === 0) {
             setError(true);
             return;
         } else {
@@ -47,7 +51,9 @@ const CrearEvaluacion = () => {
                 libreNavegacionEvaluacion: libreNavegacionEvaluacion,
                 cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacion,
                 fechaYHoraInicioEvaluacion: fechaYHoraInicioEvaluacion,
-                fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion
+                fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion,
+                duracionEvaluacionMilisegundos:duracionEvaluacionMilisegundos,
+                duracionEvaluacion:duracionEvaluacion
             };
             console.log(evaluacion);
             try {
@@ -87,6 +93,16 @@ const CrearEvaluacion = () => {
 
         setLibreNavegacionEvaluacion(e.target.checked)
     }
+    const cambiarDuracionEvaluacion = (e) => {
+        e.preventDefault()
+        setDuracionEvaluacion(e.target.value)
+        let hora = parseInt((e.target.value).slice(0, -3))
+        let minutos = parseInt((e.target.value).slice(-2))
+        hora = hora * 3600000
+        minutos = minutos * 60000
+        const horaTotal = hora + minutos
+        setDuracionEvaluacionMilisegundos(horaTotal)
+    }
     return (
         <Fragment>
             <Container>
@@ -115,6 +131,10 @@ const CrearEvaluacion = () => {
                         <FormGroup >
                             <Form.Label>Hora de Inicio</Form.Label>
                             <Form.Control type="time" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
+                        </FormGroup>
+                        <FormGroup className="ml-4">
+                            <Form.Label>Duracion de la evaluacion</Form.Label>
+                            <Form.Control type="time" onChange={(e) => cambiarDuracionEvaluacion(e)}></Form.Control>
                         </FormGroup>
 
                     </Row>
@@ -145,6 +165,7 @@ const CrearEvaluacion = () => {
                             label="Navegacion libre (puede retroceder a la pregunta anterior)"
                             onChange={(e) => onChangeNavegacionLibre(e)} />
                     </FormGroup>
+
                     <div className="text-center ml-3">
                         <Row className="">
                             <Button className="mr-5" variant="primary" type="submit">

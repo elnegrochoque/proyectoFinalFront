@@ -20,6 +20,7 @@ const InicioEval = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setEvaluacionAlumno(respuesta);
+
             if (respuesta===false) {
                 Swal.fire({
                     icon: 'error',

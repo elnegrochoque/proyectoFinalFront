@@ -76,7 +76,11 @@ const EvaluacionNuevaProfesor = () => {
     const salirAtras = () => {
         window.history.go(-2)
     }
+    const preguntaAnterior = (e) => {
 
+        e.preventDefault()
+        window.history.back();
+    }
 
     return (
         <Fragment>
@@ -86,9 +90,9 @@ const EvaluacionNuevaProfesor = () => {
                     <Button onClick={handleShow}>Nueva Pregunta</Button>
                 </Col>
                 <Col>
-                    <Button onClick={salirAtras}>Guardar y salir</Button>
+                    <Button onClick={salirAtras}>Salir</Button>
                 </Col>
-
+                <Button onClick={preguntaAnterior} className="mr-5">Atras</Button>
                 <Table striped bordered hover size="sm" className="my-4">
                     <thead>
                         <tr>

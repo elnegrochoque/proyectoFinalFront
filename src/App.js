@@ -16,6 +16,7 @@ import ModificarEvaluacion from './components/profesor/ModificarEvaluacion';
 import EditarEvaluacion from './components/profesor/EditarEvaluacion';
 import EvaluacionAlumno from './components/alumno/EvaluacionAlumno';
 import PreguntaAlumno from './components/alumno/PreguntaAlumno';
+import FinEvaluacion from './components/alumno/FinEvaluacion';
 
 
 
@@ -55,9 +56,13 @@ function App() {
           <Navegacion></Navegacion>
           <EvaluacionAlumno></EvaluacionAlumno>
         </Route>
-        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:numeroPregunta">
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta">
           <Navegacion></Navegacion>
           <PreguntaAlumno></PreguntaAlumno>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta/finevaluacion">
+          <Navegacion></Navegacion>
+          <FinEvaluacion></FinEvaluacion>
         </Route>
         <Route exact path="/profesor/:id">
           <Navegacion></Navegacion>

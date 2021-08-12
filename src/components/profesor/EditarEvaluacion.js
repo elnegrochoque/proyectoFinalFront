@@ -13,10 +13,13 @@ const EditarEvaluacion = () => {
     const horaInicioEvaluacionRef = useRef("");
     const fechaFinEvaluacionRef = useRef("");
     const horaFinEvaluacionRef = useRef("");
-    const [mezclarPreguntasEvaluacion, setMezclarPerguntasEvaluacion] = useState("");
+    const duracionEvaluacionRef = useRef("");
+    const [mezclarPreguntasEvaluacion, setMezclarPerguntasEvaluacion] = useState();
 
-    const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState("");
+    const [libreNavegacionEvaluacion, setLibreNavegacionEvaluacion] = useState();
     const cantidadPreguntasEvaluacionRef = useRef("");
+
+    const [duracionEvaluacionMilisegundos,setDuracionEvaluacionMilisegundos]=useState();
 
     useEffect(() => {
 
@@ -29,9 +32,10 @@ const EditarEvaluacion = () => {
             if (respuesta.status === 200) {
                 const resultado = await respuesta.json();
                 setEvaluacion(resultado);
-
+                console.log("hola")
                 setLibreNavegacionEvaluacion(resultado.libreNavegacionEvaluacion);
                 setMezclarPerguntasEvaluacion(resultado.mezclarPreguntasEvaluacion);
+                setDuracionEvaluacionMilisegundos(resultado.duracionEvaluacionMlisegundos);
             }
         } catch (error) {
             console.log(error);
@@ -74,8 +78,11 @@ const EditarEvaluacion = () => {
             libreNavegacionEvaluacion: libreNavegacionEvaluacion,
             cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value,
             fechaYHoraInicioEvaluacion: fechaYHoraInicioEvaluacion,
-            fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion
+            fechaYHoraFinEvaluacion: fechaYHoraFinEvaluacion,
+            duracionEvaluacion:duracionEvaluacionRef.current.value,
+            duracionEvaluacionMilisegundos:duracionEvaluacionMilisegundos
         }
+        console.log(evaluacionEditada)
         try {
             const respuesta = await fetch(URL + "/" + id, {
                 method: 'PUT',
@@ -118,7 +125,16 @@ const EditarEvaluacion = () => {
         const ruta = '/profesor/' + evaluacion.IDProfesor + '/crearevaluacion/' + evaluacion._id
         window.location.href = ruta;
     }
-
+    const cambiarDuracionEvaluacion = (e) => {
+        e.preventDefault()
+        console.log(e.target.value)
+        let hora = parseInt((e.target.value).slice(0, -3))
+        let minutos = parseInt((e.target.value).slice(-2))
+        hora = hora * 3600000
+        minutos = minutos * 60000
+        const horaTotal = hora + minutos
+        setDuracionEvaluacionMilisegundos(horaTotal)
+    }
     return (
         <Fragment>
             <Container>
@@ -155,6 +171,13 @@ const EditarEvaluacion = () => {
                                 ref={horaInicioEvaluacionRef}
                             ></Form.Control>
                         </FormGroup>
+                        <FormGroup className="ml-4">
+                            <Form.Label>Duracion de la evaluacion</Form.Label>
+                            <Form.Control type="time"
+                            defaultValue={evaluacion.duracionEvaluacion}
+                            ref={duracionEvaluacionRef}
+                            onChange={(e) => cambiarDuracionEvaluacion(e)}></Form.Control>
+                        </FormGroup>
 
                     </Row>
                     <Row className="mx-1">
@@ -185,13 +208,13 @@ const EditarEvaluacion = () => {
                             defaultChecked={evaluacion.mezclarPreguntasEvaluacion}
                             type="switch"
                             label="Mezclar Preguntas"
-                            onChange={cambiarMezclarPreguntas}
+                            onClick={cambiarMezclarPreguntas}
                         />
 
                     </FormGroup>
                     <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
                         <Form.Check
-                            onChange={cambiarNavegacion}
+                            onClick={cambiarNavegacion}
                             defaultChecked={evaluacion.libreNavegacionEvaluacion}
                             type="switch"
                             label="Navegacion libre (puede retroceder a la pregunta anterior)"

@@ -6,6 +6,7 @@ const EvaluacionAlumno = () => {
     const { idAlumno } = useParams()
     const { idEvaluacion } = useParams()
     const URL = process.env.REACT_APP_API_URL + "evaluaciones/alumno/preguntas/" + idEvaluacion;
+    const [numeroTotalPreguntasDisponibles, setNumeroTotalPreguntasDisponibles] = useState(0)
     const [evaluacion, setEvaluacion] = useState([]);
     useEffect(() => {
         consultarAPI1();
@@ -17,6 +18,8 @@ const EvaluacionAlumno = () => {
             const respuesta = await consulta.json();
             setEvaluacion(respuesta);
             console.log(respuesta)
+            console.log(respuesta.length)
+            setNumeroTotalPreguntasDisponibles(respuesta.length - 1)
         } catch (error) {
             console.log(error);
         }
@@ -26,7 +29,14 @@ const EvaluacionAlumno = () => {
         const urlEvaluacion1 = window.location + "/1"
         console.log(evaluacion[0].cantidadPreguntasEvaluacion)
         const URLRespuestas = process.env.REACT_APP_API_URL + "respuestas";
-        for (let index = 0; index < evaluacion[0].cantidadPreguntasEvaluacion; index++) {
+        const momentoInicioDeEvaluacionAlumno= new Date(Date.now())
+        
+        for (let index = 0; index < 
+            (evaluacion[0].cantidadPreguntasEvaluacion<numeroTotalPreguntasDisponibles?
+                evaluacion[0].cantidadPreguntasEvaluacion:
+                numeroTotalPreguntasDisponibles)
+            ; index++) {
+            console.log("hola")
             const respuestaAlumno = {
                 IDEvaluacion: idEvaluacion,
                 IDAlumno: idAlumno,
@@ -35,7 +45,8 @@ const EvaluacionAlumno = () => {
                 opcion1CorrectaRespuesta: false,
                 opcion2CorrectaRespuesta: false,
                 opcion3CorrectaRespuesta: false,
-                opcion4CorrectaRespuesta: false
+                opcion4CorrectaRespuesta: false,
+                momentoInicioDeEvaluacionAlumno: momentoInicioDeEvaluacionAlumno
             };
             try {
                 const parametros = {
@@ -51,7 +62,9 @@ const EvaluacionAlumno = () => {
                 console.log(error);
             }
         }
-        const rutaPrimeraPregunta = window.location+"/pregunta/1"
+        const rutaPrimeraPregunta = window.location + "/pregunta/"+(evaluacion[0].cantidadPreguntasEvaluacion<numeroTotalPreguntasDisponibles?
+            evaluacion[0].cantidadPreguntasEvaluacion:
+            numeroTotalPreguntasDisponibles)+"/1"
         window.location.href = rutaPrimeraPregunta;
     }
     return (
