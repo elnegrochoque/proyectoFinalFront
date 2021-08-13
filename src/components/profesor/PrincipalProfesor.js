@@ -11,13 +11,16 @@ const PrincipalProfesor = () => {
         const ruta="/profesor/"+id+"/modificarevaluaciones";
         window.location.href = ruta;
     }
-    
+    const historialEvaluacion = ()=>{
+        const ruta="/profesor/"+id+"/historial";
+        window.location.href = ruta;
+    }
    
     return (
         <Container className="text-center" >
             <Col className="mt-5"><Button size="lg" onClick={(e)=>crearEvaluacion(e)}>Crear Evaluacion</Button></Col>
             <Col className="mt-5"><Button size="lg" onClick={modificarEvaluacion}>Modificar Evaluacion</Button></Col>
-            <Col className="mt-5"><Button size="lg">Historial de Evaluaciones</Button></Col>
+            <Col className="mt-5"><Button size="lg" onClick={historialEvaluacion}>Historial de Evaluaciones</Button></Col>
         
         </Container>
 

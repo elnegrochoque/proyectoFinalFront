@@ -17,6 +17,8 @@ const PreguntaAlumno = () => {
     const [respuesta3CorrectaRespuesta, setRespuesta3CorrectaRespuesta] = useState()
     const [respuesta4CorrectaRespuesta, setRespuesta4CorrectaRespuesta] = useState()
     const [momentoFinEvaluacion, setMomentoFinEvaluacion] = useState(new Date(0))
+    const [resultadoEvaluacion, setResultadoEvaluacion] = useState([])
+
     const ahora = new Date()
     useEffect(() => {
         consultarAPI1();
@@ -30,19 +32,30 @@ const PreguntaAlumno = () => {
             setRespuesta2CorrectaRespuesta(respuesta[0].opcion2CorrectaRespuesta)
             setRespuesta3CorrectaRespuesta(respuesta[0].opcion3CorrectaRespuesta)
             setRespuesta4CorrectaRespuesta(respuesta[0].opcion4CorrectaRespuesta)
+            console.log(respuesta)
+            console.log(respuesta[0].IDResultado)
+            const URLResultado = process.env.REACT_APP_API_URL + "resultados/" + respuesta[0].IDResultado;
+            const consultaResultado = await fetch(URLResultado);
+            const respuestaResultado = await consultaResultado.json();
+            setResultadoEvaluacion(respuestaResultado);
+            console.log(respuestaResultado)
+
+
+
 
             const momentoComienzoEvaluacion = new Date(respuesta[0].momentoInicioDeEvaluacionAlumno)
-
             const idPregunta = respuesta[respuesta.length - 1].IDPregunta;
             const URLPregunta = process.env.REACT_APP_API_URL + "preguntas/respuesta/" + idPregunta;
             const consulta2 = await fetch(URLPregunta);
             const respuesta2 = await consulta2.json();
             setPreguntaEvaluacion(respuesta2);
+            console.log(respuesta2)
 
             const URLEvaluacion = process.env.REACT_APP_API_URL + "evaluaciones/" + idEvaluacion;
             const consultaEvaluacion = await fetch(URLEvaluacion);
             const respuestaEvaluacion = await consultaEvaluacion.json();
             setLibrenavegacion(respuestaEvaluacion.libreNavegacionEvaluacion)
+            console.log(respuestaEvaluacion)
 
             const momentoFinEvaluacionAux = momentoComienzoEvaluacion.getTime() + respuestaEvaluacion.duracionEvaluacionMilisegundos
             const momentoFinEvaluacionAux2 = new Date(momentoFinEvaluacionAux)
@@ -57,6 +70,7 @@ const PreguntaAlumno = () => {
 
                 window.location.href = ruta;
             }, momentoFinEvaluacionAux3);
+
         } catch (error) {
 
             console.log(error);
@@ -87,23 +101,106 @@ const PreguntaAlumno = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(respuestaEditada)
             });
+
         } catch (error) {
             console.log(error)
         }
+        const URLRespuestasResultado = process.env.REACT_APP_API_URL + "respuestas/resultados/" + resultadoEvaluacion._id;
+        const consultaAux = await fetch(URLRespuestasResultado);
+        const respuestaAux = await consultaAux.json();
 
+        console.log(respuestaAux)
+        console.log(respuestaAux.length)
+        const cantidadRespuestasYPreguntas = respuestaAux.length
+        let cantidadRespuestasCorrectas = 0
+        for (const i in respuestaAux) {
+            if (respuestaAux[i]) {
+                console.log(respuestaAux[i].IDPregunta)
+                const URLRespuestasResultado = process.env.REACT_APP_API_URL + "preguntas/respuesta/" + respuestaAux[i].IDPregunta
+                const consultaAux1 = await fetch(URLRespuestasResultado);
+                const respuestaAux2 = await consultaAux1.json();
+                console.log(respuestaAux2)
+                if (respuestaAux[i].opcion1CorrectaRespuesta === respuestaAux2.opcion1CorrectaPregunta &&
+                    respuestaAux[i].opcion2CorrectaRespuesta === respuestaAux2.opcion2CorrectaPregunta &&
+                    respuestaAux[i].opcion3CorrectaRespuesta === respuestaAux2.opcion3CorrectaPregunta &&
+                    respuestaAux[i].opcion4CorrectaRespuesta === respuestaAux2.opcion4CorrectaPregunta) {
+                    cantidadRespuestasCorrectas = cantidadRespuestasCorrectas + 1
+                }
+            }
+
+        }
+        console.log(cantidadRespuestasCorrectas)
+        const notaProvisoria = ((cantidadRespuestasCorrectas * 100) / respuestaAux.length)
+        console.log(notaProvisoria)
+
+        const URLCambiarNota = process.env.REACT_APP_API_URL + "resultados/" + resultadoEvaluacion._id;
+        const notaEditada = {
+            NotaEvaluacion: notaProvisoria
+        }
+        const cambiarNota = await fetch(URLCambiarNota, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(notaEditada)
+        });
         const numeroProximaPregunta = parseInt(numeroPregunta) + 1
         const numeroActualPregunta = parseInt(numeroPregunta)
         if (numeroActualPregunta == numeroTotalPreguntas || numeroActualPregunta == totalPreguntas) {
             const ruta = window.location.href + "/finevaluacion";
 
             window.location.href = ruta;
-        } else { 
+        } else {
             const ruta = window.location.href.slice(0, (numeroPregunta.length * (-1))) + numeroProximaPregunta;
             window.location.href = ruta;
         }
 
     }
+    const actualizarNota = async () => {
+        try {
+            console.log(resultadoEvaluacion._id)
+            const URLRespuestasResultado = process.env.REACT_APP_API_URL + "respuestas/resultados/" + resultadoEvaluacion._id;
+            const consultaAux = await fetch(URLRespuestasResultado);
+            const respuestaAux = await consultaAux.json();
+
+            console.log(respuestaAux)
+            console.log(respuestaAux.length)
+            const cantidadRespuestasYPreguntas = respuestaAux.length
+            let cantidadRespuestasCorrectas = 0
+            for (const i in respuestaAux) {
+                if (respuestaAux[i]) {
+                    console.log(respuestaAux[i].IDPregunta)
+                    const URLRespuestasResultado = process.env.REACT_APP_API_URL + "preguntas/respuesta/" + respuestaAux[i].IDPregunta
+                    const consultaAux1 = await fetch(URLRespuestasResultado);
+                    const respuestaAux2 = await consultaAux1.json();
+                    console.log(respuestaAux2)
+                    if (respuestaAux[i].opcion1CorrectaRespuesta === respuestaAux2.opcion1CorrectaPregunta &&
+                        respuestaAux[i].opcion2CorrectaRespuesta === respuestaAux2.opcion2CorrectaPregunta &&
+                        respuestaAux[i].opcion3CorrectaRespuesta === respuestaAux2.opcion3CorrectaPregunta &&
+                        respuestaAux[i].opcion4CorrectaRespuesta === respuestaAux2.opcion4CorrectaPregunta) {
+                        cantidadRespuestasCorrectas = cantidadRespuestasCorrectas + 1
+                    }
+                }
+
+            }
+            console.log(cantidadRespuestasCorrectas)
+            const notaProvisoria = ((cantidadRespuestasCorrectas * 100) / respuestaAux.length)
+            console.log(notaProvisoria)
+
+            const URLCambiarNota = process.env.REACT_APP_API_URL + "resultados/" + resultadoEvaluacion._id;
+            const notaEditada = {
+                NotaEvaluacion: notaProvisoria
+            }
+            const cambiarNota = await fetch(URLCambiarNota, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(notaEditada)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const preguntaAnterior = async (e) => {
+
 
         e.preventDefault()
 
@@ -126,9 +223,47 @@ const PreguntaAlumno = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(respuestaEditada)
             });
+            const URLRespuestasResultado = process.env.REACT_APP_API_URL + "respuestas/resultados/" + resultadoEvaluacion._id;
+            const consultaAux = await fetch(URLRespuestasResultado);
+            const respuestaAux = await consultaAux.json();
+
+            console.log(respuestaAux)
+            console.log(respuestaAux.length)
+            const cantidadRespuestasYPreguntas = respuestaAux.length
+            let cantidadRespuestasCorrectas = 0
+            for (const i in respuestaAux) {
+                if (respuestaAux[i]) {
+                    console.log(respuestaAux[i].IDPregunta)
+                    const URLRespuestasResultado = process.env.REACT_APP_API_URL + "preguntas/respuesta/" + respuestaAux[i].IDPregunta
+                    const consultaAux1 = await fetch(URLRespuestasResultado);
+                    const respuestaAux2 = await consultaAux1.json();
+                    console.log(respuestaAux2)
+                    if (respuestaAux[i].opcion1CorrectaRespuesta === respuestaAux2.opcion1CorrectaPregunta &&
+                        respuestaAux[i].opcion2CorrectaRespuesta === respuestaAux2.opcion2CorrectaPregunta &&
+                        respuestaAux[i].opcion3CorrectaRespuesta === respuestaAux2.opcion3CorrectaPregunta &&
+                        respuestaAux[i].opcion4CorrectaRespuesta === respuestaAux2.opcion4CorrectaPregunta) {
+                        cantidadRespuestasCorrectas = cantidadRespuestasCorrectas + 1
+                    }
+                }
+
+            }
+            console.log(cantidadRespuestasCorrectas)
+            const notaProvisoria = ((cantidadRespuestasCorrectas * 100) / respuestaAux.length)
+            console.log(notaProvisoria)
+
+            const URLCambiarNota = process.env.REACT_APP_API_URL + "resultados/" + resultadoEvaluacion._id;
+            const notaEditada = {
+                NotaEvaluacion: notaProvisoria
+            }
+            const cambiarNota = await fetch(URLCambiarNota, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(notaEditada)
+            });
         } catch (error) {
             console.log(error)
         }
+        actualizarNota();
         window.history.back();
     }
 

@@ -8,6 +8,7 @@ const EvaluacionAlumno = () => {
     const URL = process.env.REACT_APP_API_URL + "evaluaciones/alumno/preguntas/" + idEvaluacion;
     const [numeroTotalPreguntasDisponibles, setNumeroTotalPreguntasDisponibles] = useState(0)
     const [evaluacion, setEvaluacion] = useState([]);
+
     useEffect(() => {
         consultarAPI1();
     }, []);
@@ -17,8 +18,7 @@ const EvaluacionAlumno = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setEvaluacion(respuesta);
-            console.log(respuesta)
-            console.log(respuesta.length)
+
             setNumeroTotalPreguntasDisponibles(respuesta.length - 1)
         } catch (error) {
             console.log(error);
@@ -27,16 +27,37 @@ const EvaluacionAlumno = () => {
 
     const irAComenzarEvaluacion = async () => {
         const urlEvaluacion1 = window.location + "/1"
-        console.log(evaluacion[0].cantidadPreguntasEvaluacion)
         const URLRespuestas = process.env.REACT_APP_API_URL + "respuestas";
-        const momentoInicioDeEvaluacionAlumno= new Date(Date.now())
-        
-        for (let index = 0; index < 
-            (evaluacion[0].cantidadPreguntasEvaluacion<numeroTotalPreguntasDisponibles?
-                evaluacion[0].cantidadPreguntasEvaluacion:
+        const URLResultado = process.env.REACT_APP_API_URL + "resultados";
+        let respuestaIDRespuesta;
+        const momentoInicioDeEvaluacionAlumno = new Date(Date.now())
+        const resultadoAlumno = {
+            IDEvaluacion: idEvaluacion,
+            IDAlumno: idAlumno,
+            FechaEvaluacion: momentoInicioDeEvaluacionAlumno,
+            NotaEvaluacion: 0
+        }
+        try {
+            const parametros = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(resultadoAlumno)
+            };
+            // ejecutar la solicitud o request
+            const consulta = await fetch(URLResultado, parametros);
+
+            respuestaIDRespuesta = await consulta.json();
+
+        } catch (error) {
+            console.log(error);
+        }
+        for (let index = 0; index <
+            (evaluacion[0].cantidadPreguntasEvaluacion < numeroTotalPreguntasDisponibles ?
+                evaluacion[0].cantidadPreguntasEvaluacion :
                 numeroTotalPreguntasDisponibles)
             ; index++) {
-            console.log("hola")
             const respuestaAlumno = {
                 IDEvaluacion: idEvaluacion,
                 IDAlumno: idAlumno,
@@ -46,7 +67,8 @@ const EvaluacionAlumno = () => {
                 opcion2CorrectaRespuesta: false,
                 opcion3CorrectaRespuesta: false,
                 opcion4CorrectaRespuesta: false,
-                momentoInicioDeEvaluacionAlumno: momentoInicioDeEvaluacionAlumno
+                momentoInicioDeEvaluacionAlumno: momentoInicioDeEvaluacionAlumno,
+                IDResultado: respuestaIDRespuesta
             };
             try {
                 const parametros = {
@@ -62,10 +84,10 @@ const EvaluacionAlumno = () => {
                 console.log(error);
             }
         }
-        const rutaPrimeraPregunta = window.location + "/pregunta/"+(evaluacion[0].cantidadPreguntasEvaluacion<numeroTotalPreguntasDisponibles?
-            evaluacion[0].cantidadPreguntasEvaluacion:
-            numeroTotalPreguntasDisponibles)+"/1"
-        window.location.href = rutaPrimeraPregunta;
+        const rutaPrimeraPregunta = window.location + "/pregunta/" + (evaluacion[0].cantidadPreguntasEvaluacion < numeroTotalPreguntasDisponibles ?
+            evaluacion[0].cantidadPreguntasEvaluacion :
+            numeroTotalPreguntasDisponibles) + "/1"
+            window.location.href = rutaPrimeraPregunta;
     }
     return (
         <Container>
