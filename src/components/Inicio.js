@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Image, Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import isologotipo_unsta from "F:/facultad/proyecto4/front/proyecto4/src/img/isologotipo_unsta.png"
 import Swal from 'sweetalert2';
@@ -10,7 +10,6 @@ const Inicio = (props) => {
     const [usuario, setUsuario] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [error, setError] = useState(false);
-    const [tipoUsuario, setTipoUsuario] = useState("");
 
     const handleSubmit = (e) => {
         let esUsuario = false;
@@ -27,21 +26,19 @@ const Inicio = (props) => {
 
             for (const i in props.personas) {
                 if (props.personas[i].usuarioPersona === usuario && props.personas[i].passwordPersona === contrasena) {
-                    console.log("existe");
-                    console.log(props.personas[i].tipo)
-                    setTipoUsuario(props.personas[i].tipo
-                    )
+    
                     esUsuario = true;
                     if (props.personas[i].tipo === "administrador") {
-                        const ruta="/administrador/"+props.personas[i].UIPersona;
+                        const ruta="/administrador/"+props.personas[i]._id;
                         window.location.href = ruta;
                     }
-                    if (props.personas[i].tipo === "estudiante") {
-                        const ruta="/alumno/"+props.personas[i].UIPersona;
+                    if (props.personas[i].tipo === "alumno") {
+                        const ruta="/alumno/"+props.personas[i]._id;
                         window.location.href = ruta;
+                        console.log("alumsniii")
                     }
                     if (props.personas[i].tipo === "profesor") {
-                        const ruta="/profesor/"+props.personas[i].UIPersona;
+                        const ruta="/profesor/"+props.personas[i]._id;
                         window.location.href = ruta;
                     }
 

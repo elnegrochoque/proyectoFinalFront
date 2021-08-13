@@ -9,12 +9,23 @@ import { useState, useEffect } from 'react';
 import NuevoUsuario from './components/nuevoUsuario/NuevoUsuario';
 import NuevoUsuarioAdmin from './components/administrador/NuevoUsuarioAdmin';
 import EditarPersona from './components/administrador/EditarPersona';
+import PrincipalProfesor from './components/profesor/PrincipalProfesor';
+import CrearEvaluacion from './components/profesor/CrearEvaluacion';
+import EvaluacionNuevaProfesor from './components/profesor/EvaluacionNuevaProfesor';
+import ModificarEvaluacion from './components/profesor/ModificarEvaluacion';
+import EditarEvaluacion from './components/profesor/EditarEvaluacion';
+import EvaluacionAlumno from './components/alumno/EvaluacionAlumno';
+import PreguntaAlumno from './components/alumno/PreguntaAlumno';
+import FinEvaluacion from './components/alumno/FinEvaluacion';
+import Historial from './components/profesor/Historial';
+import HistorialEvaluacionesRealizadas from './components/profesor/HistorialEvaluacionesRealizadas';
+import VerEvaluacion from './components/profesor/VerEvaluacion';
 
 
 
 function App() {
-  
-  const URL = process.env.REACT_APP_API_URL;
+
+  const URL = process.env.REACT_APP_API_URL + "personas";
   const [personas, setPersonas] = useState([]);
   useEffect(() => {
     consultarAPI();
@@ -24,16 +35,12 @@ function App() {
     try {
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
-
       setPersonas(respuesta);
-
-    
+     
     } catch (error) {
       console.log(error);
     }
   }
-
-console.log(personas);
 
   return (
     <Router>
@@ -42,24 +49,70 @@ console.log(personas);
           <Inicio personas={personas} consultarAPI={consultarAPI}></Inicio>
         </Route>
         <Route exact path="/nuevoUsuario">
-            <NuevoUsuario personas={personas} consultarAPI={consultarAPI}></NuevoUsuario>
+          <NuevoUsuario personas={personas} consultarAPI={consultarAPI}></NuevoUsuario>
         </Route>
-        <div>
+        <Route exact path="/alumno/:id">
           <Navegacion></Navegacion>
-          <Route exact path="/alumno/:id">
-            <InicioEval></InicioEval>
-          </Route>
-          <Route exact path="/administrador/:id">
-            <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
-          </Route>
-          <Route exact path="/administrador/:id/editar/:id">
-            <EditarPersona personas={personas} consultarAPI={consultarAPI}></EditarPersona>
-          </Route>
-          <Route exact path="/administrador/:id/nuevousuarioadmin">
-            <NuevoUsuarioAdmin personas={personas} consultarAPI={consultarAPI}></NuevoUsuarioAdmin>
-          </Route>
-        </div>
-        
+          <InicioEval></InicioEval>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion">
+          <Navegacion></Navegacion>
+          <EvaluacionAlumno></EvaluacionAlumno>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta">
+          <Navegacion></Navegacion>
+          <PreguntaAlumno></PreguntaAlumno>
+        </Route>
+        <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta/finevaluacion">
+          <Navegacion></Navegacion>
+          <FinEvaluacion></FinEvaluacion>
+        </Route>
+        <Route exact path="/profesor/:id">
+          <Navegacion></Navegacion>
+          <PrincipalProfesor personas={personas} consultarAPI={consultarAPI}></PrincipalProfesor>
+        </Route>
+        <Route exact path="/profesor/:id/crearevaluacion">
+          <Navegacion></Navegacion>
+          <CrearEvaluacion></CrearEvaluacion>
+        </Route>
+        <Route exact path="/profesor/:id/crearevaluacion/:id">
+          <Navegacion></Navegacion>
+          <EvaluacionNuevaProfesor></EvaluacionNuevaProfesor>
+        </Route>
+        <Route exact path="/profesor/:id/modificarevaluaciones">
+          <Navegacion></Navegacion>
+          <ModificarEvaluacion></ModificarEvaluacion>
+        </Route>
+        <Route exact path="/profesor/:id/modificarevaluaciones/editar/:id">
+          <Navegacion></Navegacion>
+          <EditarEvaluacion></EditarEvaluacion>
+        </Route>
+        <Route exact path="/profesor/:idProfesor/historial">
+          <Navegacion></Navegacion>
+          <Historial></Historial>
+        </Route>
+        <Route exact path="/profesor/:idProfesor/historial/:idEvaluacion">
+          <Navegacion></Navegacion>
+          <HistorialEvaluacionesRealizadas></HistorialEvaluacionesRealizadas>
+        </Route>
+        <Route exact path="/profesor/:idProfesor/historial/:idEvaluacion/:idResultado">
+          <Navegacion></Navegacion>
+          <VerEvaluacion></VerEvaluacion>
+        </Route>
+        <Route exact path="/administrador/:id">
+          <Navegacion></Navegacion>
+          <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
+        </Route>
+        <Route exact path="/administrador/:id/editar/:id">
+          <Navegacion></Navegacion>
+          <EditarPersona personas={personas} consultarAPI={consultarAPI}></EditarPersona>
+        </Route>
+        <Route exact path="/administrador/:id/nuevousuarioadmin">
+          <Navegacion></Navegacion>
+          <NuevoUsuarioAdmin personas={personas} consultarAPI={consultarAPI}></NuevoUsuarioAdmin>
+        </Route>
+
+
       </Switch>
 
     </Router>

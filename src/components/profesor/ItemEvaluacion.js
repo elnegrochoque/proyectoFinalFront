@@ -1,15 +1,12 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 import { Link } from 'react-router-dom';
-
-
-
-const ItemPersona = (props) => {
-
-    const eliminarPersona = (id) => {
-        const URL = process.env.REACT_APP_API_URL + 'personas/' + id;
+import {  Button} from 'react-bootstrap';
+const ItemEvaluacion = (props) => {
+    
+    const eliminarEvaluacion = (id) => {
+        const URL = process.env.REACT_APP_API_URL + 'evaluaciones/' + id;
         Swal.fire({
             title: '¿Está seguro?',
             text: "Se borrara permanentemente",
@@ -59,26 +56,21 @@ const ItemPersona = (props) => {
             }
         })
 
-    //const urlEditarUsuario = "/administrador/"+props.idAdmin+"/editar/"+props.persona.id;
-
-
-
     }
     return (
         <tr >
-            <td>{props.persona.apellidoPersona}</td>
-            <td>{props.persona.nombrePersona}</td>
-            <td>{props.persona.UIPersona}</td>
-            <td>{props.persona.tipo}</td>
+            <td>{props.evaluacion.materiaEvaluacion}</td>
+            <td>{props.evaluacion.nombreEvaluacion}</td>
+            <td>{props.evaluacion._id}</td>
             <td className="text-center col-3">
-                <Button className="mx-3" variant="danger" onClick={() => eliminarPersona(props.persona._id)}>BORRAR</Button>
-                <Link to={`${props.idAdmin}/editar/${props.persona._id}`} className="btn btn-warning mr-2">
+            <Button className="mx-3" variant="danger" onClick={() => eliminarEvaluacion(props.evaluacion._id)}>BORRAR</Button>
+                <Link to={`/profesor/${props.idProfesor}/modificarevaluaciones/editar/${props.evaluacion._id}`} className="btn btn-warning mr-2">
                     EDITAR
-                </Link>
+                </Link> 
             </td>
         </tr>
 
     );
 };
 
-export default ItemPersona;
+export default ItemEvaluacion;

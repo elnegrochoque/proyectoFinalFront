@@ -3,7 +3,7 @@ import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import { useState } from "react";
 import { withRouter } from "react-router-dom";
 const NuevoUsuario = (props) => {
-    const URL = process.env.REACT_APP_API_URL;
+    const URL = process.env.REACT_APP_API_URL+"personas";
     const [usuarioPersona, setUsuarioPersona] = useState("");
     const [passwordPersona, setPasswordPersona] = useState("");
     const [UIPersona, setUIPersona] = useState("");
@@ -27,7 +27,7 @@ const NuevoUsuario = (props) => {
             alert("complete todos los campos")
         } else {
             const persona = {
-                tipo: "estudiante",
+                tipo: "alumno",
                 usuarioPersona: usuarioPersona,
                 passwordPersona: passwordPersona,
                 UIPersona: UIPersona,
@@ -49,7 +49,7 @@ const NuevoUsuario = (props) => {
                 const respuesta = await fetch(URL, parametros);
 
                 if ((await respuesta.status) === 201) {
-
+                    props.consultarAPI();
                     
                     props.history.push('/');
                 }
@@ -86,8 +86,8 @@ const NuevoUsuario = (props) => {
                 </Row>
                 <Row>
                     <Form.Group as={Col} controlId="formGridAddress1">
-                        <Form.Label>UI</Form.Label>
-                        <Form.Control type="number" placeholder="UI123456"
+                        <Form.Label>Codigo de alumno</Form.Label>
+                        <Form.Control type="number" placeholder="123456"
                             onChange={(e) => setUIPersona(e.target.value)} />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridAddress1">

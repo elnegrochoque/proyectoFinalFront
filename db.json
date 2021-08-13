@@ -23,13 +23,13 @@
       "id": 3
     },
     {
+      "nombrePersona": "juan",
       "tipo": "estudiante",
-      "usuarioPersona": "asdas",
-      "passwordPersona": "asdasd",
+      "usuarioPersona": "1",
+      "passwordPersona": "1",
       "UIPersona": "21",
       "DNIPersona": "321",
       "emailPersona": "asda@gmail.com",
-      "nombrePersona": "juan",
       "apellidoPersona": "perez",
       "id": 4
     },
@@ -56,26 +56,15 @@
       "id": 6
     },
     {
-      "tipo": "estudiante",
+      "nombrePersona": "juan",
+      "tipo": "alumno",
       "usuarioPersona": "asdas",
       "passwordPersona": "asdasd",
       "UIPersona": "21",
       "DNIPersona": "321",
       "emailPersona": "asda@gmail.com",
-      "nombrePersona": "juan",
       "apellidoPersona": "perez",
       "id": 7
-    },
-    {
-      "tipo": "estudiante",
-      "usuarioPersona": "a",
-      "passwordPersona": "a",
-      "UIPersona": "1",
-      "DNIPersona": "1",
-      "emailPersona": "asdlas@xn--asdlas-ywa.com",
-      "nombrePersona": "a",
-      "apellidoPersona": "a",
-      "id": 8
     },
     {
       "tipo": "administrador",
@@ -100,15 +89,21 @@
       "id": 12
     },
     {
+      "nombrePersona": "1",
       "tipo": "profesor",
-      "usuarioPersona": "vivi",
-      "passwordPersona": "vivi",
+      "usuarioPersona": "profe",
+      "passwordPersona": "profe",
       "UIPersona": "123456789",
       "DNIPersona": "321654987983",
       "emailPersona": "elngrochoque@gmail.com",
-      "nombrePersona": "1",
       "apellidoPersona": "1",
       "id": 13
+    }
+  ],
+  "evaluaciones": [
+    {
+      "nombreEvaluacion": "",
+      "id": 1
     }
   ]
 }
