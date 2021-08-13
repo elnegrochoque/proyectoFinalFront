@@ -1,6 +1,6 @@
 
-import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Table, Button, Container } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button, Container } from 'react-bootstrap';
 
 import { useParams } from 'react-router-dom';
 import ItemVerEvaluacion from './ItemVerEvaluacion';
@@ -18,7 +18,7 @@ const VerEvaluacion = () => {
             const respuesta = await consulta.json();
             setRespuestas(respuesta);
             console.log(respuesta)
-            let preguntasAux=[]
+            let preguntasAux = []
             for (const i in respuesta) {
                 const URLPregunta = process.env.REACT_APP_API_URL + "preguntas/respuesta/" + respuesta[i].IDPregunta;
                 const consultaPregunta = await fetch(URLPregunta);
@@ -26,7 +26,7 @@ const VerEvaluacion = () => {
                 preguntasAux.push(respuestaPregunta)
                 console.log(respuestaPregunta)
                 console.log(preguntasAux)
-                
+
             }
             setPreguntas(preguntasAux)
         } catch (error) {
@@ -40,9 +40,9 @@ const VerEvaluacion = () => {
     return (
         <div>
             <Container className="text-center mt-5">
-            <Button onClick={atras} className="text-center">atras</Button>
+                <Button onClick={atras} className="text-center">atras</Button>
             </Container>
-           
+
             <Container className="m-5">
                 {preguntas.map((preguntas) =>
                     <ItemVerEvaluacion

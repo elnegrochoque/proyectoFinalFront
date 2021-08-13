@@ -48,6 +48,17 @@ const ItemPregunta = (props) => {
     const editarPregunta = async (e) => {
         e.preventDefault();
         //armar el objeto a enviar
+        const checkBox1 = (document.getElementById('opcion1CorrectaRespuesta').checked)
+        const checkBox2 = (document.getElementById('opcion2CorrectaRespuesta').checked)
+        const checkBox3 = (document.getElementById('opcion3CorrectaRespuesta').checked)
+        const checkBox4 = (document.getElementById('opcion4CorrectaRespuesta').checked)
+
+        const respuestaEditada = {
+            opcion1CorrectaRespuesta: checkBox1,
+            opcion2CorrectaRespuesta: checkBox2,
+            opcion3CorrectaRespuesta: checkBox3,
+            opcion4CorrectaRespuesta: checkBox4
+        }
         const preguntaEditada = {
             IDEvaluacion: props.pregunta.IDEvaluacion,
             enunciadoPregunta: enunciadoPreguntaRef.current.value,
@@ -55,10 +66,10 @@ const ItemPregunta = (props) => {
             opcion2Pregunta: opcion2PreguntaRef.current.value,
             opcion3Pregunta: opcion3PreguntaRef.current.value,
             opcion4Pregunta: opcion4PreguntaRef.current.value,
-            opcion1CorrectaPregunta: opcion1CorrectaPreguntaEditada,
-            opcion2CorrectaPregunta: opcion2CorrectaPreguntaEditada,
-            opcion3CorrectaPregunta: opcion3CorrectaPreguntaEditada,
-            opcion4CorrectaPregunta: opcion4CorrectaPreguntaEditada
+            opcion1CorrectaPregunta: checkBox1,
+            opcion2CorrectaPregunta: checkBox2,
+            opcion3CorrectaPregunta: checkBox3,
+            opcion4CorrectaPregunta: checkBox4
             //cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value
         }
         try {
@@ -193,6 +204,7 @@ const ItemPregunta = (props) => {
                                 <Form.Check type="switch" className=" d-flex align-self-center"
                                     defaultChecked={props.pregunta.opcion1CorrectaPregunta}
                                     onChange={cambiarEstado1Checkbox}
+                                    id="opcion1CorrectaRespuesta"
                                 />
                             </FormGroup>
                         </Row>
@@ -210,6 +222,7 @@ const ItemPregunta = (props) => {
                                 <Form.Check type="switch" className=" d-flex align-self-center"
                                     defaultChecked={props.pregunta.opcion2CorrectaPregunta}
                                     onChange={cambiarEstado2Checkbox}
+                                    id="opcion2CorrectaRespuesta"
                                 />
                             </FormGroup>
                         </Row>
@@ -224,7 +237,8 @@ const ItemPregunta = (props) => {
                             <FormGroup className="col-1 d-flex  mt-4" controlId={props.pregunta._id + 3}>
                                 <Form.Check type="switch" className=" d-flex align-self-center"
                                     defaultChecked={props.pregunta.opcion3CorrectaPregunta}
-                                    onChange={cambiarEstado3Checkbox} />
+                                    onChange={cambiarEstado3Checkbox}
+                                    id="opcion3CorrectaRespuesta" />
                             </FormGroup>
                         </Row>
                         <Row >
@@ -238,7 +252,8 @@ const ItemPregunta = (props) => {
                             <FormGroup className="col-1 d-flex  mt-4" controlId={props.pregunta._id + 4}>
                                 <Form.Check type="switch" className=" d-flex align-self-center"
                                     defaultChecked={props.pregunta.opcion4CorrectaPregunta}
-                                    onChange={cambiarEstado4Checkbox} />
+                                    onChange={cambiarEstado4Checkbox}
+                                    id="opcion4CorrectaRespuesta"/>
 
                             </FormGroup>
                         </Row>

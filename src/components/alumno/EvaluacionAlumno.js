@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+
 const EvaluacionAlumno = () => {
     const { idAlumno } = useParams()
     const { idEvaluacion } = useParams()
@@ -26,7 +26,7 @@ const EvaluacionAlumno = () => {
     }
 
     const irAComenzarEvaluacion = async () => {
-        const urlEvaluacion1 = window.location + "/1"
+     
         const URLRespuestas = process.env.REACT_APP_API_URL + "respuestas";
         const URLResultado = process.env.REACT_APP_API_URL + "resultados";
         let respuestaIDRespuesta;

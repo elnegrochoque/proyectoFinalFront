@@ -1,7 +1,7 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import { Button, Card, Container, Form, Row, InputGroup } from 'react-bootstrap';
+
+import {  Card, Container, Form,  InputGroup } from 'react-bootstrap';
 const ItemVerEvaluacion = (props) => {
 
     const [checkBox1,setCheckBox1] = useState()

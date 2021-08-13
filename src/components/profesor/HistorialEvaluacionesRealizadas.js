@@ -2,7 +2,7 @@
 
 import React, { Fragment, useState, useEffect } from 'react';
 import { Row, Col, Table,Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 
 
 import ItemHistorialEvaluacionRealizada from './ItemHistorialEvaluacionRealizada';
