@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { Container, Form, Button, Row, Col, DropdownButton } from "react-bootstrap";
 const EditarPersona = (props) => {
-
+ 
     const { id } = useParams();
     const URL = process.env.REACT_APP_API_URL + "personas";
     const [persona, setPersona] = useState({});
