@@ -14,7 +14,7 @@ const Admin = (props) => {
                 <Col ><h3 className=" font-weight-bold">Administrador</h3></Col>
                 <Col> 
                 <Link to={urlCrearUsuario} className='btn btn-dark mr-2 text-light'>
-                    +Nueva Usuario
+                    +Nuevo Usuario
                 </Link></Col>
                 <Table striped bordered hover size="sm" className="my-4">
                     <thead>

@@ -72,8 +72,8 @@ const EditarPersona = (props) => {
 
             if (respuesta.status === 200) {
                 Swal.fire(
-                    'Producto editado',
-                    'Los datos del producto fueron modificados',
+                    'Persona editada',
+                    'Los datos de la persona fueron modificados',
                     'success'
                 );
 

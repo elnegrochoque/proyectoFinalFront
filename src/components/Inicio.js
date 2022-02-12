@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Image, Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
-import isologotipo_unsta from "F:/facultad/proyecto4/front/proyecto4/src/img/isologotipo_unsta.png"
+import isologotipo_unsta from "../img/isologotipo_unsta.png"
 import Swal from 'sweetalert2';
 const Inicio = (props) => {
     //console.log(props.personas)
