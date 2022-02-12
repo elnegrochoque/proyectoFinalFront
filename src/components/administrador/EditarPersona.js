@@ -23,7 +23,7 @@ const EditarPersona = (props) => {
 
         setTipoPersona(persona.tipo)
         consultarPersona();
-
+        console.log(tipoPersona)
     }, []);
     
     const consultarPersona = async () => {
