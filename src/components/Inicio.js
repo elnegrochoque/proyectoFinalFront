@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Image, Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import isologotipo_unsta from "../img/isologotipo_unsta.png"
 import Swal from 'sweetalert2';
+import Header from './Header';
+import LeftNavbar from './LeftNavbar';
 const Inicio = (props) => {
     //console.log(props.personas)
     // creo consts para almacenar el usuario, la contraseña y una bandera para verificar
@@ -59,6 +61,7 @@ const Inicio = (props) => {
 
 
     return (
+        
         <div>
             <div className="text-center mt-5">
                 <Image src={isologotipo_unsta}></Image>
