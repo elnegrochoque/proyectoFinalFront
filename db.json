@@ -1,0 +1,109 @@
+{
+  "personas": [
+    {
+      "nombrePersona": "admin",
+      "tipo": "administrador",
+      "usuarioPersona": "admin",
+      "passwordPersona": "admin",
+      "UIPersona": "123456789",
+      "DNIPersona": "132456789",
+      "emailPersona": "admin@gmail.com",
+      "apellidoPersona": "admin",
+      "id": 1
+    },
+    {
+      "tipo": "alumno",
+      "usuarioPersona": "matias",
+      "passwordPersona": "matias",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 3
+    },
+    {
+      "nombrePersona": "juan",
+      "tipo": "estudiante",
+      "usuarioPersona": "1",
+      "passwordPersona": "1",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "apellidoPersona": "perez",
+      "id": 4
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 5
+    },
+    {
+      "tipo": "estudiante",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "nombrePersona": "juan",
+      "apellidoPersona": "perez",
+      "id": 6
+    },
+    {
+      "nombrePersona": "juan",
+      "tipo": "alumno",
+      "usuarioPersona": "asdas",
+      "passwordPersona": "asdasd",
+      "UIPersona": "21",
+      "DNIPersona": "321",
+      "emailPersona": "asda@gmail.com",
+      "apellidoPersona": "perez",
+      "id": 7
+    },
+    {
+      "tipo": "administrador",
+      "usuarioPersona": "matias",
+      "passwordPersona": "123456",
+      "UIPersona": "181183",
+      "DNIPersona": "12345678",
+      "emailPersona": "elnegrchoque@gmail.com",
+      "nombrePersona": "matias",
+      "apellidoPersona": "choquevilca",
+      "id": 11
+    },
+    {
+      "tipo": "administrador",
+      "usuarioPersona": "elnegro",
+      "passwordPersona": "elnegro",
+      "UIPersona": "01234567",
+      "DNIPersona": "01324567",
+      "emailPersona": "elngrohco@aslkdja.com",
+      "nombrePersona": "elnegro",
+      "apellidoPersona": "elnegro",
+      "id": 12
+    },
+    {
+      "nombrePersona": "1",
+      "tipo": "profesor",
+      "usuarioPersona": "profe",
+      "passwordPersona": "profe",
+      "UIPersona": "123456789",
+      "DNIPersona": "321654987983",
+      "emailPersona": "elngrochoque@gmail.com",
+      "apellidoPersona": "1",
+      "id": 13
+    }
+  ],
+  "evaluaciones": [
+    {
+      "nombreEvaluacion": "",
+      "id": 1
+    }
+  ]
+}
