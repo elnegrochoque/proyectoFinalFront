@@ -68,7 +68,7 @@ function App() {
           <FinEvaluacion></FinEvaluacion>
         </Route>
         <Route exact path="/profesor/:id">
-          <Navegacion></Navegacion>
+          
           <PrincipalProfesor personas={personas} consultarAPI={consultarAPI}></PrincipalProfesor>
         </Route>
         <Route exact path="/profesor/:id/crearevaluacion">
