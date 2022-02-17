@@ -5,11 +5,7 @@ import Swal from 'sweetalert2';
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { Container, Form, Button, Row, Col, DropdownButton } from "react-bootstrap";
 const EditarPersona = (props) => {
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 3593d5ffa99b09d9d91201253d4f49d14fbbdfd1
     const { id } = useParams();
     const URL = process.env.REACT_APP_API_URL + "personas";
     const [persona, setPersona] = useState({});
@@ -27,11 +23,7 @@ const EditarPersona = (props) => {
 
         setTipoPersona(persona.tipo)
         consultarPersona();
-<<<<<<< HEAD
-
-=======
         console.log(tipoPersona)
->>>>>>> 3593d5ffa99b09d9d91201253d4f49d14fbbdfd1
     }, []);
     
     const consultarPersona = async () => {
