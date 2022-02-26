@@ -1,9 +1,21 @@
 import React from "react";
-import { Container, Col, Button } from "react-bootstrap";
 import { useParams, withRouter } from "react-router-dom";
 import Header from "../Header";
 import LeftNavbar from "../LeftNavbar";
+import { useState, useEffect } from "react";
+import {
+  Form,
+  Button,
+  Col,
+  Row,
+  Alert,
+  Card,
+  Container,
+} from "react-bootstrap";
+import styles from "../../styles/Home.module.css";
+import { Table } from "react-bootstrap";
 const PrincipalProfesor = () => {
+  const [profesor, setProfesor] = useState();
   const { id } = useParams();
   const crearEvaluacion = () => {
     const ruta = "/profesor/" + id + "/crearevaluacion";
@@ -17,30 +29,74 @@ const PrincipalProfesor = () => {
     const ruta = "/profesor/" + id + "/historial";
     window.location.href = ruta;
   };
+  const profesorInfo = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
 
+    fetch(
+      "http://localhost:4000/api/sistemadeevaluaciones/personas/" + id,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setProfesor(result);
+      })
+      .catch((error) => console.log("error", error));
+  };
+  useEffect(() => {
+    profesorInfo();
+  }, []);
   return (
     <div>
       <LeftNavbar props={id}></LeftNavbar>
       <Container className="text-center">
         <Header></Header>
 
-        {/* <Container className="text-center">
-        <Col className="mt-5">
-          <Button size="lg" onClick={(e) => crearEvaluacion(e)}>
-            Crear Evaluacion
-          </Button>
-        </Col>
-        <Col className="mt-5">
-          <Button size="lg" onClick={modificarEvaluacion}>
-            Modificar Evaluacion
-          </Button>
-        </Col>
-        <Col className="mt-5">
-          <Button size="lg" onClick={historialEvaluacion}>
-            Historial de Evaluaciones
-          </Button>
-        </Col>
-      </Container> */}
+        <div className={styles.contentcontainer}>
+          <div className={styles.contentwrapper}>
+            <Card className="m-2" bg="Light" style={{ width: "70rem" }}>
+              <Card.Header>
+                <h1>Datos del profesor</h1>
+              </Card.Header>
+
+              <Card.Body>
+                {profesor == undefined ? null : (
+                  <Table striped bordered hover>
+                    <tbody>
+                    <tr>
+                        <td>Apellido:</td>
+                        <td>{profesor.apellidoPersona}</td>
+                      </tr>
+                      <tr>
+                        <td>Nombre:</td>
+                        <td>{profesor.nombrePersona}</td>
+                      </tr>
+                      <tr>
+                        <td>Codigo Profesor:</td>
+                        <td>{profesor.UIPersona}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Email:</td>
+                        <td>{profesor.emailPersona}</td>
+                      </tr>
+                      <tr>
+                        <td>DNI:</td>
+                        <td>{profesor.DNIPersona}</td>
+                      </tr>
+                      <tr>
+                        <td>Tipo de usuario:</td>
+                        <td>{profesor.tipo}</td>
+                      </tr>
+                    </tbody>
+                  </Table>
+                )}
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
       </Container>
     </div>
   );

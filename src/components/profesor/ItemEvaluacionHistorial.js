@@ -32,7 +32,7 @@ const ItemEvaluacionHistorial = (props) => {
             <td>{props.evaluacion.materiaEvaluacion}</td>
             <td>{props.evaluacion.nombreEvaluacion}</td>
             <td>{props.evaluacion._id}</td>
-            <td className="text-center col-3">
+            <td className="text-center">
                 <Row>
                     <Button className="mx-3" variant="danger" onClick={() => enviarResultadosEvaluacion(props.evaluacion._id)}>ENVIAR RESULTADOS</Button>
                   

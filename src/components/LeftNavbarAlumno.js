@@ -15,10 +15,9 @@ function LeftNavbar(props) {
   console.log(props.props);
   console.log(props);
   const InicioEval = () => {
-    const ruta = "/alumnos/" + props.props + "/InicioEval";
+    const ruta = "/alumno/" + props.props;
     window.location.href = ruta;
   };
- 
 
   console.log(props);
   return (
@@ -46,13 +45,11 @@ function LeftNavbar(props) {
               icon={faRocket}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}
-            
-            >
+            <a href="#" style={{ color: "#000000" }}>
               Historial de Examenes
             </a>
-          </li>          
-          
+          </li>
+
           <li>
             <FontAwesomeIcon
               icon={faHeart}
@@ -68,7 +65,7 @@ function LeftNavbar(props) {
               icon={faSignOutAlt}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/" style={{ color: "#000000" }}>
               Logout
             </a>
           </li>

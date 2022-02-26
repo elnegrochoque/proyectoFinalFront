@@ -35,7 +35,7 @@ const Inicio = (props) => {
                         window.location.href = ruta;
                     }
                     if (props.personas[i].tipo === "alumno") {
-                        const ruta="/alumno/"+props.personas[i]._id;
+                        const ruta="/alumnoprincipal/"+props.personas[i]._id;
                         window.location.href = ruta;
                         console.log("alumsniii")
                     }

@@ -83,22 +83,14 @@ function LeftNavbar(props) {
               Modificar Examenes
             </a>
           </li>
-          <li>
-            <FontAwesomeIcon
-              icon={faHeart}
-              style={{ width: "14px", cursor: "pointer" }}
-            />{" "}
-            <a href="#" style={{ color: "#000000" }}>
-              Listado de alumnos
-            </a>
-          </li>
+          
 
           <li>
             <FontAwesomeIcon
               icon={faSignOutAlt}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/" style={{ color: "#000000" }}>
               Logout
             </a>
           </li>
