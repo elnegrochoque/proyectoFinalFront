@@ -20,6 +20,7 @@ import FinEvaluacion from './components/alumno/FinEvaluacion';
 import Historial from './components/profesor/Historial';
 import HistorialEvaluacionesRealizadas from './components/profesor/HistorialEvaluacionesRealizadas';
 import VerEvaluacion from './components/profesor/VerEvaluacion';
+import FotoAlumno from './components/alumno/FotoAlumno';
 
 
 
@@ -111,7 +112,9 @@ function App() {
           <Navegacion></Navegacion>
           <NuevoUsuarioAdmin personas={personas} consultarAPI={consultarAPI}></NuevoUsuarioAdmin>
         </Route>
-
+        <Route exact path="/evaluacion/alumno">
+          <FotoAlumno></FotoAlumno>
+        </Route>
 
       </Switch>
 
