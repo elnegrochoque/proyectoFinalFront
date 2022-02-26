@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Card } from 'react-bootstrap';
+import Header from "../HeaderAlumno";
+import LeftNavbar from "../LeftNavbarAlumno";
+import styles from "../../styles/Home.module.css";
 
 const EvaluacionAlumno = () => {
     const { idAlumno } = useParams()
@@ -90,12 +93,30 @@ const EvaluacionAlumno = () => {
             window.location.href = rutaPrimeraPregunta;
     }
     return (
-        <Container>
-            <div className="text-center mt-5">
-                <Button className="mx-3" variant="danger" onClick={irAComenzarEvaluacion}>COMENZAR EVALUACION</Button>
-            </div>
-        </Container>
+        <Fragment>
 
+        <div className={styles.Container}> 
+            <LeftNavbar props={idAlumno}></LeftNavbar>
+            <Header></Header>      
+                                        
+                <div className={styles.contentcontainer}>
+                    <div className={styles.contentwrapper}>
+
+                        <Card className="m-2" bg="Light"  style={{ width: '50rem'}} >                     
+                                <Card.Header>
+                                    <h1>Comenzar Evaluacion</h1>
+                                </Card.Header>
+                            
+                                <Card.Body >                            
+                                    <div className="text-center mt-5">
+                                        <Button className="mx-3" variant="danger" onClick={irAComenzarEvaluacion}>COMENZAR EVALUACION</Button>
+                                    </div>                            
+                                </Card.Body>
+                        </Card>
+                    </div>
+                </div>    
+        </div>
+        </Fragment>
     );
 };
 

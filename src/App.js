@@ -52,11 +52,11 @@ function App() {
           <NuevoUsuario personas={personas} consultarAPI={consultarAPI}></NuevoUsuario>
         </Route>
         <Route exact path="/alumno/:id">
-          <Navegacion></Navegacion>
+          
           <InicioEval></InicioEval>
         </Route>
         <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion">
-          <Navegacion></Navegacion>
+          
           <EvaluacionAlumno></EvaluacionAlumno>
         </Route>
         <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta">
