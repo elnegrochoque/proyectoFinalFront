@@ -53,11 +53,11 @@ function App() {
           <NuevoUsuario personas={personas} consultarAPI={consultarAPI}></NuevoUsuario>
         </Route>
         <Route exact path="/alumno/:id">
-          <Navegacion></Navegacion>
+          
           <InicioEval></InicioEval>
         </Route>
         <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion">
-          <Navegacion></Navegacion>
+          
           <EvaluacionAlumno></EvaluacionAlumno>
         </Route>
         <Route exact path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta">
@@ -73,7 +73,7 @@ function App() {
           <PrincipalProfesor personas={personas} consultarAPI={consultarAPI}></PrincipalProfesor>
         </Route>
         <Route exact path="/profesor/:id/crearevaluacion">
-          <Navegacion></Navegacion>
+          
           <CrearEvaluacion></CrearEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/crearevaluacion/:id">
@@ -81,7 +81,7 @@ function App() {
           <EvaluacionNuevaProfesor></EvaluacionNuevaProfesor>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones">
-          <Navegacion></Navegacion>
+          
           <ModificarEvaluacion></ModificarEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones/editar/:id">
@@ -89,7 +89,7 @@ function App() {
           <EditarEvaluacion></EditarEvaluacion>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial">
-          <Navegacion></Navegacion>
+          
           <Historial></Historial>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial/:idEvaluacion">

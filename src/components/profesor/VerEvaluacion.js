@@ -1,10 +1,14 @@
 
-import React, { useState, useEffect } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Button, Container, Card } from 'react-bootstrap';
+import Header from "../Header";
+import LeftNavbar from "../LeftNavbar";
+import styles from "../../styles/Home.module.css";
 
 import { useParams } from 'react-router-dom';
 import ItemVerEvaluacion from './ItemVerEvaluacion';
 const VerEvaluacion = () => {
+
     const { idResultado } = useParams();
     const URL = process.env.REACT_APP_API_URL + "respuestas/resultados/" + idResultado;
     const [respuestas, setRespuestas] = useState([]);
@@ -38,21 +42,41 @@ const VerEvaluacion = () => {
         window.history.back()
     }
     return (
-        <div>
-            <Container className="text-center mt-5">
-                <Button onClick={atras} className="text-center">atras</Button>
-            </Container>
+        <Fragment>
+            <div className={styles.Container}> 
+                
+                <LeftNavbar props={idResultado}></LeftNavbar> 
+                <Header></Header> 
+                        
+                         
+                        <div className={styles.contentcontainer}>
+                            <div className={styles.contentwrapper}>
 
-            <Container className="m-5">
-                {preguntas.map((preguntas) =>
-                    <ItemVerEvaluacion
-                        respuestas={respuestas}
-                        preguntas={preguntas}
-                    ></ItemVerEvaluacion>)}
+                            <Card className="m-2" bg="Light"  style={{ width: '50rem'}} >                     
+                                <Card.Header>
+                                <h1>Ver Evaluacion</h1>
+                                </Card.Header>
+                          
+                                <Card.Body >
+                                        <Container className="text-center mt-5">
+                                            <Button onClick={atras} className="text-center">atras</Button>
+                                        </Container>
 
-            </Container >
+                                        <Container className="m-5">
+                                            {preguntas.map((preguntas) =>
+                                                <ItemVerEvaluacion
+                                                    respuestas={respuestas}
+                                                    preguntas={preguntas}
+                                                ></ItemVerEvaluacion>)}
 
-        </div>
+                                        </Container >
+                                </Card.Body>
+                            </Card>
+                            </div>
+                        </div>
+            </div>
+        </Fragment>
+        
     );
 };
 

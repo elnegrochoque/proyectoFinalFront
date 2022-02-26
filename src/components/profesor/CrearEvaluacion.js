@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Container, Row, Col, Button, Form, FormGroup, Alert } from 'react-bootstrap';
-
+import { Container, Row, Col, Button, Form, FormGroup, Alert, Card, Navbar } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import Header from "../Header";
+import LeftNavbar from "../LeftNavbar";
+import styles from "../../styles/Home.module.css";
+
 
 const CrearEvaluacion = () => {
     const [error, setError] = useState(false);
@@ -103,83 +106,111 @@ const CrearEvaluacion = () => {
         const horaTotal = hora + minutos
         setDuracionEvaluacionMilisegundos(horaTotal)
     }
-    return (
+    return (         
+        
         <Fragment>
-            <Container>
-                <h1>Crear Evaluacion</h1>
-                <Form onSubmit={handleSubmit}>
-                    {(error === true) ? (<Alert variant={'danger'}>
-                        Todos los campos son obligatorios
-                    </Alert>) : null}
-                    <Row as={Col}
-                        md="3">
-                        <FormGroup className="mr-3 ">
-                            <Form.Label>Materia</Form.Label>
-                            <Form.Control type="text" placeholder="Materia" onChange={(e) => setMateriaEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                        <FormGroup >
-                            <Form.Label>Nombre Evaluacion</Form.Label>
-                            <Form.Control type="text" placeholder="Parcial 1" onChange={(e) => setNombreEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                    </Row>
 
-                    <Row className="mx-1" >
-                        <FormGroup className="mr-4">
-                            <Form.Label>Fecha de Inicio de Evaluacion</Form.Label>
-                            <Form.Control type="date" onChange={(e) => setFechaInicioEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                        <FormGroup >
-                            <Form.Label>Hora de Inicio</Form.Label>
-                            <Form.Control type="time" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                        <FormGroup className="ml-4">
-                            <Form.Label>Duracion de la evaluacion</Form.Label>
-                            <Form.Control type="time" onChange={(e) => cambiarDuracionEvaluacion(e)}></Form.Control>
-                        </FormGroup>
 
-                    </Row>
-                    <Row className="mx-1">
-                        <FormGroup className="mr-5">
-                            <Form.Label>Fecha de Fin de Evaluacion</Form.Label>
-                            <Form.Control type="date" onChange={(e) => setFechaFinEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                        <FormGroup >
-                            <Form.Label>Hora de Fin</Form.Label>
-                            <Form.Control type="time" onChange={(e) => setHoraFinEvaluacion(e.target.value)}></Form.Control>
-                        </FormGroup>
-                    </Row>
-                    <FormGroup>
-                        <Form.Label>Cantidad de Preguntas Visibles (son la cantidad de preguntas que vera el alumno)</Form.Label>
-                        <Form.Control className="col-4" type="number" placeholder="10" onChange={(e) => setCantidadPreguntasEvaluacion(e.target.value)}></Form.Control>
-                    </FormGroup>
-                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
-                        <Form.Check
-                            type="switch"
-                            label="Mezclar Preguntas"
-                            onChange={(e) => onChangeMezclar(e)} />
+        <div className={styles.Container}> 
+                
+        <LeftNavbar props={id}></LeftNavbar> 
+        <Header></Header> 
+                
+                 
+                <div className={styles.contentcontainer}>
+                    <div className={styles.contentwrapper}>               
+                   
+                   <Card className="m-2" bg="Light"  style={{ width: '50rem'}} >                     
+                            <Card.Header>
+                            <h1>Crear Evaluacion</h1>
+                            </Card.Header>
+                          
+                            <Card.Body >                     
+                                
+                                <Form onSubmit={handleSubmit}>
+                                    {(error === true) ? (<Alert variant={'danger'}>
+                                        Todos los campos son obligatorios
+                                    </Alert>) : null}
+                                    <Row as={Col}
+                                        md="3">
+                                        <FormGroup className="mr-3 ">
+                                            <Form.Label>Materia</Form.Label>
+                                            <Form.Control type="text" placeholder="Materia" onChange={(e) => setMateriaEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <Form.Label>Nombre Evaluacion</Form.Label>
+                                            <Form.Control type="text" placeholder="Parcial 1" onChange={(e) => setNombreEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                    </Row>
 
-                    </FormGroup>
-                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
-                        <Form.Check
-                            type="switch"
-                            label="Navegacion libre (puede retroceder a la pregunta anterior)"
-                            onChange={(e) => onChangeNavegacionLibre(e)} />
-                    </FormGroup>
+                                    <Row className="mx-1" >
+                                        <FormGroup className="mr-4">
+                                            <Form.Label>Fecha de Inicio de Evaluacion</Form.Label>
+                                            <Form.Control type="date" onChange={(e) => setFechaInicioEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <Form.Label>Hora de Inicio</Form.Label>
+                                            <Form.Control type="time" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                        <FormGroup className="ml-4">
+                                            <Form.Label>Duracion de la evaluacion</Form.Label>
+                                            <Form.Control type="time" onChange={(e) => cambiarDuracionEvaluacion(e)}></Form.Control>
+                                        </FormGroup>
 
-                    <div className="text-center ml-3">
-                        <Row className="">
-                            <Button className="mr-5" variant="primary" type="submit">
-                                Crear Evaluacion
-                            </Button>
-                            <Button variant="primary" onClick={volverAtras}>
-                                Atras
-                            </Button>
+                                    </Row>
+                                    <Row className="mx-1">
+                                        <FormGroup className="mr-5">
+                                            <Form.Label>Fecha de Fin de Evaluacion</Form.Label>
+                                            <Form.Control type="date" onChange={(e) => setFechaFinEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <Form.Label>Hora de Fin</Form.Label>
+                                            <Form.Control type="time" onChange={(e) => setHoraFinEvaluacion(e.target.value)}></Form.Control>
+                                        </FormGroup>
+                                    </Row>
+                                    <FormGroup>
+                                        <Form.Label>Cantidad de Preguntas Visibles (son la cantidad de preguntas que vera el alumno)</Form.Label>
+                                        <Form.Control className="col-4" type="number" placeholder="10" onChange={(e) => setCantidadPreguntasEvaluacion(e.target.value)}></Form.Control>
+                                    </FormGroup>
+                                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
+                                        <Form.Check
+                                            type="switch"
+                                            label="Mezclar Preguntas"
+                                            onChange={(e) => onChangeMezclar(e)} />
 
-                        </Row>
-                    </div>
-                </Form>
-            </Container>
+                                    </FormGroup>
+                                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
+                                        <Form.Check
+                                            type="switch"
+                                            label="Navegacion libre (puede retroceder a la pregunta anterior)"
+                                            onChange={(e) => onChangeNavegacionLibre(e)} />
+                                    </FormGroup>
+
+                                    <div className="text-center ml-3">
+                                        <Row className="">
+                                            <Button className="mr-5" variant="primary" type="submit">
+                                                Crear Evaluacion
+                                            </Button>
+                                            <Button variant="primary" onClick={volverAtras}>
+                                                Atras
+                                            </Button>
+
+                                        </Row>
+                                    </div>
+                                </Form>
+                            </Card.Body>
+                        </Card> 
+                        </div>
+                    
+                    </div>              
+                
+                
+                      
+        </div>        
         </Fragment>
+    
+    
+
     );
 };
 
