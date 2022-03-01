@@ -12,14 +12,9 @@ const ItemVerEvaluacion = (props) => {
         atras()
     }, []);
     const atras = () => {
-        console.log(props.preguntas.enunciadoPregunta);
-        console.log(props.respuestas);
         for (const i in props.respuestas) {
-            console.log(props.respuestas[i].IDPregunta)
-
-            console.log(props.preguntas._id)
             if (props.respuestas[i].IDPregunta===props.preguntas._id) {
-                console.log("respuestaCorrespondiente")
+        
                 setCheckBox1(props.respuestas[i].opcion1CorrectaRespuesta)
                 setCheckBox2(props.respuestas[i].opcion2CorrectaRespuesta)
                 setCheckBox3(props.respuestas[i].opcion3CorrectaRespuesta)
