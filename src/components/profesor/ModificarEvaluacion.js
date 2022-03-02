@@ -30,10 +30,11 @@ const ModificarEvaluacion = () => {
 
         <div className={styles.Container}> 
                 
-                <LeftNavbar props={id}></LeftNavbar> 
+                
+            <div className={styles.container}>
+            <LeftNavbar props={id}></LeftNavbar> 
                 <Header></Header> 
             <div className={styles.contentcontainer}>
-            <div className={styles.contentwrapper}>
                 <Card className="m-2" bg="Light"  style={{ width: '70rem'}} >                     
                     <Card.Header>
                         <h1>Evaluaciones</h1>

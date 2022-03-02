@@ -82,28 +82,28 @@ function App() {
           <CrearEvaluacion></CrearEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/crearevaluacion/:id">
-          <Navegacion></Navegacion>
+          
           <EvaluacionNuevaProfesor></EvaluacionNuevaProfesor>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones">
           <ModificarEvaluacion></ModificarEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones/editar/:id">
-          <Navegacion></Navegacion>
+          
           <EditarEvaluacion></EditarEvaluacion>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial">
           <Historial></Historial>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial/:idEvaluacion">
-          <Navegacion></Navegacion>
+          
           <HistorialEvaluacionesRealizadas></HistorialEvaluacionesRealizadas>
         </Route>
         <Route
           exact
           path="/profesor/:idProfesor/historial/:idEvaluacion/:idResultado"
         >
-          <Navegacion></Navegacion>
+          
           <VerEvaluacion></VerEvaluacion>
         </Route>
         <Route exact path="/administrador/:id">

@@ -55,12 +55,12 @@ const VerEvaluacion = () => {
   };
   return (
     <Fragment>
-      <div className={styles.Container}>
+      <div className={styles.Container}>      
+
+        <div className={styles.container}>
         <LeftNavbar props={idResultado}></LeftNavbar>
         <Header></Header>
-
-        <div className={styles.contentcontainer}>
-          <div className={styles.contentwrapper}>
+          <div className={styles.contentcontainer}>
             <Card className="m-2" bg="Light" style={{ width: "50rem" }}>
               <Card.Header>
                 <h1>Ver Evaluacion</h1>

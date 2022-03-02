@@ -29,6 +29,7 @@ function LeftNavbar(props) {
 
   console.log(props);
   return (
+    
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
         <h3>Sistema de Evaluaciones</h3>

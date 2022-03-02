@@ -176,12 +176,11 @@ const EvaluacionAlumno = () => {
 
   return (
     <Fragment>
-      <div className={styles.Container}>
+      <div className={styles.Container}> 
+        <div className={styles.container}>
         <LeftNavbar props={idAlumno}></LeftNavbar>
         <Header></Header>
-
-        <div className={styles.contentcontainer}>
-          <div className={styles.contentwrapper}>
+          <div className={styles.contentcontainer}>
             <div className="text-center mt-5">
               <Container style={{ textAlign: "center", marginBottom: "100px" }}>
                 <Row>
