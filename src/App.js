@@ -62,14 +62,14 @@ function App() {
           exact
           path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta"
         >
-          <Navegacion></Navegacion>
+          
           <PreguntaAlumno></PreguntaAlumno>
         </Route>
         <Route
           exact
           path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta/finevaluacion"
         >
-          <Navegacion></Navegacion>
+          
           <FinEvaluacion></FinEvaluacion>
         </Route>
         <Route exact path="/profesor/:id">
@@ -107,18 +107,18 @@ function App() {
           <VerEvaluacion></VerEvaluacion>
         </Route>
         <Route exact path="/administrador/:id">
-          <Navegacion></Navegacion>
+          
           <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
         </Route>
         <Route exact path="/administrador/:id/editar/:id">
-          <Navegacion></Navegacion>
+         
           <EditarPersona
             personas={personas}
             consultarAPI={consultarAPI}
           ></EditarPersona>
         </Route>
         <Route exact path="/administrador/:id/nuevousuarioadmin">
-          <Navegacion></Navegacion>
+         
           <NuevoUsuarioAdmin
             personas={personas}
             consultarAPI={consultarAPI}

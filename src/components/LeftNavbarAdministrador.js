@@ -15,8 +15,12 @@ import NuevoUsuario from "./nuevoUsuario/NuevoUsuario";
 function LeftNavbar(props) {
   console.log(props.props);
   console.log(props);
-  const InicioEval = () => {
-    const ruta = "/alumno/" + props.props;
+  const EditarPersona = () => {
+    const ruta = "/administrador/" + props.props;
+    window.location.href = ruta;
+  };
+  const Aulas = () => {
+    const ruta = "/aula/" + props.props;
     window.location.href = ruta;
   };
 
@@ -36,7 +40,7 @@ function LeftNavbar(props) {
             <a
               href="#"
               style={{ color: "#000000" }}
-              onClick={(e) => NuevoUsuario(e)}
+              onClick={(e) => EditarPersona(e)}
             >
               Usuarios
             </a>
