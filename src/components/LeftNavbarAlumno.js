@@ -55,7 +55,7 @@ function LeftNavbar(props) {
               icon={faHeart}
               style={{ width: "14px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/alumnoinscripcion" style={{ color: "#000000" }}>
               Listado de Materias Inscripto
             </a>
           </li>

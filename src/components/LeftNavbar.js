@@ -12,8 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function LeftNavbar(props) {
-  console.log(props.props);
-  console.log(props);
   const crearEvaluacion = () => {
     const ruta = "/profesor/" + props.props + "/crearevaluacion";
     window.location.href = ruta;
@@ -26,8 +24,6 @@ function LeftNavbar(props) {
     const ruta = "/profesor/" + props.props + "/historial";
     window.location.href = ruta;
   };
-
-  console.log(props);
   return (
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
@@ -53,7 +49,7 @@ function LeftNavbar(props) {
               icon={faRocket}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/profecatedra" style={{ color: "#000000" }}>
               Catedras
             </a>
           </li>

@@ -22,7 +22,10 @@ import HistorialEvaluacionesRealizadas from "./components/profesor/HistorialEval
 import VerEvaluacion from "./components/profesor/VerEvaluacion";
 import FotoAlumno from "./components/alumno/FotoAlumno";
 import PrincipalAlumno from "./components/alumno/PrincipalAlumno";
-
+import NuevaCatedra from "./components/administrador/NuevaCatedra.js";
+import InscripcionCatedra from "./components/alumno/InscripcionCatedra";
+import Catedras from "./components/profesor/Catedras";
+import ProfesorCatedrasInfo from "./components/profesor/ProfesorCatedrasInfo";
 function App() {
   const URL = process.env.REACT_APP_API_URL + "personas";
   const [personas, setPersonas] = useState([]);
@@ -126,11 +129,19 @@ function App() {
         </Route>
         <Route exact path="/alumnoprincipal/:id">
           <PrincipalAlumno></PrincipalAlumno>
-          
         </Route>
 
-        <Route exact path="/evaluacion/alumno">
-          <FotoAlumno></FotoAlumno>
+        <Route exact path="/admin/crearaula">
+          <NuevaCatedra></NuevaCatedra>
+        </Route>
+        <Route exact path="/alumnoinscripcion">
+          <InscripcionCatedra></InscripcionCatedra>
+        </Route>
+        <Route exact path="/profecatedra">
+          <Catedras></Catedras>
+        </Route>
+        <Route exact path="/profecatedra/ver">
+          <ProfesorCatedrasInfo></ProfesorCatedrasInfo>
         </Route>
       </Switch>
     </Router>
