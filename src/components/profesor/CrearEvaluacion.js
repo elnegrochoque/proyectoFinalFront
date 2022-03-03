@@ -162,121 +162,6 @@ const CrearEvaluacion = () => {
                 <h1>Crear Evaluacion</h1>
               </Card.Header>
 
-<<<<<<< HEAD
-        setMezclarPerguntasEvaluacion(e.target.checked)
-    }
-    const onChangeNavegacionLibre = (e) => {
-
-        setLibreNavegacionEvaluacion(e.target.checked)
-    }
-    const cambiarDuracionEvaluacion = (e) => {
-        e.preventDefault()
-        setDuracionEvaluacion(e.target.value)
-        let hora = parseInt((e.target.value).slice(0, -3))
-        let minutos = parseInt((e.target.value).slice(-2))
-        hora = hora * 3600000
-        minutos = minutos * 60000
-        const horaTotal = hora + minutos
-        setDuracionEvaluacionMilisegundos(horaTotal)
-    }
-    return (         
-        
-        <Fragment>
-
-        
-        <div className={styles.Container}>               
-                 
-                <div className={styles.container}>
-                    <LeftNavbar props={id}></LeftNavbar> 
-                    <Header></Header> 
-                    <div className={styles.contentcontainer}>       
-                   
-                   <Card className="m-2" bg="Light"  style={{ width: '50rem'}} >                     
-                            <Card.Header>
-                            <h1>Crear Evaluacion</h1>
-                            </Card.Header>
-                          
-                            <Card.Body >                     
-                                
-                                <Form onSubmit={handleSubmit}>
-                                    {(error === true) ? (<Alert variant={'danger'}>
-                                        Todos los campos son obligatorios
-                                    </Alert>) : null}
-                                    <Row as={Col}
-                                        md="3">
-                                        <FormGroup className="mr-3 ">
-                                            <Form.Label>Materia</Form.Label>
-                                            <Form.Control type="text" placeholder="Materia" onChange={(e) => setMateriaEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                        <FormGroup >
-                                            <Form.Label>Nombre Evaluacion</Form.Label>
-                                            <Form.Control type="text" placeholder="Parcial 1" onChange={(e) => setNombreEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                    </Row>
-
-                                    <Row className="mx-1" >
-                                        <FormGroup className="mr-4">
-                                            <Form.Label>Fecha de Inicio de Evaluacion</Form.Label>
-                                            <Form.Control type="date" onChange={(e) => setFechaInicioEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                        <FormGroup >
-                                            <Form.Label>Hora de Inicio</Form.Label>
-                                            <Form.Control type="time" onChange={(e) => setHoraInicioEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                        <FormGroup className="ml-4">
-                                            <Form.Label>Duracion de la evaluacion</Form.Label>
-                                            <Form.Control type="time" onChange={(e) => cambiarDuracionEvaluacion(e)}></Form.Control>
-                                        </FormGroup>
-
-                                    </Row>
-                                    <Row className="mx-1">
-                                        <FormGroup className="mr-5">
-                                            <Form.Label>Fecha de Fin de Evaluacion</Form.Label>
-                                            <Form.Control type="date" onChange={(e) => setFechaFinEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                        <FormGroup >
-                                            <Form.Label>Hora de Fin</Form.Label>
-                                            <Form.Control type="time" onChange={(e) => setHoraFinEvaluacion(e.target.value)}></Form.Control>
-                                        </FormGroup>
-                                    </Row>
-                                    <FormGroup>
-                                        <Form.Label>Cantidad de Preguntas Visibles (son la cantidad de preguntas que vera el alumno)</Form.Label>
-                                        <Form.Control className="col-4" type="number" placeholder="10" onChange={(e) => setCantidadPreguntasEvaluacion(e.target.value)}></Form.Control>
-                                    </FormGroup>
-                                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox">
-                                        <Form.Check
-                                            type="switch"
-                                            label="Mezclar Preguntas"
-                                            onChange={(e) => onChangeMezclar(e)} />
-
-                                    </FormGroup>
-                                    <FormGroup className="mb-3 mx-1" controlId="formBasicCheckbox2">
-                                        <Form.Check
-                                            type="switch"
-                                            label="Navegacion libre (puede retroceder a la pregunta anterior)"
-                                            onChange={(e) => onChangeNavegacionLibre(e)} />
-                                    </FormGroup>
-
-                                    <div className="text-center ml-3">
-                                        <Row className="">
-                                            <Button className="mr-5" variant="dark" type="submit">
-                                                Crear Evaluacion
-                                            </Button>
-                                            <Button variant="dark" onClick={volverAtras}>
-                                                Atras
-                                            </Button>
-
-                                        </Row>
-                                    </div>
-                                </Form>
-                            </Card.Body>
-                        </Card> 
-                        </div>
-                    
-                    </div>              
-                
-                
-=======
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
                   {error === true ? (
@@ -297,7 +182,6 @@ const CrearEvaluacion = () => {
                       <Dropdown>
                         <Dropdown.Toggle variant="primary" id="dropdown-basic">
                             {materiaEvaluacion!=""?materiaEvaluacion:"Materia"}
->>>>>>> 3a36809871af56b8b1a650766c32dca902048cb6
                       
                         </Dropdown.Toggle>
 
