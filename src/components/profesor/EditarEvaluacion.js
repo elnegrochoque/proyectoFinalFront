@@ -97,8 +97,8 @@ const EditarEvaluacion = () => {
 
             if (respuesta.status === 200 || respuesta.status === 201) {
                 Swal.fire(
-                    'Producto editado',
-                    'Los datos del producto fueron modificados',
+                    'Examen',
+                    'Los datos del examen fueron modificados',
                     'success'
                 );
                 window.history.back();

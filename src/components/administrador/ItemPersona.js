@@ -31,8 +31,8 @@ const ItemPersona = (props) => {
                     if (response.status === 200) {
 
                         Swal.fire(
-                            'Producto eliminado',
-                            'El producto seleccionado fue correctamente elminado',
+                            'Usuario eliminado',
+                            'El item seleccionado fue correctamente elminado',
                             'success'
                         )
 

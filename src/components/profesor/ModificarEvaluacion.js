@@ -7,9 +7,12 @@ import styles from "../../styles/Home.module.css";
 
 import { Link, useParams } from 'react-router-dom';
 import ItemEvaluacion from './ItemEvaluacion';
+import depositoLocal from '../depositoLocal';
 const ModificarEvaluacion = () => {
 
-    const { id } = useParams();
+    const _depositoLocal = depositoLocal.obtenerServicio();
+    const id = _depositoLocal.obtenerIdPersona();
+  
     const URL = process.env.REACT_APP_API_URL + "evaluaciones/profesor/" + id;
     const [evaluaciones, setEvaluaciones] = useState([]);
     useEffect(() => {

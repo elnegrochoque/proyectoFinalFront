@@ -61,7 +61,7 @@ const NuevoUsuarioAdmin = (props) => {
                 if ((await respuesta.status) === 201) {
                     Swal.fire(
                         'Usuario creado',
-                        'El producto seleccionado fue correctamente creado',
+                        'El usuario fue correctamente creado',
                         'success'
                     )
                     props.consultarAPI();
@@ -71,7 +71,7 @@ const NuevoUsuarioAdmin = (props) => {
                 if ((await respuesta.status) === 200) {
                     Swal.fire(
                         'Usuario creado',
-                        'El producto seleccionado fue correctamente creado',
+                        'El usuario fue correctamente creado',
                         'success'
                     )
                     props.consultarAPI();

@@ -62,8 +62,8 @@ const ItemPregunta = (props) => {
 
             if (respuesta.status === 200 || respuesta.status === 201) {
                 Swal.fire(
-                    'Producto editado',
-                    'Los datos del producto fueron modificados',
+                    'Pregunta editada',
+                    'La pregunta fue modificada',
                     'success'
                 );
                 handleClose();

@@ -28,8 +28,8 @@ const ItemEvaluacion = (props) => {
                     if (response.status === 200) {
 
                         Swal.fire(
-                            'Producto eliminado',
-                            'El producto seleccionado fue correctamente elminado',
+                            'Examen eliminado',
+                            'El examen seleccionado fue correctamente elminado',
                             'success'
                         )
 
