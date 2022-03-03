@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import Header from "../HeaderAlumno";
 import LeftNavbar from "../LeftNavbarAlumno";
 import styles from "../../styles/Home.module.css";
-import FotoAlumno from "./FotoAlumno";
-
 import {
   Image,
   Card,
@@ -49,14 +47,16 @@ const EvaluacionAlumno = () => {
     let respuestaIDRespuesta;
     const momentoInicioDeEvaluacionAlumno = new Date(Date.now());
     const nombreFoto =
-      momentoInicioDeEvaluacionAlumno.getMilliseconds().toString() + idAlumno+".jpeg";
+      momentoInicioDeEvaluacionAlumno.getMilliseconds().toString() +
+      idAlumno +
+      ".jpeg";
     console.log(nombreFoto);
     const resultadoAlumno = {
       IDEvaluacion: idEvaluacion,
       IDAlumno: idAlumno,
       FechaEvaluacion: momentoInicioDeEvaluacionAlumno,
       NotaEvaluacion: 0,
-      Foto: nombreFoto
+      Foto: nombreFoto,
     };
     try {
       const parametros = {
@@ -69,18 +69,19 @@ const EvaluacionAlumno = () => {
       // ejecutar la solicitud o request
       const consulta = await fetch(URLResultado, parametros);
       let blob1;
-    var image = document.getElementById("canvas").toBlob(
-      function (blob) {
-        blob1 = blob;
-        const file = new File([blob], nombreFoto, {
-          lastModified: 1534584790000,
-        });
+      var image = document.getElementById("canvas").toBlob(
+        function (blob) {
+          blob1 = blob;
+          const file = new File([blob], nombreFoto, {
+            lastModified: 1534584790000,
+          });
+          console.log(file)
 
-        guardarFoto(file);
-      },
-      "image/jpeg",
-      0.8
-    );
+          guardarFoto(file);
+        },
+        "image/jpeg",
+        0.8
+      );
       respuestaIDRespuesta = await consulta.json();
     } catch (error) {
       console.log(error);
@@ -145,10 +146,8 @@ const EvaluacionAlumno = () => {
     let ctx = foto.getContext("2d");
     ctx.drawImage(video, 0, 0, width, height);
     setHayFoto(true);
-    const guardarFotoAux = guardarFoto();
-    console.log(guardarFotoAux);
-
     
+   
   };
 
   const getVideo = () => {
@@ -164,22 +163,17 @@ const EvaluacionAlumno = () => {
       });
   };
 
-  const cerrar = () => {
-    let foto = fotoRef.current;
-    let ctx = foto.getContext("2d");
-    ctx.clearRect(0, 0, foto.width, foto.height);
-    setHayFoto(false);
-  };
+
   useEffect(() => {
     getVideo();
   }, [videoRef]);
 
   return (
     <Fragment>
-      <div className={styles.Container}> 
+      <div className={styles.Container}>
         <div className={styles.container}>
-        <LeftNavbar props={idAlumno}></LeftNavbar>
-        <Header></Header>
+          <LeftNavbar props={idAlumno}></LeftNavbar>
+          <Header></Header>
           <div className={styles.contentcontainer}>
             <div className="text-center mt-5">
               <Container style={{ textAlign: "center", marginBottom: "100px" }}>
@@ -195,19 +189,19 @@ const EvaluacionAlumno = () => {
                   <Col sm="auto">
                     <div style={{ textAlign: "center" }}>
                       <canvas id="canvas" ref={fotoRef}></canvas>
-                    
                     </div>
                   </Col>
                 </Row>
               </Container>
               <h3>Asegurese que su DNI sea visible</h3>
-              <Button
+              {hayFoto?  <Button
                 className="mx-3"
                 variant="danger"
                 onClick={irAComenzarEvaluacion}
               >
                 COMENZAR EVALUACION
-              </Button>
+              </Button>:null}
+            
             </div>
           </div>
         </div>

@@ -20,7 +20,6 @@ import FinEvaluacion from "./components/alumno/FinEvaluacion";
 import Historial from "./components/profesor/Historial";
 import HistorialEvaluacionesRealizadas from "./components/profesor/HistorialEvaluacionesRealizadas";
 import VerEvaluacion from "./components/profesor/VerEvaluacion";
-import FotoAlumno from "./components/alumno/FotoAlumno";
 import PrincipalAlumno from "./components/alumno/PrincipalAlumno";
 import NuevaCatedra from "./components/administrador/NuevaCatedra.js";
 import InscripcionCatedra from "./components/alumno/InscripcionCatedra";
