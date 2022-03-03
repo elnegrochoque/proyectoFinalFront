@@ -2,7 +2,7 @@ export const guardarFoto = async (file, id) => {
     var formdata = new FormData();
 
     formdata.append("files", file);
-    formdata.append("id", id);
+ 
   
     var requestOptions = {
       method: "POST",

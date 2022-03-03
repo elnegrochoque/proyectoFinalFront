@@ -22,7 +22,7 @@ const FotoAlumno = () => {
 
   const tomarFoto = () => {
     const width = 300;
-    const height =228;
+    const height = 228;
     let video = videoRef.current;
     let foto = fotoRef.current;
     foto.width = width;
@@ -37,11 +37,7 @@ const FotoAlumno = () => {
     var image = document.getElementById("canvas").toBlob(
       function (blob) {
         blob1 = blob;
-        const file = new File([blob], "file_namsessdad.jpeg", {
-          lastModified: 1534584790000,
-        });
-
-        guardarFoto(file, 10);
+        
         console.log("Este es el blob: ", blob);
       },
       "image/jpeg",
@@ -74,31 +70,29 @@ const FotoAlumno = () => {
   }, [videoRef]);
 
   return (
-    <div className={styles.Container}>       
-
+    <div className={styles.Container}>
       <div className={styles.container}>
         <LeftNavbar></LeftNavbar>
         <Header></Header>
-      <div className={styles.contentcontainer}>
-          <Container style={{ textAlign: "center", marginBottom:"100px"}}>
+        <div className={styles.contentcontainer}>
+          <Container style={{ textAlign: "center", marginBottom: "100px" }}>
             <Row>
-                <Col sm="auto">
-                  <div>
-                    <video width="300" ref={videoRef}></video>
+              <Col sm="auto">
+                <div>
+                  <video width="300" ref={videoRef}></video>
+                </div>
+                <div onClick={tomarFoto}>
+                  <Button>Foto</Button>
+                </div>
+              </Col>
+              <Col sm="auto">
+                <div style={{ textAlign: "center" }}>
+                  <canvas id="canvas" ref={fotoRef}></canvas>
+                  <div onclick={cerrar} style={{ textAlign: "center" }}>
+                    <Button>Continuar</Button>
                   </div>
-                  <div onClick={tomarFoto}>
-                    <Button>Foto</Button>
-                  </div>
-                </Col>
-                <Col sm="auto">
-                  <div style={{ textAlign: "center" }}>
-                    <canvas id="canvas" ref={fotoRef}></canvas>
-                    <div onclick={cerrar} style={{ textAlign: "center" }}>
-                      <Button>Continuar</Button>
-                    </div>
-                  </div>
-                </Col>
-          
+                </div>
+              </Col>
             </Row>
           </Container>
         </div>
