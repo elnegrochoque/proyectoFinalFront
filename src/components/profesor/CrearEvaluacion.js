@@ -180,7 +180,7 @@ const CrearEvaluacion = () => {
                     </FormGroup>
                     <FormGroup className=" ml-5 " style={{marginTop:"32px"}}>
                       <Dropdown>
-                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                             {materiaEvaluacion!=""?materiaEvaluacion:"Materia"}
                       
                         </Dropdown.Toggle>
@@ -281,10 +281,10 @@ const CrearEvaluacion = () => {
 
                   <div className="text-center ml-3">
                     <Row className="">
-                      <Button className="mr-5" variant="primary" type="submit">
+                      <Button className="mr-5" variant="dark" type="submit">
                         Crear Evaluacion
                       </Button>
-                      <Button variant="primary" onClick={volverAtras}>
+                      <Button variant="dark" onClick={volverAtras}>
                         Atras
                       </Button>
                     </Row>
