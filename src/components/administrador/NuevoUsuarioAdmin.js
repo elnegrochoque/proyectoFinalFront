@@ -4,6 +4,9 @@ import { useState } from "react";
 import { withRouter, useParams } from "react-router-dom";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import Swal from 'sweetalert2';
+import Header from "../HeaderAdministrador";
+import LeftNavbar from "../LeftNavbarAdministrador";
+import styles from "../../styles/Home.module.css";
 
 const NuevoUsuarioAdmin = (props) => {
     const { id } = useParams();
@@ -93,74 +96,83 @@ const NuevoUsuarioAdmin = (props) => {
 
 
     return (
-        <Container >
-            <h1 className="text-center my-3">Inscripcion Nuevo Usuario</h1>
-            <Form onSubmit={handleSubmit}>
-                <Row >
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Nombre de Usuario</Form.Label>
-                        <Form.Control type="text"
-                            placeholder="Ingrese nombre de usuario"
-                            onChange={(e) => setUsuarioPersona(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"
-                            onChange={(e) => setPasswordPersona(e.target.value)} />
-                    </Form.Group>
-                </Row>
-                <Row>
-                    <Form.Group as={Col} controlId="formGridAddress1">
-                        <Form.Label>Codigo de profesor o alumno</Form.Label>
-                        <Form.Control type="number" placeholder="123456"
-                            onChange={(e) => setUIPersona(e.target.value)} />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridAddress1">
-                        <Form.Label>DNI</Form.Label>
-                        <Form.Control type="number" placeholder="12345678"
-                            onChange={(e) => setDNIPersona(e.target.value)} />
-                    </Form.Group>
+        <div className={styles.Container}> 
+            <div className={styles.container}>
+            <LeftNavbar props={id}></LeftNavbar>
+            <Header></Header>
+            <div className={styles.contentcontainer}>
+                    <Container >
+                        <h1 className="text-center my-3">Inscripcion Nuevo Usuario</h1>
+                        <Form onSubmit={handleSubmit}>
+                            <Row >
+                                <Form.Group as={Col} controlId="formGridEmail">
+                                    <Form.Label>Nombre de Usuario</Form.Label>
+                                    <Form.Control type="text"
+                                        placeholder="Ingrese nombre de usuario"
+                                        onChange={(e) => setUsuarioPersona(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="formGridPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Password"
+                                        onChange={(e) => setPasswordPersona(e.target.value)} />
+                                </Form.Group>
+                            </Row>
+                            <Row>
+                                <Form.Group as={Col} controlId="formGridAddress1">
+                                    <Form.Label>Codigo de profesor o alumno</Form.Label>
+                                    <Form.Control type="number" placeholder="123456"
+                                        onChange={(e) => setUIPersona(e.target.value)} />
+                                </Form.Group>
+                                <Form.Group as={Col} controlId="formGridAddress1">
+                                    <Form.Label>DNI</Form.Label>
+                                    <Form.Control type="number" placeholder="12345678"
+                                        onChange={(e) => setDNIPersona(e.target.value)} />
+                                </Form.Group>
 
-                </Row>
+                            </Row>
 
-                <Form.Group controlId="formGridEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="email@email.com"
-                        onChange={(e) => setEmailPersona(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="formGridEmail">
-                    <Form.Label>Apellido</Form.Label>
-                    <Form.Control placeholder="Perez"
-                        onChange={(e) => setApellidoPersona(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="formGridEmail">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control placeholder="Juan"
-                        onChange={(e) => setNombrePersona(e.target.value)} />
-                </Form.Group>
+                            <Form.Group controlId="formGridEmail">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" placeholder="email@email.com"
+                                    onChange={(e) => setEmailPersona(e.target.value)} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridEmail">
+                                <Form.Label>Apellido</Form.Label>
+                                <Form.Control placeholder="Perez"
+                                    onChange={(e) => setApellidoPersona(e.target.value)} />
+                            </Form.Group>
+                            <Form.Group controlId="formGridEmail">
+                                <Form.Label>Nombre</Form.Label>
+                                <Form.Control placeholder="Juan"
+                                    onChange={(e) => setNombrePersona(e.target.value)} />
+                            </Form.Group>
 
-                <DropdownButton id="dropdown-basic-button" variant="dark" title={tipoPersona} value="profesor" size="lg">
+                            <DropdownButton id="dropdown-basic-button" variant="dark" title={tipoPersona} value="profesor" size="lg">
 
-                    <DropdownItem  value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
-                        administrador
-                    </DropdownItem>
-                    <DropdownItem value="profesor" name="profesor" onClick={(e) => cambiarTipoUsuario(e)}>
-                        profesor
-                    </DropdownItem>
-                    <DropdownItem value="alumno" name="alumno" onClick={(e) => cambiarTipoUsuario(e)}>
-                        alumno
-                    </DropdownItem>
+                                <DropdownItem  value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
+                                    administrador
+                                </DropdownItem>
+                                <DropdownItem value="profesor" name="profesor" onClick={(e) => cambiarTipoUsuario(e)}>
+                                    profesor
+                                </DropdownItem>
+                                <DropdownItem value="alumno" name="alumno" onClick={(e) => cambiarTipoUsuario(e)}>
+                                    alumno
+                                </DropdownItem>
 
 
-                </DropdownButton>
-                <div className="text-center">
-                    <Button variant="primary" type="submit">
-                        Crear Usuario
-                    </Button>
+                            </DropdownButton>
+                            <div className="text-center">
+                                <Button variant="primary" type="submit">
+                                    Crear Usuario
+                                </Button>
 
+                            </div>
+                        </Form>
+                    </Container>
                 </div>
-            </Form>
-        </Container>
+            </div>
+        </div>
+        
     );
 };
 

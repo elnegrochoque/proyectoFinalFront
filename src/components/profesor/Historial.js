@@ -6,7 +6,9 @@ import LeftNavbar from "../LeftNavbar";
 import styles from "../../styles/Home.module.css";
 
 import ItemEvaluacionHistorial from './ItemEvaluacionHistorial';
+
 const Historial = () => {
+    
     const { idProfesor } = useParams();
     const URL = process.env.REACT_APP_API_URL + "evaluaciones/profesor/" + idProfesor;
     const [evaluaciones, setEvaluaciones] = useState([]);
@@ -27,10 +29,11 @@ const Historial = () => {
         <Fragment>
             
             <div className={styles.Container}>
-                <LeftNavbar props={idProfesor}></LeftNavbar>
-                <Header></Header>
-                    <div className={styles.contentcontainer}>
-                        <div  className={styles.contentwrapper}>
+                
+                    <div className={styles.container}>
+                    <LeftNavbar props={idProfesor}></LeftNavbar>
+                    <Header></Header>
+                        <div  className={styles.contentcontainer}>
                         <Card className="m-2" bg="Light"  style={{ width: '70rem'}} >                     
                             <Card.Header>
                             <h1> Historial Evaluaciones</h1>

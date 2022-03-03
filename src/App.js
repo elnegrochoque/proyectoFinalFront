@@ -65,14 +65,14 @@ function App() {
           exact
           path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta"
         >
-          <Navegacion></Navegacion>
+          
           <PreguntaAlumno></PreguntaAlumno>
         </Route>
         <Route
           exact
           path="/alumno/:idAlumno/evaluacion/:idEvaluacion/pregunta/:totalPreguntas/:numeroPregunta/finevaluacion"
         >
-          <Navegacion></Navegacion>
+          
           <FinEvaluacion></FinEvaluacion>
         </Route>
         <Route exact path="/profesor/:id">
@@ -85,43 +85,43 @@ function App() {
           <CrearEvaluacion></CrearEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/crearevaluacion/:id">
-          <Navegacion></Navegacion>
+          
           <EvaluacionNuevaProfesor></EvaluacionNuevaProfesor>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones">
           <ModificarEvaluacion></ModificarEvaluacion>
         </Route>
         <Route exact path="/profesor/:id/modificarevaluaciones/editar/:id">
-          <Navegacion></Navegacion>
+          
           <EditarEvaluacion></EditarEvaluacion>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial">
           <Historial></Historial>
         </Route>
         <Route exact path="/profesor/:idProfesor/historial/:idEvaluacion">
-          <Navegacion></Navegacion>
+          
           <HistorialEvaluacionesRealizadas></HistorialEvaluacionesRealizadas>
         </Route>
         <Route
           exact
           path="/profesor/:idProfesor/historial/:idEvaluacion/:idResultado"
         >
-          <Navegacion></Navegacion>
+          
           <VerEvaluacion></VerEvaluacion>
         </Route>
         <Route exact path="/administrador/:id">
-          <Navegacion></Navegacion>
+          
           <Admin personas={personas} consultarAPI={consultarAPI}></Admin>
         </Route>
         <Route exact path="/administrador/:id/editar/:id">
-          <Navegacion></Navegacion>
+         
           <EditarPersona
             personas={personas}
             consultarAPI={consultarAPI}
           ></EditarPersona>
         </Route>
         <Route exact path="/administrador/:id/nuevousuarioadmin">
-          <Navegacion></Navegacion>
+         
           <NuevoUsuarioAdmin
             personas={personas}
             consultarAPI={consultarAPI}

@@ -8,6 +8,7 @@ import styles from "../../styles/Home.module.css";
 import Swal from "sweetalert2";
 import { useParams } from 'react-router-dom';
 const EditarEvaluacion = () => {
+    
     const { id } = useParams();
     const URL = process.env.REACT_APP_API_URL + "evaluaciones";
     const [evaluacion, setEvaluacion] = useState({});
@@ -143,11 +144,12 @@ const EditarEvaluacion = () => {
         <Fragment>
             <div className={styles.Container}> 
                 
-                <LeftNavbar props={id}></LeftNavbar> 
-                <Header></Header>                     
+                        
                          
-                        <div className={styles.contentcontainer}>
-                            <div className={styles.contentwrapper}>
+                        <div className={styles.container}>
+                        <LeftNavbar props={id}></LeftNavbar> 
+                        <Header></Header> 
+                            <div className={styles.contentcontainer}>
                             <Card className="m-2" bg="Light"  style={{ width: '50rem'}} >                     
                             <Card.Header>
                             <h1>Editar Evaluacion</h1>

@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, withRouter } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Header from "../HeaderAdministrador";
+import LeftNavbar from "../LeftNavbarAdministrador";
+import styles from "../../styles/Home.module.css";
 
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import { Container, Form, Button, Row, Col, DropdownButton } from "react-bootstrap";
@@ -95,85 +98,95 @@ const EditarPersona = (props) => {
 
 
     return (
-        <Container >
-            <h1 className="text-center my-3">Editar Usuario</h1>
-            <Form onSubmit={handleSubmit}>
-                <Row >
-                    <Form.Group as={Col}>
-                        <Form.Label>Nombre de Usuario</Form.Label>
-                        <Form.Control type="text"
-                            defaultValue={persona.usuarioPersona}
-                            ref={usuarioPersonaRef}
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password"
-                            defaultValue={persona.passwordPersona}
-                            ref={passwordPersonaRef}
-                        />
-                    </Form.Group>
+        <div className={styles.Container}> 
+            <div className={styles.container}>
+            <LeftNavbar props={id}></LeftNavbar>
+            <Header></Header>
+            <div className={styles.contentcontainer}>
+                        <Container >
+                            <h1 className="text-center my-3">Editar Usuario</h1>
+                            <Form onSubmit={handleSubmit}>
+                                <Row >
+                                    <Form.Group as={Col}>
+                                        <Form.Label>Nombre de Usuario</Form.Label>
+                                        <Form.Control type="text"
+                                            defaultValue={persona.usuarioPersona}
+                                            ref={usuarioPersonaRef}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} >
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control type="password" placeholder="Password"
+                                            defaultValue={persona.passwordPersona}
+                                            ref={passwordPersonaRef}
+                                        />
+                                    </Form.Group>
 
-                </Row>
-                <Row>
-                    <Form.Group as={Col} >
-                        <Form.Label>UI</Form.Label>
-                        <Form.Control type="number" placeholder="UI123456"
-                            defaultValue={persona.UIPersona}
-                            ref={UIPersonaRef}
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} >
-                        <Form.Label>DNI</Form.Label>
-                        <Form.Control type="number" placeholder="12345678"
-                            defaultValue={persona.DNIPersona}
-                            ref={DNIPersonaRef}
-                        />
-                    </Form.Group>
+                                </Row>
+                                <Row>
+                                    <Form.Group as={Col} >
+                                        <Form.Label>UI</Form.Label>
+                                        <Form.Control type="number" placeholder="UI123456"
+                                            defaultValue={persona.UIPersona}
+                                            ref={UIPersonaRef}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} >
+                                        <Form.Label>DNI</Form.Label>
+                                        <Form.Control type="number" placeholder="12345678"
+                                            defaultValue={persona.DNIPersona}
+                                            ref={DNIPersonaRef}
+                                        />
+                                    </Form.Group>
 
-                </Row>
-                <Form.Group >
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="email@email.com"
-                        defaultValue={persona.emailPersona}
-                        ref={emailPersonaRef} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Apellido</Form.Label>
-                    <Form.Control placeholder="Perez"
-                        defaultValue={persona.apellidoPersona}
-                        ref={apellidoPersonaRef}
-                    />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control placeholder="Juan"
-                        defaultValue={persona.nombrePersona}
-                        ref={nombrePersonaRef} />
-                </Form.Group>
-                <DropdownButton variant="dark" title={persona.tipo} value={persona.tipo} ref={tipoPersonaRef} size="lg">
-                    <DropdownItem value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
-                        administrador
-                    </DropdownItem>
-                    <DropdownItem value="profesor" name="profesor" onClick={(e) => cambiarTipoUsuario(e)}>
-                        profesor
-                    </DropdownItem>
-                    <DropdownItem value="alumno" name="alumno" onClick={(e) => cambiarTipoUsuario(e)}>
-                        alumno
-                    </DropdownItem>
+                                </Row>
+                                <Form.Group >
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control type="email" placeholder="email@email.com"
+                                        defaultValue={persona.emailPersona}
+                                        ref={emailPersonaRef} />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Apellido</Form.Label>
+                                    <Form.Control placeholder="Perez"
+                                        defaultValue={persona.apellidoPersona}
+                                        ref={apellidoPersonaRef}
+                                    />
+                                </Form.Group>
+                                <Form.Group >
+                                    <Form.Label>Nombre</Form.Label>
+                                    <Form.Control placeholder="Juan"
+                                        defaultValue={persona.nombrePersona}
+                                        ref={nombrePersonaRef} />
+                                </Form.Group>
+                                <DropdownButton variant="dark" title={persona.tipo} value={persona.tipo} ref={tipoPersonaRef} size="lg">
+                                    <DropdownItem value="administrador" name="administrador" onClick={(e) => cambiarTipoUsuario(e)}>
+                                        administrador
+                                    </DropdownItem>
+                                    <DropdownItem value="profesor" name="profesor" onClick={(e) => cambiarTipoUsuario(e)}>
+                                        profesor
+                                    </DropdownItem>
+                                    <DropdownItem value="alumno" name="alumno" onClick={(e) => cambiarTipoUsuario(e)}>
+                                        alumno
+                                    </DropdownItem>
 
 
-                </DropdownButton>
-                <div className="text-center">
-                    <Button variant="primary" type="submit">
-                        Editar Usuario
-                    </Button>
+                                </DropdownButton>
+                                <div className="text-center">
+                                    <Button variant="primary" type="submit">
+                                        Editar Usuario
+                                    </Button>
 
+                                </div>
+                            </Form>
+
+
+                        </Container>
+                    </div>
                 </div>
-            </Form>
+            </div>
 
 
-        </Container>
     );
 };
 

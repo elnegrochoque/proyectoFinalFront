@@ -25,6 +25,7 @@ function LeftNavbar(props) {
     window.location.href = ruta;
   };
   return (
+    
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
         <h3>Sistema de Evaluaciones</h3>

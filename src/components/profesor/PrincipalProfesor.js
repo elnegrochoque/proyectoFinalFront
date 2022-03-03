@@ -49,19 +49,21 @@ const PrincipalProfesor = () => {
     profesorInfo();
   }, []);
   return (
-    <div>
-      <LeftNavbar props={id}></LeftNavbar>
-      <Container className="text-center">
-        <Header></Header>
+    <div className={styles.container}>   
+      
+       
 
-        <div className={styles.contentcontainer}>
-          <div className={styles.contentwrapper}>
-            <Card className="m-2" bg="Light" style={{ width: "70rem" }}>
-              <Card.Header>
+        <div className={styles.container}>
+        <LeftNavbar props={id}></LeftNavbar>
+        <Header></Header>
+        
+          <div className={styles.contentcontainer}>
+            <Card className="m-2" style={{ width: "50rem" }} bg="Light" >
+              <Card.Header >
                 <h1>Datos del profesor</h1>
               </Card.Header>
 
-              <Card.Body>
+              <Card.Body className="card-body">
                 {profesor == undefined ? null : (
                   <Table striped bordered hover>
                     <tbody>
@@ -97,7 +99,7 @@ const PrincipalProfesor = () => {
             </Card>
           </div>
         </div>
-      </Container>
+      
     </div>
   );
 };

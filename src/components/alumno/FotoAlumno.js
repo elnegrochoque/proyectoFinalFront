@@ -1,4 +1,7 @@
 import React from "react";
+import Header from "../HeaderAlumno";
+import LeftNavbar from "../LeftNavbarAlumno";
+import styles from "../../styles/Home.module.css";
 import {
   Image,
   Container,
@@ -71,27 +74,36 @@ const FotoAlumno = () => {
   }, [videoRef]);
 
   return (
-    <Container style={{ textAlign: "center", marginBottom:"100px"}}>
-      <Row>
-          <Col sm="auto">
-            <div>
-              <video width="300" ref={videoRef}></video>
-            </div>
-            <div onClick={tomarFoto}>
-              <Button>Foto</Button>
-            </div>
-          </Col>
-          <Col sm="auto">
-            <div style={{ textAlign: "center" }}>
-              <canvas id="canvas" ref={fotoRef}></canvas>
-              <div onclick={cerrar} style={{ textAlign: "center" }}>
-                <Button>Continuar</Button>
-              </div>
-            </div>
-          </Col>
-     
-      </Row>
-    </Container>
+    <div className={styles.Container}>       
+
+      <div className={styles.container}>
+        <LeftNavbar></LeftNavbar>
+        <Header></Header>
+      <div className={styles.contentcontainer}>
+          <Container style={{ textAlign: "center", marginBottom:"100px"}}>
+            <Row>
+                <Col sm="auto">
+                  <div>
+                    <video width="300" ref={videoRef}></video>
+                  </div>
+                  <div onClick={tomarFoto}>
+                    <Button>Foto</Button>
+                  </div>
+                </Col>
+                <Col sm="auto">
+                  <div style={{ textAlign: "center" }}>
+                    <canvas id="canvas" ref={fotoRef}></canvas>
+                    <div onclick={cerrar} style={{ textAlign: "center" }}>
+                      <Button>Continuar</Button>
+                    </div>
+                  </div>
+                </Col>
+          
+            </Row>
+          </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

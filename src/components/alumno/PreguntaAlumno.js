@@ -1,6 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Button, Form, Card, InputGroup } from 'react-bootstrap';
+import Header from "../HeaderAlumno";
+import LeftNavbar from "../LeftNavbarAlumno";
+import styles from "../../styles/Home.module.css";
 
 const PreguntaAlumno = () => {
     const { numeroPregunta } = useParams()
@@ -269,95 +272,102 @@ const PreguntaAlumno = () => {
 
     return (
         <Fragment>
-            <Card className="m-5" bg="Light">
-                <Card.Body>
+             <div className={styles.Container}>       
+
+                <div className={styles.container}>
+                <LeftNavbar props={idAlumno}></LeftNavbar>
+                <Header></Header>
+                <div className={styles.contentcontainer}>
+                            <Card className="m-5" bg="Light">
+                                <Card.Body>
+                                    <Container >
+                                        <h1 className="text-center">Pregunta {numeroPregunta}</h1>
+                                        <h2 className="text-center">{preguntaEvaluacion.enunciadoPregunta}</h2>
+                                        <h4>Seleccione opcion</h4>
+                                        <Form >
+                                            {preguntaEvaluacion.opcion1Pregunta === "" ?
+                                                (<div hidden><InputGroup className="mb-3" size="lg" >
+                                                    <InputGroup.Checkbox id="opcion1CorrectaRespuesta"
+                                                        defaultChecked={respuesta1CorrectaRespuesta}
+                                                    />
+                                                    <Form.Control className=" mx-4"
+                                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion1Pregunta}
+                                                    />
+                                                </InputGroup></div>) :
+                                                (<InputGroup className="mb-3" size="lg" >
+
+                                                    <InputGroup.Checkbox id="opcion1CorrectaRespuesta"
+                                                        defaultChecked={respuesta1CorrectaRespuesta}
+                                                    />
+                                                    <Form.Control className=" mx-4"
+                                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion1Pregunta}
+                                                    />
+                                                </InputGroup>)}
+                                            {preguntaEvaluacion.opcion2Pregunta === "" ? (<div hidden>
+                                                <InputGroup className="mb-3" size="lg" >
+                                                    <InputGroup.Checkbox
+                                                        id="opcion2CorrectaRespuesta"
+                                                        defaultChecked={respuesta2CorrectaRespuesta} />
+                                                    <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion2Pregunta} />
+                                                </InputGroup>
+                                            </div>
+                                            ) : (<InputGroup className="mb-3" size="lg" >
+                                                <InputGroup.Checkbox id="opcion2CorrectaRespuesta"
+                                                    defaultChecked={respuesta2CorrectaRespuesta}
+                                                />
+                                                <Form.Control className=" mx-4"
+                                                    plaintext readOnly defaultValue={preguntaEvaluacion.opcion2Pregunta}
+                                                />
+                                            </InputGroup>)}
+                                            {preguntaEvaluacion.opcion3Pregunta === "" ? (
+                                                <div hidden>
+                                                    <InputGroup className="mb-3" size="lg" type="hidden">
+                                                        <InputGroup.Checkbox
+                                                            id="opcion3CorrectaRespuesta"
+                                                            defaultChecked={respuesta3CorrectaRespuesta} />
+                                                        <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion3Pregunta} />
+                                                    </InputGroup>
+                                                </div>) :
+                                                (<InputGroup className="mb-3" size="lg" >
+                                                    <InputGroup.Checkbox id="opcion3CorrectaRespuesta"
+                                                        defaultChecked={respuesta3CorrectaRespuesta}
+                                                    />
+                                                    <Form.Control className=" mx-4"
+                                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion3Pregunta}
+                                                    />
+                                                </InputGroup>)}
+                                            {preguntaEvaluacion.opcion4Pregunta === "" ? (
+                                                <div hidden><InputGroup type="hidden" className="mb-3" size="lg">
+                                                    <InputGroup.Checkbox id="opcion4CorrectaRespuesta"
+                                                        defaultChecked={respuesta4CorrectaRespuesta} />
+                                                    <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion4Pregunta} />
+                                                </InputGroup></div>) :
+                                                (<InputGroup className="mb-3" size="lg" >
+                                                <InputGroup.Checkbox id="opcion4CorrectaRespuesta"
+                                                    defaultChecked={respuesta4CorrectaRespuesta}
+                                                />
+                                                <Form.Control className=" mx-4"
+                                                    plaintext readOnly defaultValue={preguntaEvaluacion.opcion4Pregunta}
+                                                />
+                                            </InputGroup>)}
 
 
-                    <Container >
-                        <h1 className="text-center">Pregunta {numeroPregunta}</h1>
-                        <h2 className="text-center">{preguntaEvaluacion.enunciadoPregunta}</h2>
-                        <h4>Seleccione opcion</h4>
-                        <Form >
-                            {preguntaEvaluacion.opcion1Pregunta === "" ?
-                                (<div hidden><InputGroup className="mb-3" size="lg" >
-                                    <InputGroup.Checkbox id="opcion1CorrectaRespuesta"
-                                        defaultChecked={respuesta1CorrectaRespuesta}
-                                    />
-                                    <Form.Control className=" mx-4"
-                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion1Pregunta}
-                                    />
-                                </InputGroup></div>) :
-                                (<InputGroup className="mb-3" size="lg" >
+                                        </Form>
 
-                                    <InputGroup.Checkbox id="opcion1CorrectaRespuesta"
-                                        defaultChecked={respuesta1CorrectaRespuesta}
-                                    />
-                                    <Form.Control className=" mx-4"
-                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion1Pregunta}
-                                    />
-                                </InputGroup>)}
-                            {preguntaEvaluacion.opcion2Pregunta === "" ? (<div hidden>
-                                <InputGroup className="mb-3" size="lg" >
-                                    <InputGroup.Checkbox
-                                        id="opcion2CorrectaRespuesta"
-                                        defaultChecked={respuesta2CorrectaRespuesta} />
-                                    <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion2Pregunta} />
-                                </InputGroup>
-                            </div>
-                            ) : (<InputGroup className="mb-3" size="lg" >
-                                <InputGroup.Checkbox id="opcion2CorrectaRespuesta"
-                                    defaultChecked={respuesta2CorrectaRespuesta}
-                                />
-                                <Form.Control className=" mx-4"
-                                    plaintext readOnly defaultValue={preguntaEvaluacion.opcion2Pregunta}
-                                />
-                            </InputGroup>)}
-                            {preguntaEvaluacion.opcion3Pregunta === "" ? (
-                                <div hidden>
-                                    <InputGroup className="mb-3" size="lg" type="hidden">
-                                        <InputGroup.Checkbox
-                                            id="opcion3CorrectaRespuesta"
-                                            defaultChecked={respuesta3CorrectaRespuesta} />
-                                        <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion3Pregunta} />
-                                    </InputGroup>
-                                </div>) :
-                                (<InputGroup className="mb-3" size="lg" >
-                                    <InputGroup.Checkbox id="opcion3CorrectaRespuesta"
-                                        defaultChecked={respuesta3CorrectaRespuesta}
-                                    />
-                                    <Form.Control className=" mx-4"
-                                        plaintext readOnly defaultValue={preguntaEvaluacion.opcion3Pregunta}
-                                    />
-                                </InputGroup>)}
-                            {preguntaEvaluacion.opcion4Pregunta === "" ? (
-                                <div hidden><InputGroup type="hidden" className="mb-3" size="lg">
-                                    <InputGroup.Checkbox id="opcion4CorrectaRespuesta"
-                                        defaultChecked={respuesta4CorrectaRespuesta} />
-                                    <Form.Control className=" mx-4" plaintext readOnly defaultValue={preguntaEvaluacion.opcion4Pregunta} />
-                                </InputGroup></div>) :
-                                (<InputGroup className="mb-3" size="lg" >
-                                <InputGroup.Checkbox id="opcion4CorrectaRespuesta"
-                                    defaultChecked={respuesta4CorrectaRespuesta}
-                                />
-                                <Form.Control className=" mx-4"
-                                    plaintext readOnly defaultValue={preguntaEvaluacion.opcion4Pregunta}
-                                />
-                            </InputGroup>)}
+                                    </Container>
+                                </Card.Body>
+                            </Card>
+                            <Container className="text-center my-5">
+                                {(libreNavegacion === true && numeroPregunta != 1) ?
+                                    (<Button onClick={preguntaAnterior} className="mr-5">Atras</Button>) : null}
+                                <Button variant="primary" onClick={handleSubmit}>
+                                    siguiente
+                                </Button>
 
-
-                        </Form>
-
-                    </Container>
-                </Card.Body>
-            </Card>
-            <Container className="text-center my-5">
-                {(libreNavegacion === true && numeroPregunta != 1) ?
-                    (<Button onClick={preguntaAnterior} className="mr-5">Atras</Button>) : null}
-                <Button variant="primary" onClick={handleSubmit}>
-                    siguiente
-                </Button>
-
-            </Container>
+                            </Container>
+                        </div>
+                    </div>
+                </div>
 
         </Fragment>
     );
