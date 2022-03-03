@@ -130,6 +130,7 @@
 /* 
 content of dashboard start */
 .container{
+    
     width: 100%;
     padding-right: 0.75rem;
     padding-left: 0.75rem;
@@ -137,6 +138,7 @@ content of dashboard start */
     margin-left: auto;
 }
 .contentcontainer{
+   
     display: flex;
     flex-wrap: wrap;    
     margin-left:200px;

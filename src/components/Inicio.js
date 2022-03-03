@@ -9,7 +9,7 @@ import {
   Row,
   Alert,
 } from "react-bootstrap";
-import isologotipo_unsta from "../img/isologotipo_unsta.png";
+import isologotipo_unsta from "../img/Librería Etsy Tienda Ícono (3).png";
 import Swal from "sweetalert2";
 import Header from "./Header";
 import LeftNavbar from "./LeftNavbar";
@@ -73,7 +73,7 @@ const Inicio = (props) => {
   return (
     <div>
       <div className="text-center mt-5">
-        <Image src={isologotipo_unsta}></Image>
+        <Image src={isologotipo_unsta} style={{width:"200px"}} rounded={true}></Image>
       </div>
       <h1 className="text-center">Sistema de evaluaciones</h1>
       <Container>

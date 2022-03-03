@@ -50,11 +50,19 @@ function LeftNavbar(props) {
               icon={faRocket}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/admin/aula" style={{ color: "#000000" }}>
               Aulas
             </a>
           </li>
-
+          <li>
+            <FontAwesomeIcon
+              icon={faSignOutAlt}
+              style={{ width: "18px", cursor: "pointer" }}
+            />{" "}
+            <a href="/" style={{ color: "#000000" }}>
+              Logout
+            </a>
+          </li>
          
         </ul>
       </div>
