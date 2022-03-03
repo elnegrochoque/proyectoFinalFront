@@ -7,7 +7,7 @@ import LeftNavbar from "../LeftNavbarAdministrador";
 import styles from "../../styles/Home.module.css";
 
 const Admin = (props) => {
-    console.log(props.personas)
+  console.log(props.personas);
 
     const {id}=useParams();
     const urlCrearUsuario="/administrador/"+id+"/nuevousuarioadmin"
