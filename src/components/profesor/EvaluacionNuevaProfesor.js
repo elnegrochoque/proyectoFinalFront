@@ -187,7 +187,7 @@ const EvaluacionNuevaProfesor = () => {
                         <Button variant="secondary" onClick={handleClose}>
                             Cerrar
                         </Button>
-                        <Button variant="primary" onClick={guardarPreguntaNueva}>
+                        <Button variant="dark" onClick={guardarPreguntaNueva}>
                             Guardar pregunta
                         </Button>
                     </Modal.Footer>

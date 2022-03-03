@@ -76,7 +76,7 @@ window.location.href="/profecatedra/ver"
                                 <td className="text-center">
                                   <Button
                                     className="mx-3"
-                                    variant="danger"
+                                    variant="dark"
                                     id={catedra.id}
                                     onClick={(e) => ver(e)}
                                   >

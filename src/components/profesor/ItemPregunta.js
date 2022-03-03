@@ -149,8 +149,8 @@ const ItemPregunta = (props) => {
                 <td>{props.cantidadPreguntas}</td>
                 <td>{props.pregunta.enunciadoPregunta}</td>
                 <td className="d-flex justify-content-around">
-                    <Button variant="danger" onClick={eliminarPregunta}>Borrar</Button>
-                    <Button variant="warning" onClick={handleShow}>Editar</Button>
+                    <Button variant="secondary" onClick={eliminarPregunta}>Borrar</Button>
+                    <Button variant="dark" onClick={handleShow}>Editar</Button>
 
                 </td>
             </tr>
@@ -244,7 +244,7 @@ const ItemPregunta = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Cerrar
                     </Button>
-                    <Button variant="primary" onClick={editarPregunta}>
+                    <Button variant="secondary" onClick={editarPregunta}>
                         Guardar pregunta
                     </Button>
                 </Modal.Footer>

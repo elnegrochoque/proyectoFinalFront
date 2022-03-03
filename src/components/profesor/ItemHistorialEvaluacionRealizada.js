@@ -35,7 +35,7 @@ const ItemHistorialEvaluacionRealizada = (props) => {
 
             <td className="text-center">
 
-                <Button className="mx-3" variant="danger" onClick={verEvaluacion} >VER</Button>
+                <Button className="mx-3" variant="btn btn-dark" onClick={verEvaluacion} >VER</Button>
 
             </td>
         </tr>

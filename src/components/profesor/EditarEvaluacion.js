@@ -239,13 +239,13 @@ const EditarEvaluacion = () => {
                                         </FormGroup>
                                         <div className="text-center ml-3">
                                             <Row className="">
-                                                <Button className="mr-5" variant="primary" type="submit">
+                                                <Button className="mr-5" variant="secondary" type="submit">
                                                     Guardar lo editado
                                                 </Button>
-                                                <Button className="mr-5" variant="primary" onClick={(e) => { irAPreguntas(e) }}>
+                                                <Button className="mr-5" variant="secondary" onClick={(e) => { irAPreguntas(e) }}>
                                                     Ver Preguntas
                                                 </Button>
-                                                <Button variant="primary" onClick={(e) => { volverAtras(e) }}>
+                                                <Button variant="dark" onClick={(e) => { volverAtras(e) }}>
                                                     Atras
                                                 </Button>
 

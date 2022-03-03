@@ -186,10 +186,10 @@ const CrearEvaluacion = () => {
 
                                     <div className="text-center ml-3">
                                         <Row className="">
-                                            <Button className="mr-5" variant="primary" type="submit">
+                                            <Button className="mr-5" variant="dark" type="submit">
                                                 Crear Evaluacion
                                             </Button>
-                                            <Button variant="primary" onClick={volverAtras}>
+                                            <Button variant="dark" onClick={volverAtras}>
                                                 Atras
                                             </Button>
 

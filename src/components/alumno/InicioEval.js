@@ -84,9 +84,9 @@ const InicioEval = () => {
                       </Form.Group>
                       <div className="text-center">
                         <Button
-                          variant="primary"
+                          variant="dark"
                           type="submit"
-                          className="w-25"
+                          className="w-20"
                         >
                           Ingresar a la evaluacion
                         </Button>
