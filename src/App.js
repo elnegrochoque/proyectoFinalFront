@@ -26,7 +26,17 @@ import InscripcionCatedra from "./components/alumno/InscripcionCatedra";
 import Catedras from "./components/profesor/Catedras";
 import ProfesorCatedrasInfo from "./components/profesor/ProfesorCatedrasInfo";
 import Aulas from "./components/administrador/Aulas";
+import depositoLocal from "./components/depositoLocal"
+import { putEntrar } from "./components/apiSesion";
 function App() {
+  const _depositoLocal = depositoLocal.obtenerServicio();
+          
+  const idPersona = _depositoLocal.obtenerIdPersona();
+  if (idPersona==null||idPersona=="null"||idPersona=="undefined"||idPersona==undefined) {
+    
+  }else{
+    putEntrar(idPersona)
+  }
   const URL = process.env.REACT_APP_API_URL + "personas";
   const [personas, setPersonas] = useState([]);
   useEffect(() => {

@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import Header from "./Header";
 import LeftNavbar from "./LeftNavbar";
 import depositoLocal from "./depositoLocal";
+import { getDisponible, getUltimaConexion, putEntrar } from "./apiSesion";
 const Inicio = (props) => {
   //console.log(props.personas)
   // creo consts para almacenar el usuario, la contraseña y una bandera para verificar
@@ -22,8 +23,9 @@ const Inicio = (props) => {
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     let esUsuario = false;
+
     e.preventDefault();
     //  validar los datos
     if (usuario.trim() === "" || contrasena.trim() === "") {
@@ -42,29 +44,41 @@ const Inicio = (props) => {
         ) {
           const _depositoLocal = depositoLocal.obtenerServicio();
           _depositoLocal.setearIdPersona(props.personas[i]._id);
-        
-          esUsuario = true;
-          if (props.personas[i].tipo === "administrador") {
-            const ruta = "/administrador/" + props.personas[i]._id;
-            window.location.href = ruta;
-          }
-          if (props.personas[i].tipo === "alumno") {
-            const ruta = "/alumnoprincipal/" + props.personas[i]._id;
-            window.location.href = ruta;
-            console.log("alumsniii");
-          }
-          if (props.personas[i].tipo === "profesor") {
-            const ruta = "/profesor/" + props.personas[i]._id;
-            window.location.href = ruta;
+          const sesionDuplicada = await getDisponible(props.personas[i]._id);
+          console.log(sesionDuplicada);
+         
+          const ultimaConexionAux = await getUltimaConexion(props.personas[i]._id);
+          const ultimaConexion=ultimaConexionAux.conectado
+          const tiempoAhora = Date.now();
+          const resta=tiempoAhora-ultimaConexion
+
+          console.log(ultimaConexion);
+          console.log(tiempoAhora);
+          console.log(resta)
+          if (sesionDuplicada.conectado == "false"|| resta>600000) {
+            const entrar = await putEntrar(props.personas[i]._id);
+            esUsuario = true;
+            if (props.personas[i].tipo === "administrador") {
+              const ruta = "/administrador/" + props.personas[i]._id;
+              window.location.href = ruta;
+            }
+            if (props.personas[i].tipo === "alumno") {
+              const ruta = "/alumnoprincipal/" + props.personas[i]._id;
+              window.location.href = ruta;
+              console.log("alumsniii");
+            }
+            if (props.personas[i].tipo === "profesor") {
+              const ruta = "/profesor/" + props.personas[i]._id;
+              window.location.href = ruta;
+            }
           }
         }
       }
       if (esUsuario === false) {
-        console.log("no existe");
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "Usuario o contraseña no validos",
+          text: "Usuario no valido o sesion iniciada",
         });
       }
     }
@@ -73,7 +87,11 @@ const Inicio = (props) => {
   return (
     <div>
       <div className="text-center mt-5">
-        <Image src={isologotipo_unsta} style={{width:"200px"}} rounded={true}></Image>
+        <Image
+          src={isologotipo_unsta}
+          style={{ width: "200px" }}
+          rounded={true}
+        ></Image>
       </div>
       <h1 className="text-center">Sistema de evaluaciones</h1>
       <Container>

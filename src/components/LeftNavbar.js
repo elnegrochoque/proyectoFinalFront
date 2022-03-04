@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
-
+import { putSalir } from "./apiSesion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookOpen,
@@ -10,6 +10,10 @@ import {
   faSignOutAlt,
   faTachometerAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import depositoLocal from "./depositoLocal";
+const _depositoLocal = depositoLocal.obtenerServicio();
+
+const idPersona = _depositoLocal.obtenerIdPersona();
 
 function LeftNavbar(props) {
   const crearEvaluacion = () => {
@@ -24,8 +28,13 @@ function LeftNavbar(props) {
     const ruta = "/profesor/" + props.props + "/historial";
     window.location.href = ruta;
   };
+  const salir = async (e) => {
+    e.preventDefault();
+    const sale= await putSalir(idPersona)
+    _depositoLocal.setearIdPersona(null);
+    window.location.href="/"
+  };
   return (
-    
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
         <h3>Sistema de Evaluaciones</h3>
@@ -80,16 +89,17 @@ function LeftNavbar(props) {
               Modificar Examenes
             </a>
           </li>
-          
 
           <li>
             <FontAwesomeIcon
               icon={faSignOutAlt}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="/" style={{ color: "#000000" }}>
-              Logout
-            </a>
+            <a
+             
+              style={{ color: "#000000" }}
+              onClick={(e) => salir(e)}
+            >Logout</a>
           </li>
         </ul>
       </div>
