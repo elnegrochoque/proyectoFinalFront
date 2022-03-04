@@ -183,7 +183,7 @@ const EvaluacionAlumno = () => {
                       <video width="300" ref={videoRef}></video>
                     </div>
                     <div onClick={tomarFoto}>
-                      <Button>Foto</Button>
+                      <Button variant="secondary">Foto</Button>
                     </div>
                   </Col>
                   <Col sm="auto">
@@ -196,7 +196,7 @@ const EvaluacionAlumno = () => {
               <h3>Asegurese que su DNI sea visible</h3>
               {hayFoto?  <Button
                 className="mx-3"
-                variant="danger"
+                variant="btn btn-dark"
                 onClick={irAComenzarEvaluacion}
               >
                 COMENZAR EVALUACION

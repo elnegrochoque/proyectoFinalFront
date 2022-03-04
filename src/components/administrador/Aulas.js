@@ -108,8 +108,8 @@ const Aulas = () => {
                             </td>
                             <td className="text-center">
                               <Button
-                                className="mx-3"
-                                variant="danger"
+                                className="mx-3 "
+                                variant="btn btn-dark"
                                 id={catedra.id}
                                 onClick={(e) => baja(e)}
                               >

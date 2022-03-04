@@ -95,7 +95,7 @@ const ProfesorCatedrasInfo = () => {
                                 <Button
                                 value={lista._id}
                                   className="mx-3"
-                                  variant="danger"
+                                  variant="btn btn-dark"
                                   onClick={(e) => baja(e)}
                                 >
                                   Dar de baja

@@ -34,9 +34,9 @@ const ItemEvaluacionHistorial = (props) => {
             <td>{props.evaluacion._id}</td>
             <td className="text-center">
                 <Row>
-                    <Button className="mx-3" variant="danger" onClick={() => enviarResultadosEvaluacion(props.evaluacion._id)}>ENVIAR RESULTADOS</Button>
+                    <Button className="mx-3" variant="btn btn-secondary" onClick={() => enviarResultadosEvaluacion(props.evaluacion._id)}>ENVIAR RESULTADOS</Button>
                   
-                    <Link to={`/profesor/${props.idProfesor}/historial/${props.evaluacion._id}`} className="btn btn-secondary mr-2">
+                    <Link to={`/profesor/${props.idProfesor}/historial/${props.evaluacion._id}`} className="btn btn-dark mr-2">
                         VER
                     </Link>
                 </Row>

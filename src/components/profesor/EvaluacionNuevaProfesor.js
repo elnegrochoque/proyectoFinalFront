@@ -95,12 +95,12 @@ const EvaluacionNuevaProfesor = () => {
                 <Row className="m-5">
                     <Col ><h3 className=" font-weight-bold">Preguntas</h3></Col>
                     <Col >
-                        <Button onClick={handleShow}>Nueva Pregunta</Button>
+                        <Button variant='dark' onClick={handleShow}>Nueva Pregunta</Button>
                     </Col>
                     <Col>
-                        <Button onClick={salirAtras}>Salir</Button>
+                        <Button variant='dark' onClick={salirAtras}>Salir</Button>
                     </Col>
-                    <Button onClick={preguntaAnterior} className="mr-5">Atras</Button>
+                    <Button variant='dark' onClick={preguntaAnterior} className="mr-5">Atras</Button>
                     <Table striped bordered hover size="sm" className="my-4">
                         <thead>
                             <tr>
@@ -184,10 +184,10 @@ const EvaluacionNuevaProfesor = () => {
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <Button  variant="secondary" onClick={handleClose}>
                             Cerrar
                         </Button>
-                        <Button variant="primary" onClick={guardarPreguntaNueva}>
+                        <Button variant="dark" onClick={guardarPreguntaNueva}>
                             Guardar pregunta
                         </Button>
                     </Modal.Footer>

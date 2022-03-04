@@ -117,7 +117,7 @@ const InscripcionCatedra = () => {
                                 <td className="text-center">
                                   <Button
                                     className="mx-3"
-                                    variant="danger"
+                                    variant="btn btn-dark"
                                     id={catedra.id}
                                     onClick={(e) => baja(e)}
                                   >

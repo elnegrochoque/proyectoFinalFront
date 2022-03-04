@@ -173,7 +173,7 @@ const EditarPersona = (props) => {
 
                                 </DropdownButton>
                                 <div className="text-center">
-                                    <Button variant="primary" type="submit">
+                                    <Button variant="secondary" type="submit">
                                         Editar Usuario
                                     </Button>
 
