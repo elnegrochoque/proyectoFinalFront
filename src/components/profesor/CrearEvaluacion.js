@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { getCatedras } from "../alumno/apiCatedra";
+import { getCatedras, getCatedra } from "../alumno/apiCatedra";
 import { getPersona } from "../administrador/apiNuevaCatedra";
 import {
   Container,
@@ -47,6 +47,8 @@ const CrearEvaluacion = () => {
   const IDProfesor = id;
   const [catedras, setCatedras] = useState();
   const [flagUpdate, setFlagUpdate] = useState(false);
+
+  const [dropDownMateria, setDropDownMateria] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -147,8 +149,10 @@ const CrearEvaluacion = () => {
   }, [flagUpdate]);
   const elegirMateria = async (e) => {
     e.preventDefault();
-    console.log(e.target.id)
-    setMateriaEvaluacion(e.target.id)
+    setMateriaEvaluacion(e.target.id);
+    const nombreMateria = await getCatedra(e.target.id);
+    
+    setDropDownMateria(nombreMateria.materiaCatedra);
   };
   return (
     <Fragment>
@@ -178,18 +182,20 @@ const CrearEvaluacion = () => {
                         onChange={(e) => setNombreEvaluacion(e.target.value)}
                       ></Form.Control>
                     </FormGroup>
-                    <FormGroup className=" ml-5 " style={{marginTop:"32px"}}>
+                    <FormGroup className=" ml-5 " style={{ marginTop: "32px" }}>
                       <Dropdown>
-                        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                            {materiaEvaluacion!=""?materiaEvaluacion:"Materia"}
-                      
+                        <Dropdown.Toggle
+                          variant="secondary"
+                          id="dropdown-basic"
+                        >
+                          {dropDownMateria != "" ? dropDownMateria : "Materia"}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
                           {catedras
                             ? catedras.map((catedra) => (
                                 <Dropdown.Item
-                                    id={catedra.materia}
+                                  id={catedra.id}
                                   onClick={(e) => elegirMateria(e)}
                                 >
                                   {catedra.materia}

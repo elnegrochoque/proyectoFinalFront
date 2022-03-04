@@ -6,15 +6,47 @@ import { useParams } from "react-router-dom";
 import Header from "../HeaderAlumno";
 import LeftNavbar from "../LeftNavbarAlumno";
 import styles from "../../styles/Home.module.css";
+import depositoLocal from "../depositoLocal";
+import { getEvaluacion } from "./apiEvaluacion";
+import { getInscripto } from "./apiCatedra";
 const InicioEval = () => {
+  const _depositoLocal = depositoLocal.obtenerServicio();
+
+  const idPersona = _depositoLocal.obtenerIdPersona();
   const { id } = useParams();
   const [codigoEvaluacion, setCodigoEvaluacion] = useState("");
   const [evaluacionAlumno, setEvaluacionAlumno] = useState([]);
   const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    consultarPreguntasEvaluacionAPI();
+    const evaluacionAux = await getEvaluacion(codigoEvaluacion);
+    console.log(evaluacionAux);
+    if (evaluacionAux.mensaje == false) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Evaluacion no encontrada ",
+      });
+    } else {
+      console.log("se hace");
+      const inscriptoAux = await getInscripto(
+        idPersona,
+        evaluacionAux.materiaEvaluacion
+      );
+      console.log(inscriptoAux);
+      if (inscriptoAux.existe == true) {
+        console.log("hacer evaluacion");
+        consultarPreguntasEvaluacionAPI();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No esta inscripto a la materia ",
+        });
+      }
+    }
+   
   };
   const consultarPreguntasEvaluacionAPI = async () => {
     const URL =
@@ -54,11 +86,10 @@ const InicioEval = () => {
   };
   return (
     <Fragment>
-      <div className={styles.Container}>       
-
+      <div className={styles.Container}>
         <div className={styles.container}>
-        <LeftNavbar props={id}></LeftNavbar>
-        <Header></Header>
+          <LeftNavbar props={id}></LeftNavbar>
+          <Header></Header>
           <div className={styles.contentcontainer}>
             <Card className="m-2" bg="Light" style={{ width: "50rem" }}>
               <Card.Header>
@@ -83,11 +114,7 @@ const InicioEval = () => {
                         />
                       </Form.Group>
                       <div className="text-center">
-                        <Button
-                          variant="dark"
-                          type="submit"
-                          className="w-20"
-                        >
+                        <Button variant="dark" type="submit" className="w-20">
                           Ingresar a la evaluacion
                         </Button>
                       </div>
