@@ -104,6 +104,7 @@ const EvaluacionAlumno = () => {
         opcion2CorrectaRespuesta: false,
         opcion3CorrectaRespuesta: false,
         opcion4CorrectaRespuesta: false,
+        desarrollo:"",
         momentoInicioDeEvaluacionAlumno: momentoInicioDeEvaluacionAlumno,
         IDResultado: respuestaIDRespuesta,
       };

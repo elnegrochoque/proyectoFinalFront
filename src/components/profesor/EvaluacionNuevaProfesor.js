@@ -97,10 +97,7 @@ const EvaluacionNuevaProfesor = () => {
                     <Col >
                         <Button variant='dark' onClick={handleShow}>Nueva Pregunta</Button>
                     </Col>
-                    <Col>
-                        <Button variant='dark' onClick={salirAtras}>Salir</Button>
-                    </Col>
-                    <Button variant='dark' onClick={preguntaAnterior} className="mr-5">Atras</Button>
+                 
                     <Table striped bordered hover size="sm" className="my-4">
                         <thead>
                             <tr>
@@ -125,7 +122,7 @@ const EvaluacionNuevaProfesor = () => {
                 </Row>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Nueva Pregunta</Modal.Title>
+                        <Modal.Title>Nueva Pregunta </Modal.Title>
 
                     </Modal.Header>
                     <Modal.Body>
@@ -136,7 +133,8 @@ const EvaluacionNuevaProfesor = () => {
                                 <Form.Control as="textarea" placeholder="Enunciado" onChange={(e) => setEnunciadoPregunta(e.target.value)}></Form.Control>
                             </FormGroup>
 
-                            <h5>Marcar la/s correcta/s</h5>
+                            <h5>Marcar la/s correcta/s  </h5>
+                            <p>Si no selecciona ninguna sera una pregunta a desarrollar</p>
                             <Row >
                                 <FormGroup className="mr-3 col-10">
                                     <Form.Label>Opcion 1</Form.Label>

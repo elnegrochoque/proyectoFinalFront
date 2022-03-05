@@ -1,21 +1,31 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Button, Container, Card, Image } from "react-bootstrap";
+import { Button, Container, Card, Image, Row } from "react-bootstrap";
 import Header from "../Header";
 import LeftNavbar from "../LeftNavbar";
 import styles from "../../styles/Home.module.css";
-
+import { getResultado } from "./apiObtenerResultado";
 import { useParams } from "react-router-dom";
 import ItemVerEvaluacion from "./ItemVerEvaluacion";
+import Swal from "sweetalert2";
+import { putCambiarNota } from "./apiCambiarNota";
 const VerEvaluacion = () => {
   const { idResultado } = useParams();
   const URL =
     process.env.REACT_APP_API_URL + "respuestas/resultados/" + idResultado;
   const [respuestas, setRespuestas] = useState([]);
   const [foto, setFoto] = useState();
+  const [preguntas, setPreguntas] = useState([]);
+  const [nota, setNota] = useState();
+  const [flagNota, setFlagNota] = useState(false);
   useEffect(() => {
     consultarAPI();
-  }, []);
-  const [preguntas, setPreguntas] = useState([]);
+    consultarResultado();
+  }, [flagNota]);
+  const consultarResultado = async () => {
+    const consultarResultadoAux = await getResultado(idResultado);
+    console.log(consultarResultadoAux.NotaEvaluacion);
+    setNota(consultarResultadoAux.NotaEvaluacion);
+  };
   const consultarAPI = async () => {
     try {
       const consulta = await fetch(URL);
@@ -28,9 +38,8 @@ const VerEvaluacion = () => {
       console.log(URLaux);
       const consultaResultados = await fetch(URLaux);
       const respuestaResultados = await consultaResultados.json();
-      console.log("respuestas/resultados", await respuestaResultados);
       setFoto("http://localhost:4000/files/" + respuestaResultados.Foto);
-      console.log(foto);
+
       let preguntasAux = [];
       for (const i in respuesta) {
         const URLPregunta =
@@ -49,17 +58,44 @@ const VerEvaluacion = () => {
       console.log(error);
     }
   };
-  const atras = (e) => {
+  const cambiarNota = async (e) => {
     e.preventDefault();
-    window.history.back();
+
+    const ipAPI = "//api.ipify.org?format=json";
+
+    const inputValue = fetch(ipAPI)
+      .then((response) => response.json())
+      .then((data) => data.ip);
+
+    const { value: ipAddress } = await Swal.fire({
+      title: "Nueva Nota",
+      input: "number",
+      inputLabel: "",
+      inputValue: nota,
+      showCancelButton: true,
+      inputValidator: async (value) => {
+        if (!value) {
+          return "Necesita poner un numero";
+        } else {
+          console.log(value);
+          const cambiarNotaAlumno = await putCambiarNota(idResultado, value);
+          setNota(nota);
+        }
+      },
+    });
+
+    if (ipAddress) {
+      Swal.fire(`Nota actualizada`);
+    }
+    setFlagNota(!flagNota)
   };
+
   return (
     <Fragment>
-      <div className={styles.Container}>      
-
+      <div className={styles.Container}>
         <div className={styles.container}>
-        <LeftNavbar props={idResultado}></LeftNavbar>
-        <Header></Header>
+          <LeftNavbar props={idResultado}></LeftNavbar>
+          <Header></Header>
           <div className={styles.contentcontainer}>
             <Card className="m-2" bg="Light" style={{ width: "50rem" }}>
               <Card.Header>
@@ -68,14 +104,17 @@ const VerEvaluacion = () => {
 
               <Card.Body>
                 <Container className="text-center ">
-                  <Button onClick={atras} className="text-center">
-                    atras
-                  </Button>
-               
+                  <div>
+                    <h3>
+                      Nota: {nota}{" "}
+                      <Button onClick={(e) => cambiarNota(e)}>
+                        Cambiar nota
+                      </Button>
+                    </h3>
+                  </div>
                 </Container>
                 <Container className="text-center mt-2">
-                <Image  src={foto} alt="no hay foto"></Image>
-                  
+                  <Image src={foto} alt="no hay foto"></Image>
                 </Container>
                 <Container className="m-5">
                   {preguntas.map((preguntas) => (

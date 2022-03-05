@@ -22,30 +22,39 @@ const InicioEval = () => {
     e.preventDefault();
     const evaluacionAux = await getEvaluacion(codigoEvaluacion);
     console.log(evaluacionAux);
-    if (evaluacionAux.mensaje == false) {
+    if (evaluacionAux) {
+      if (evaluacionAux.mensaje == false) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Evaluacion no encontrada ",
+        });
+      } else {
+        console.log("se hace");
+        const inscriptoAux = await getInscripto(
+          idPersona,
+          evaluacionAux.materiaEvaluacion
+        );
+        console.log(inscriptoAux);
+        if (inscriptoAux.existe == true) {
+          console.log("hacer evaluacion");
+          consultarPreguntasEvaluacionAPI();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No esta inscripto a la materia ",
+          });
+        }
+      }
+    }  else {
       Swal.fire({
         icon: "error",
         title: "Error",
         text: "Evaluacion no encontrada ",
       });
-    } else {
-      console.log("se hace");
-      const inscriptoAux = await getInscripto(
-        idPersona,
-        evaluacionAux.materiaEvaluacion
-      );
-      console.log(inscriptoAux);
-      if (inscriptoAux.existe == true) {
-        console.log("hacer evaluacion");
-        consultarPreguntasEvaluacionAPI();
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No esta inscripto a la materia ",
-        });
-      }
     }
+    
    
   };
   const consultarPreguntasEvaluacionAPI = async () => {
