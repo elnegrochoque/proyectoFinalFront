@@ -173,7 +173,8 @@ const PreguntaAlumno = () => {
           false === respuestaAux2.opcion2CorrectaPregunta &&
           false === respuestaAux2.opcion3CorrectaPregunta &&
           false === respuestaAux2.opcion4CorrectaPregunta
-        ) {cantidadRespuestasCorrectas = cantidadRespuestasCorrectas - 1;
+        ) {
+          cantidadRespuestasCorrectas = cantidadRespuestasCorrectas - 1;
         }
       }
     }
@@ -503,11 +504,18 @@ const PreguntaAlumno = () => {
             </Card>
             <Container className="text-center my-5">
               {libreNavegacion === true && numeroPregunta != 1 ? (
-                <Button onClick={preguntaAnterior} className="mr-5">
+                <Button
+                  onClick={preguntaAnterior}
+                  className="mr-5"
+                  variant="dark"
+                >
                   Atras
                 </Button>
               ) : null}
-              <Button variant="primary" onClick={handleSubmit}>
+              <Button
+                onClick={handleSubmit}
+                variant="secondary"
+              >
                 siguiente
               </Button>
             </Container>

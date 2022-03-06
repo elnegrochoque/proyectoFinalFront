@@ -46,10 +46,7 @@ const ModificarEvaluacion = () => {
                     <Card.Body >                
                             <Row className="m-5" style={{ width: '50rem'}}>
                             <Col ><h3 className=" font-weight-bold">Evaluaciones</h3></Col>
-                            <Col>
-                                <Link to={"/profesor/" + id} className='btn btn-dark mr-2 text-light'>
-                                    ATRAS
-                                </Link></Col>
+                           
                             <Table striped bordered hover size="sm" className="my-4">
                                 <thead>
                                     <tr>

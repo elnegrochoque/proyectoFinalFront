@@ -16,8 +16,6 @@ const _depositoLocal = depositoLocal.obtenerServicio();
 
 const idPersona = _depositoLocal.obtenerIdPersona();
 function LeftNavbar(props) {
-  console.log(props.props);
-  console.log(props);
   const InicioEval = () => {
     const ruta = "/alumno/" + props.props;
     window.location.href = ruta;
@@ -28,7 +26,6 @@ function LeftNavbar(props) {
     const sale= await putSalir(idPersona)
     window.location.href="/"
   };
-  console.log(props);
   return (
     <div className={styles.navcontainer}>
       <div className={styles.logo}>
@@ -54,7 +51,7 @@ function LeftNavbar(props) {
               icon={faRocket}
               style={{ width: "18px", cursor: "pointer" }}
             />{" "}
-            <a href="#" style={{ color: "#000000" }}>
+            <a href="/alumnohistorial" style={{ color: "#000000" }}>
               Historial de Examenes
             </a>
           </li>

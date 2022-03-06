@@ -61,11 +61,6 @@ const VerEvaluacion = () => {
   const cambiarNota = async (e) => {
     e.preventDefault();
 
-    const ipAPI = "//api.ipify.org?format=json";
-
-    const inputValue = fetch(ipAPI)
-      .then((response) => response.json())
-      .then((data) => data.ip);
 
     const { value: ipAddress } = await Swal.fire({
       title: "Nueva Nota",
@@ -73,6 +68,7 @@ const VerEvaluacion = () => {
       inputLabel: "",
       inputValue: nota,
       showCancelButton: true,
+      confirmButtonColor: "#000000",
       inputValidator: async (value) => {
         if (!value) {
           return "Necesita poner un numero";
@@ -85,7 +81,7 @@ const VerEvaluacion = () => {
     });
 
     if (ipAddress) {
-      Swal.fire(`Nota actualizada`);
+      Swal.fire({  confirmButtonColor: "#000000",title: "Nota actualizada"});
     }
     setFlagNota(!flagNota)
   };
@@ -107,7 +103,7 @@ const VerEvaluacion = () => {
                   <div>
                     <h3>
                       Nota: {nota}{" "}
-                      <Button onClick={(e) => cambiarNota(e)}>
+                      <Button onClick={(e) => cambiarNota(e)} variant="secondary">
                         Cambiar nota
                       </Button>
                     </h3>

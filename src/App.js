@@ -28,6 +28,8 @@ import ProfesorCatedrasInfo from "./components/profesor/ProfesorCatedrasInfo";
 import Aulas from "./components/administrador/Aulas";
 import depositoLocal from "./components/depositoLocal"
 import { putEntrar } from "./components/apiSesion";
+import HistorialExamenes from "./components/alumno/HistorialExamenes";
+import VerExamen from "./components/alumno/VerExamen";
 function App() {
   const _depositoLocal = depositoLocal.obtenerServicio();
           
@@ -155,6 +157,12 @@ function App() {
         </Route>
         <Route exact path="/profecatedra/ver">
           <ProfesorCatedrasInfo></ProfesorCatedrasInfo>
+        </Route>
+        <Route exact path="/alumnohistorial">
+          <HistorialExamenes></HistorialExamenes>
+        </Route>
+        <Route exact path="/alumnohistorial/:idExamen">
+          <VerExamen></VerExamen>
         </Route>
       </Switch>
     </Router>

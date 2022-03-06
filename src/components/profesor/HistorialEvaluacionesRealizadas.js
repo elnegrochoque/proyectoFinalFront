@@ -42,8 +42,7 @@ const HistorialEvaluacionesRealizadas = () => {
                     <div className={styles.contentcontainer}>
                         <Row className="m-5">
                             <Col ><h3 className=" font-weight-bold">Evaluaciones</h3></Col>
-                            <Col><Button onClick={atras}>Atras</Button>
-                            </Col>
+                         
                             <Table striped bordered hover size="sm" className="my-4">
                                 <thead>
                                     <tr>
