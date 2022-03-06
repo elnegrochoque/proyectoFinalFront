@@ -53,6 +53,7 @@ const ItemPregunta = (props) => {
             //cantidadPreguntasEvaluacion: cantidadPreguntasEvaluacionRef.current.value
         }
         try {
+            
             const URL = process.env.REACT_APP_API_URL + 'preguntas/' + props.pregunta._id;
             const respuesta = await fetch(URL, {
                 method: 'PUT',
@@ -61,10 +62,12 @@ const ItemPregunta = (props) => {
             });
 
             if (respuesta.status === 200 || respuesta.status === 201) {
-                Swal.fire(
-                    'Pregunta editada',
-                    'La pregunta fue modificada',
-                    'success'
+                Swal.fire({
+                    confirmButtonColor: "#000000",
+                    icon: "success",
+                    title: "Modificada",
+                    text: "La pregunta due modificada",
+                  }
                 );
                 handleClose();
 
@@ -73,10 +76,11 @@ const ItemPregunta = (props) => {
 
             } else {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!'
-                })
+                    confirmButtonColor: "#000000",
+                    icon: "error",
+                    title: "Error",
+                    text: "Se produjo un error",
+                  })
             }
         } catch (error) {
             console.log(error);
@@ -93,8 +97,8 @@ const ItemPregunta = (props) => {
             text: "Se borrara permanentemente",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: "#000000",
+            cancelButtonColor: "#757575",
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
@@ -108,27 +112,31 @@ const ItemPregunta = (props) => {
                     });
                     if (response.status === 200) {
 
-                        Swal.fire(
-                            'Pregunta eliminada',
-                            'La pregunta seleccionada fue correctamente elminada',
-                            'success'
+                        Swal.fire({
+                            confirmButtonColor: "#000000",
+                            icon: "success",
+                            title: "Eliminada",
+                            text: "La pregunta fue eliminada",
+                          }
                         )
                         //actualizar los datos
                         props.consultarPreguntasAPI();
                     }
                     else {
-                        Swal.fire(
-                            'Error',
-                            'Se produjo un error',
-                            'error'
+                        Swal.fire({confirmButtonColor: "#000000",
+                        icon: "error",
+                        title: "Error",
+                        text: "Se produjo un error",
+                      }
                         )
                     }
                 } catch (error) {
                     console.log(error);
-                    Swal.fire(
-                        'Se produjo un eror',
-                        'Intentelo en unos minutos',
-                        'error'
+                    Swal.fire({confirmButtonColor: "#000000",
+                    icon: "error",
+                    title: "Error",
+                    text: "Se produjo un error",
+                  }
                     )
                 }
             }

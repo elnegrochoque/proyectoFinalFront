@@ -43,7 +43,7 @@ export const putSalir = async (id) => {
 export const putEntrar = async (id) => {
     const URL = process.env.REACT_APP_API_URL + "personas/" + id;
     const ultimaConexion=   Date.now();
-    console.log(ultimaConexion)
+  
     const raw = JSON.stringify({
       "estadoPersona": "true",
       "ultimaConexion":ultimaConexion
@@ -66,7 +66,7 @@ export const putEntrar = async (id) => {
   };
   
   export const getUltimaConexion = async (id) => {
-      console.log(id)
+     
     const URL = process.env.REACT_APP_API_URL + "conexionpersona/" + id;
   
     var myHeaders = new Headers();

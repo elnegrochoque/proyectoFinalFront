@@ -25,9 +25,9 @@ const ItemVerEvaluacion = (props) => {
       }
       if (
         props.preguntas.opcion1CorrectaPregunta == false &&
-        props.preguntas.opcion1CorrectaPregunta == false &&
-        props.preguntas.opcion1CorrectaPregunta == false &&
-        props.preguntas.opcion1CorrectaPregunta == false
+        props.preguntas.opcion2CorrectaPregunta == false &&
+        props.preguntas.opcion3CorrectaPregunta == false &&
+        props.preguntas.opcion4CorrectaPregunta == false
       ) {
         setFlagDesarrollo(true);
       }

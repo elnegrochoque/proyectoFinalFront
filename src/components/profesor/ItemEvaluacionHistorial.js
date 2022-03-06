@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 import { Button, Row } from "react-bootstrap";
 import { getCatedra } from "../alumno/apiCatedra";
 const ItemEvaluacionHistorial = (props) => {
-  console.log(props);
-  const [nombreMateria, setNombreMateria] = useState(props.evaluacion.materiaEvaluacion);
+
+  const [nombreMateria, setNombreMateria] = useState(
+    props.evaluacion.materiaEvaluacion
+  );
   useEffect(async () => {
     const catedrasAux = await getCatedra(props.evaluacion.materiaEvaluacion);
-   
-    if(catedrasAux.materiaCatedra!=undefined ){
 
-        setNombreMateria(catedrasAux.materiaCatedra);
-    }else{
-        
+    if (catedrasAux.materiaCatedra != undefined) {
+      setNombreMateria(catedrasAux.materiaCatedra);
+    } else {
     }
   }, []);
   const enviarResultadosEvaluacion = (id) => {
@@ -23,13 +23,18 @@ const ItemEvaluacionHistorial = (props) => {
       text: "Cada alumno recibira su resultado a su mail",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Enviar",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Resultados enviados", "", "success");
+        Swal.fire({
+          confirmButtonColor: "#000000",
+          icon: "success",
+          title: "Enviado",
+          text: "Los resultados han sido enviados",
+        });
       }
     });
   };

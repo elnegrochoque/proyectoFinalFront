@@ -32,6 +32,7 @@ const NuevaCatedra = () => {
     e.preventDefault();
     if (materiaCatedra == "" || nombreCatedra == "") {
       Swal.fire({
+        confirmButtonColor: "#000000",
         icon: "error",
         title: "Error",
         text: "Completar todos los datos",
@@ -45,6 +46,8 @@ const NuevaCatedra = () => {
       Swal.fire({
         icon: "success",
         title: "Aula creada",
+        confirmButtonColor: "#000000",
+        cancelButtonColor: "#757575",
       });
     }
   };
@@ -62,6 +65,8 @@ const NuevaCatedra = () => {
         icon: "error",
         title: "Error",
         text: "Profesor no existe",
+        confirmButtonColor: "#000000",
+        cancelButtonColor: "#757575",
       });
     } else {
       setProfesor(dataProfesor);
@@ -80,7 +85,6 @@ const NuevaCatedra = () => {
             </Card.Header>
 
             <Card.Body>
-             
               <Form>
                 <Row>
                   <Form.Group as={Col} controlId="formGridEmail">
@@ -110,7 +114,7 @@ const NuevaCatedra = () => {
                     />
                   </Form.Group>
                   <div as={Col} className="d-flex align-self-center pt-3">
-                    <Button variant="primary" onClick={verificarProfesor}>
+                    <Button variant="secondary" onClick={verificarProfesor}>
                       Verificar Profesor
                     </Button>
                   </div>
@@ -160,7 +164,7 @@ const NuevaCatedra = () => {
                     </Row>
                     <div className="text-center">
                       <Button
-                        variant="primary"
+                        variant="secondary"
                         onClick={(e) => crearAulaHandle(e)}
                       >
                         Crear aula

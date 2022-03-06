@@ -1,84 +1,88 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import React from "react";
+import { Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
-import { Link } from 'react-router-dom';
-
-
+import { Link } from "react-router-dom";
 
 const ItemPersona = (props) => {
+  const eliminarPersona = (id) => {
+    const URL = process.env.REACT_APP_API_URL + "personas/" + id;
+    Swal.fire({
+      title: "¿Está seguro?",
+      text: "Se borrara permanentemente",
+      icon: "warning",
+      showCancelButton: true,
 
-    const eliminarPersona = (id) => {
-        const URL = process.env.REACT_APP_API_URL + 'personas/' + id;
-        Swal.fire({
-            title: '¿Está seguro?',
-            text: "Se borrara permanentemente",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    const response = await fetch(URL, {
-                        method: 'DELETE',
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    });
-                    if (response.status === 200) {
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(URL, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (response.status === 200) {
+            Swal.fire({
+              icon: "success",
+              title: "Eliminado",
+              text: "Usuario eliminado",
+              confirmButtonColor: "#000000",
+            });
 
-                        Swal.fire(
-                            'Usuario eliminado',
-                            'El item seleccionado fue correctamente elminado',
-                            'success'
-                        )
+            //mostrar el cartel de prod eliminado
 
-                        //mostrar el cartel de prod eliminado
-
-                        //actualizar los datos
-                        props.consultarAPI();
-                    }
-                    else {
-                        Swal.fire(
-                            'Error',
-                            'Se produjo un error',
-                            'error'
-                        )
-                    }
-                } catch (error) {
-                    console.log(error);
-                    Swal.fire(
-                        'Se produjo un eror',
-                        'Intentelo en unos minutos',
-                        'error'
-                    )
-                }
-            }
-        })
+            //actualizar los datos
+            props.consultarAPI();
+          } else {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Usuario NO eliminado",
+                confirmButtonColor: "#000000",
+              });
+          }
+        } catch (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Usuario NO eliminado",
+            confirmButtonColor: "#000000",
+          });
+        }
+      }
+    });
 
     //const urlEditarUsuario = "/administrador/"+props.idAdmin+"/editar/"+props.persona.id;
-
-
-
-    }
-    return (
-        <tr >
-            <td>{props.persona.apellidoPersona}</td>
-            <td>{props.persona.nombrePersona}</td>
-            <td>{props.persona.UIPersona}</td>
-            <td>{props.persona.tipo}</td>
-            <td className="text-center col-3">
-                <Button className="mx-3" variant="dark" onClick={() => eliminarPersona(props.persona._id)}>BORRAR</Button>
-                <Link to={`${props.idAdmin}/editar/${props.persona._id}`} className="btn btn-secondary mr-2">
-                    EDITAR
-                </Link>
-            </td>
-        </tr>
-
-    );
+  };
+  return (
+    <tr>
+      <td>{props.persona.apellidoPersona}</td>
+      <td>{props.persona.nombrePersona}</td>
+      <td>{props.persona.UIPersona}</td>
+      <td>{props.persona.tipo}</td>
+      <td className="text-center col-3">
+        <Button
+          className="mx-3"
+          variant="dark"
+          onClick={() => eliminarPersona(props.persona._id)}
+        >
+          BORRAR
+        </Button>
+        <Link
+          to={`${props.idAdmin}/editar/${props.persona._id}`}
+          className="btn btn-secondary mr-2"
+        >
+          EDITAR
+        </Link>
+      </td>
+    </tr>
+  );
 };
 
 export default ItemPersona;

@@ -87,7 +87,6 @@ const CrearEvaluacion = () => {
         duracionEvaluacionMilisegundos: duracionEvaluacionMilisegundos,
         duracionEvaluacion: duracionEvaluacion,
       };
-      console.log(evaluacion);
       try {
         const parametros = {
           method: "POST",
@@ -99,8 +98,7 @@ const CrearEvaluacion = () => {
         // ejecutar la solicitud o request
         const respuesta = await fetch(URL, parametros);
         const resultado = await respuesta.json();
-        console.log(resultado[0]._id);
-
+       
         if ((await respuesta.status) === 201) {
         }
         const ruta = "/profesor/" + id + "/crearevaluacion/" + resultado[0]._id;
@@ -133,7 +131,6 @@ const CrearEvaluacion = () => {
   useEffect(async () => {
     const catedrasAux = await getCatedras();
     const catedraProfesor = [];
-    console.log(catedrasAux);
     for (let i = 0; i < catedrasAux.length; i++) {
       const persona = await getPersona(catedrasAux[i].idProfesor);
       if (persona[0]._id == idPersona) {

@@ -20,7 +20,6 @@ const Historial = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setEvaluaciones(respuesta);
-            console.log(respuesta)
         } catch (error) {
             console.log(error);
         }

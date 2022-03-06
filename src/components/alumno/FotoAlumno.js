@@ -31,19 +31,17 @@ const FotoAlumno = () => {
     ctx.drawImage(video, 0, 0, width, height);
     setHayFoto(true);
     const guardarFotoAux = guardarFoto();
-    console.log(guardarFotoAux);
+ 
 
     let blob1;
     var image = document.getElementById("canvas").toBlob(
       function (blob) {
         blob1 = blob;
         
-        console.log("Este es el blob: ", blob);
       },
       "image/jpeg",
       0.8
     );
-    console.log(image);
   };
 
   const getVideo = () => {

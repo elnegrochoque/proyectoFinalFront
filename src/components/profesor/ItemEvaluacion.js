@@ -24,8 +24,8 @@ const ItemEvaluacion = (props) => {
       text: "Se borrara permanentemente",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Eliminar",
       cancelButtonText: "Cancelar",
     }).then(async (result) => {
@@ -38,10 +38,11 @@ const ItemEvaluacion = (props) => {
             },
           });
           if (response.status === 200) {
-            Swal.fire(
-              "Examen eliminado",
-              "El examen seleccionado fue correctamente elminado",
-              "success"
+            Swal.fire({confirmButtonColor: "#000000",
+            icon: "success",
+            title: "Examen Eliminado",
+            text: "El examen a sido correctamente eliminado",
+          }
             );
 
             //mostrar el cartel de prod eliminado
@@ -49,11 +50,19 @@ const ItemEvaluacion = (props) => {
             //actualizar los datos
             props.consultarAPI();
           } else {
-            Swal.fire("Error", "Se produjo un error", "error");
+            Swal.fire({confirmButtonColor: "#000000",
+            icon: "error",
+            title: "Error",
+            text: "Se produjo un error",
+          });
           }
         } catch (error) {
           console.log(error);
-          Swal.fire("Se produjo un eror", "Intentelo en unos minutos", "error");
+          Swal.fire({confirmButtonColor: "#000000",
+          icon: "error",
+          title: "Error",
+          text: "Se produjo un error",
+        });
         }
       }
     });

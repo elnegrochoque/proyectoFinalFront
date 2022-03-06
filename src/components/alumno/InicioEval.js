@@ -21,26 +21,24 @@ const InicioEval = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const evaluacionAux = await getEvaluacion(codigoEvaluacion);
-    console.log(evaluacionAux);
+  
     if (evaluacionAux) {
       if (evaluacionAux.mensaje == false) {
-        Swal.fire({
+        Swal.fire(
+        {confirmButtonColor: "#000000",
           icon: "error",
           title: "Error",
           text: "Evaluacion no encontrada ",
         });
       } else {
-        console.log("se hace");
         const inscriptoAux = await getInscripto(
           idPersona,
           evaluacionAux.materiaEvaluacion
         );
-        console.log(inscriptoAux);
         if (inscriptoAux.existe == true) {
-          console.log("hacer evaluacion");
           consultarPreguntasEvaluacionAPI();
         } else {
-          Swal.fire({
+          Swal.fire({confirmButtonColor: "#000000",
             icon: "error",
             title: "Error",
             text: "No esta inscripto a la materia ",
@@ -48,7 +46,7 @@ const InicioEval = () => {
         }
       }
     }  else {
-      Swal.fire({
+      Swal.fire({confirmButtonColor: "#000000",
         icon: "error",
         title: "Error",
         text: "Evaluacion no encontrada ",
@@ -66,26 +64,25 @@ const InicioEval = () => {
       setEvaluacionAlumno(respuesta);
 
       if (respuesta === false) {
-        Swal.fire({
+        Swal.fire({confirmButtonColor: "#000000",
           icon: "error",
           title: "Error",
           text: "Evaluacion no disponible ",
         });
       }
       if (respuesta === true) {
-        console.log("si se puede hacer");
         const ruta = "/alumno/" + id + "/evaluacion/" + codigoEvaluacion;
         window.location.href = ruta;
       }
       if (consulta.status === 404) {
-        Swal.fire({
+        Swal.fire({confirmButtonColor: "#000000",
           icon: "error",
           title: "Error",
           text: "Evaluacion no disponible o no existente",
         });
       }
     } catch (error) {
-      Swal.fire({
+      Swal.fire({confirmButtonColor: "#000000",
         icon: "error",
         title: "Error",
         text: "Evaluacion no disponible o no existente",

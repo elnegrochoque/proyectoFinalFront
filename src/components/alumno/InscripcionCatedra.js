@@ -25,7 +25,6 @@ const InscripcionCatedra = () => {
   useEffect(async () => {
     const catedrasAux = await getCatedras();
     const catedraProfesor = [];
-    console.log(catedrasAux);
     for (let i = 0; i < catedrasAux.length; i++) {
       const persona = await getPersona(catedrasAux[i].idProfesor);
       const inscripto = await getInscripto(idPersona, catedrasAux[i]._id);
@@ -41,7 +40,6 @@ const InscripcionCatedra = () => {
       catedraProfesor.push(itemCatedra);
     }
     setCatedras(catedraProfesor);
-    console.log(catedraProfesor);
   }, [flagUpdate]);
   const inscribirse = async (e) => {
     e.preventDefault();
@@ -49,12 +47,16 @@ const InscripcionCatedra = () => {
       title: "Esta seguro?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Inscribirse",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Inscripto", "Se a inscripto con exito", "success");
+        Swal.fire({confirmButtonColor: "#000000",
+        icon: "success",
+        title: "Inscripto",
+        text: "Se ha inscripto con exito ",
+      });
         postAlumnoCatedra(e.target.id, idPersona);
         setFlagUpdate(!flagUpdate);
       }
@@ -66,12 +68,16 @@ const InscripcionCatedra = () => {
       title: "Esta seguro?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Dar de baja",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Dado de baja", "Se a dado de baja con exito", "success");
+        Swal.fire({confirmButtonColor: "#000000",
+        icon: "success",
+        title: "Dado de Baja",
+        text: "Se ha dado de baja con exito ",
+      });
         deleteidAlumnoidCatedra(e.target.id, idPersona);
         setFlagUpdate(!flagUpdate);
       }

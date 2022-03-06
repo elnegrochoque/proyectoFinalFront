@@ -24,14 +24,12 @@ const ProfesorCatedrasInfo = () => {
     const lista = await getPersonaConIdCatedra(idCatedra);
     const catedraAux = await getCatedra(idCatedra);
     setCatedra(catedraAux);
-    console.log(catedraAux);
-    console.log(lista);
+  
     const alumnos = [];
     for (let i = 0; i < lista.length; i++) {
       const alumno = await getPersonaId(lista[i].idPersona);
       alumnos.push(alumno);
     }
-    console.log(alumnos);
     setPersona(alumnos);
   }, [flagUpdate]);
   const baja = async (e) => {
@@ -41,13 +39,17 @@ const ProfesorCatedrasInfo = () => {
       title: "Esta seguro?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Dar de baja",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Dado de baja", "Se a dado de baja con exito", "success");
-        console.log(e.target.id)
+        Swal.fire({
+          confirmButtonColor: "#000000",
+          icon: "success",
+          title: "Baja",
+          text: "Se ha dado de baja",
+        });
         deleteidAlumnoidCatedra(idCatedra, e.target.value);
         setFlagUpdate(!flagUpdate);
       }

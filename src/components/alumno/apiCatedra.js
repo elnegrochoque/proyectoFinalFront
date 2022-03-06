@@ -65,8 +65,7 @@ export const getInscripto = async (idAlumno, idCatedra) => {
 };
 export const deleteidAlumnoidCatedra = async (idCatedra, idPersona) => {
   const URL = process.env.REACT_APP_API_URL + "idpersonaidcatedra";
-  console.log("idPersona", idPersona);
-  console.log("idCatedra", idCatedra);
+
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const persona = {

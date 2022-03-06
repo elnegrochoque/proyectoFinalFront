@@ -23,7 +23,6 @@ const VerEvaluacion = () => {
   }, [flagNota]);
   const consultarResultado = async () => {
     const consultarResultadoAux = await getResultado(idResultado);
-    console.log(consultarResultadoAux.NotaEvaluacion);
     setNota(consultarResultadoAux.NotaEvaluacion);
   };
   const consultarAPI = async () => {
@@ -35,7 +34,6 @@ const VerEvaluacion = () => {
         process.env.REACT_APP_API_URL +
         "resultados/" +
         respuesta[0].IDResultado;
-      console.log(URLaux);
       const consultaResultados = await fetch(URLaux);
       const respuestaResultados = await consultaResultados.json();
       setFoto("http://localhost:4000/files/" + respuestaResultados.Foto);
@@ -51,7 +49,6 @@ const VerEvaluacion = () => {
 
         preguntasAux.push(respuestaPregunta);
       }
-      console.log(preguntasAux);
 
       setPreguntas(preguntasAux);
     } catch (error) {
@@ -73,7 +70,6 @@ const VerEvaluacion = () => {
         if (!value) {
           return "Necesita poner un numero";
         } else {
-          console.log(value);
           const cambiarNotaAlumno = await putCambiarNota(idResultado, value);
           setNota(nota);
         }

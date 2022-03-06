@@ -55,7 +55,6 @@ const EditarEvaluacion = () => {
       if (respuesta.status === 200) {
         const resultado = await respuesta.json();
         setEvaluacion(resultado);
-        console.log(resultado);
         setMateriaEvaluacion(resultado.materiaEvaluacion);
         const nombreMateria = await getCatedra(resultado.materiaEvaluacion);
 
@@ -114,7 +113,6 @@ const EditarEvaluacion = () => {
       duracionEvaluacion: duracionEvaluacionRef.current.value,
       duracionEvaluacionMilisegundos: duracionEvaluacionMilisegundos,
     };
-    console.log(evaluacionEditada);
     try {
       const respuesta = await fetch(URL + "/" + id, {
         method: "PUT",
@@ -122,18 +120,19 @@ const EditarEvaluacion = () => {
         body: JSON.stringify(evaluacionEditada),
       });
       if (respuesta.status === 200 || respuesta.status === 201) {
-        Swal.fire(
-          "Examen",
-          "Los datos del examen fueron modificados",
-          "success"
-        );
+        Swal.fire({
+          confirmButtonColor: "#000000",
+          icon: "success",
+          title: "Datos modificados",
+          text: "Se ha modificado con exito ",
+        });
         window.history.back();
-        // redireccionar a la pagina de lista de productos
       } else {
         Swal.fire({
+          confirmButtonColor: "#000000",
           icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          title: "Error",
+          text: "Se produjo un error",
         });
       }
     } catch (error) {
@@ -159,7 +158,6 @@ const EditarEvaluacion = () => {
   };
   const cambiarDuracionEvaluacion = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     let hora = parseInt(e.target.value.slice(0, -3));
     let minutos = parseInt(e.target.value.slice(-2));
     hora = hora * 3600000;
@@ -170,7 +168,6 @@ const EditarEvaluacion = () => {
   useEffect(async () => {
     const catedrasAux = await getCatedras();
     const catedraProfesor = [];
-    console.log(catedrasAux);
     for (let i = 0; i < catedrasAux.length; i++) {
       const persona = await getPersona(catedrasAux[i].idProfesor);
       if (persona[0]._id == idPersona) {

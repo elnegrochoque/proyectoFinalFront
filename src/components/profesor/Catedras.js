@@ -18,7 +18,6 @@ const Catedras = () => {
   useEffect(async () => {
     const catedrasAux = await getCatedras();
     const catedraProfesor = [];
-    console.log(catedrasAux);
     for (let i = 0; i < catedrasAux.length; i++) {
       const persona = await getPersona(catedrasAux[i].idProfesor);
       if (persona[0]._id == idPersona) {
@@ -35,7 +34,6 @@ const Catedras = () => {
 
   const ver=(e)=>{
 e.preventDefault();
-console.log(e.target.id)
 _depositoLocal.setearIdCatedra(e.target.id);
 window.location.href="/profecatedra/ver"
   }

@@ -23,7 +23,7 @@ const HistorialEvaluacionesRealizadas = () => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setResultadosEvaluacion(respuesta);
-            console.log(respuesta)
+   
 
         } catch (error) {
             console.log(error);

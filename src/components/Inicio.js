@@ -16,9 +16,7 @@ import LeftNavbar from "./LeftNavbar";
 import depositoLocal from "./depositoLocal";
 import { getDisponible, getUltimaConexion, putEntrar } from "./apiSesion";
 const Inicio = (props) => {
-  //console.log(props.personas)
-  // creo consts para almacenar el usuario, la contraseña y una bandera para verificar
-
+ 
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [error, setError] = useState(false);
@@ -45,16 +43,13 @@ const Inicio = (props) => {
           const _depositoLocal = depositoLocal.obtenerServicio();
           _depositoLocal.setearIdPersona(props.personas[i]._id);
           const sesionDuplicada = await getDisponible(props.personas[i]._id);
-          console.log(sesionDuplicada);
+  
          
           const ultimaConexionAux = await getUltimaConexion(props.personas[i]._id);
           const ultimaConexion=ultimaConexionAux.conectado
           const tiempoAhora = Date.now();
           const resta=tiempoAhora-ultimaConexion
 
-          console.log(ultimaConexion);
-          console.log(tiempoAhora);
-          console.log(resta)
           if (sesionDuplicada.conectado == "false"|| resta>600000) {
             const entrar = await putEntrar(props.personas[i]._id);
             esUsuario = true;
@@ -65,7 +60,7 @@ const Inicio = (props) => {
             if (props.personas[i].tipo === "alumno") {
               const ruta = "/alumnoprincipal/" + props.personas[i]._id;
               window.location.href = ruta;
-              console.log("alumsniii");
+            
             }
             if (props.personas[i].tipo === "profesor") {
               const ruta = "/profesor/" + props.personas[i]._id;
@@ -76,6 +71,7 @@ const Inicio = (props) => {
       }
       if (esUsuario === false) {
         Swal.fire({
+          confirmButtonColor: "#000000",
           icon: "error",
           title: "Error",
           text: "Usuario no valido o sesion iniciada",

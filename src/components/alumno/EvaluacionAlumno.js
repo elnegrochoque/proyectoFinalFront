@@ -50,7 +50,6 @@ const EvaluacionAlumno = () => {
       momentoInicioDeEvaluacionAlumno.getMilliseconds().toString() +
       idAlumno +
       ".jpeg";
-    console.log(nombreFoto);
     const resultadoAlumno = {
       IDEvaluacion: idEvaluacion,
       IDAlumno: idAlumno,
@@ -75,7 +74,6 @@ const EvaluacionAlumno = () => {
           const file = new File([blob], nombreFoto, {
             lastModified: 1534584790000,
           });
-          console.log(file)
 
           guardarFoto(file);
         },

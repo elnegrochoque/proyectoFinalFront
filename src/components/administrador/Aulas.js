@@ -12,7 +12,7 @@ import {
   getInscripto,
   postAlumnoCatedra,
 } from "../alumno/apiCatedra";
-import { getPersona } from "../administrador/apiNuevaCatedra";
+import { deleteAula, getPersona } from "../administrador/apiNuevaCatedra";
 import depositoLocal from "../depositoLocal";
 const Aulas = () => {
   const [catedras, setCatedras] = useState();
@@ -25,7 +25,6 @@ const Aulas = () => {
   useEffect(async () => {
     const catedrasAux = await getCatedras();
     const catedraProfesor = [];
-    console.log(catedrasAux);
     for (let i = 0; i < catedrasAux.length; i++) {
       const persona = await getPersona(catedrasAux[i].idProfesor);
       const inscripto = await getInscripto(idPersona, catedrasAux[i]._id);
@@ -41,11 +40,10 @@ const Aulas = () => {
       catedraProfesor.push(itemCatedra);
     }
     setCatedras(catedraProfesor);
-    console.log(catedraProfesor);
   }, [flagUpdate]);
   const nuevaAula = async (e) => {
     e.preventDefault();
-    window.location.href="/admin/crearaula"
+    window.location.href = "/admin/crearaula";
   };
   const baja = async (e) => {
     e.preventDefault();
@@ -53,13 +51,18 @@ const Aulas = () => {
       title: "Esta seguro?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#757575",
       confirmButtonText: "Dar de baja",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Dado de baja", "Se a dado de baja con exito", "success");
-        deleteidAlumnoidCatedra(e.target.id, idPersona);
+        Swal.fire({
+          icon: 'success',
+          title: 'Eliminada',
+          text: 'Aula eliminada',
+          confirmButtonColor: "#000000",
+        });
+        deleteAula(e.target.id)
         setFlagUpdate(!flagUpdate);
       }
     });
@@ -76,15 +79,10 @@ const Aulas = () => {
             </Card.Header>
 
             <Card.Body>
-             
               <Row className="m-5" style={{ width: "50rem" }}>
-              <Button
-              
-                variant="secondary"
-                onClick={(e) => nuevaAula(e)}
-              >
-               Crear Aula
-              </Button>
+                <Button variant="secondary" onClick={(e) => nuevaAula(e)}>
+                  Crear Aula
+                </Button>
                 <Table striped bordered hover size="sm" className="my-4">
                   <thead>
                     <tr>

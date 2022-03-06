@@ -14,7 +14,6 @@ const NuevoUsuario = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(props.personas);
         // validamos que todos los campos esten llenos
         if (usuarioPersona.trim() === "" ||
             passwordPersona.trim() === "" ||
@@ -116,7 +115,7 @@ const NuevoUsuario = (props) => {
 
 
                 <div className="text-center">
-                    <Button variant="primary" type="submit">
+                    <Button variant="secondary" type="submit">
                         Crear Usuario
                     </Button>
 

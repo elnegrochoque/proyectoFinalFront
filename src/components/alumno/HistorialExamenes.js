@@ -36,12 +36,10 @@ const HistorialExamenes = () => {
         id:evaluacionesAux[i]._id      };
       datosTabla.push(itemDatoTabla)
     }
-    console.log(datosTabla)
     setEvaluaciones(datosTabla)
   };
   const verEvaluacion =(e)=>{
     e.preventDefault();
-    console.log(e.target.id)
     window.location.href="/alumnohistorial/"+e.target.id
   }
   return (

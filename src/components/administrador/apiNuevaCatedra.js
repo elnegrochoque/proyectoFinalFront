@@ -65,5 +65,22 @@ export const getPersonaId = async (idPersona) => {
     console.log(error);
   }
 };
-  
+export const deleteAula = async (id) => {
+  const URL = process.env.REACT_APP_API_URL + "catedra/"+id;
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  var requestOptions = {
+    method: "DELETE",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  try {
+    const consulta = await fetch(URL, requestOptions);
+    const respuesta = await consulta.json();
+    return respuesta;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export default crearAula;

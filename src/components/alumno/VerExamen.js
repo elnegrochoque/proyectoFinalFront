@@ -7,6 +7,8 @@ import {
   Card,
   Button,
   Image,
+  Form,
+  InputGroup,
 } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
@@ -25,25 +27,24 @@ import { getResultado } from "../profesor/apiObtenerResultado";
 const VerExamen = () => {
   const _depositoLocal = depositoLocal.obtenerServicio();
   const idPersona = _depositoLocal.obtenerIdPersona();
-  const [evalucion, setEvaluacion] = useState();
+  const [evaluacion, setEvaluacion] = useState();
   const [nota, setNota] = useState();
   const [srcFoto, setSrcFoto] = useState();
   const { idExamen } = useParams();
-  console.log(idExamen);
   useEffect(() => {
     obtenerDatos();
   }, []);
   const obtenerDatos = async () => {
     const evaluacionAux = await getResultado(idExamen);
-    console.log(evaluacionAux);
+   
     setSrcFoto("http://localhost:4000/files/" + evaluacionAux.Foto);
     setNota(evaluacionAux.NotaEvaluacion);
     const respuestasAux = await getPreguntasEvaluacion(idExamen);
-    console.log(respuestasAux);
+
     const datosPregunta = [];
     for (let i = 0; i < respuestasAux.length; i++) {
       const preguntaAux = await getPregunta(respuestasAux[i].IDPregunta);
-      console.log("preguntaAux", preguntaAux);
+     
       let desarrollo = false;
       if (
         preguntaAux.opcion1CorrectaPregunta == false &&
@@ -55,7 +56,7 @@ const VerExamen = () => {
       }
       const itemDatosPregunta = {
         desarrollo: desarrollo,
-        enunciado: preguntaAux.enunciado,
+        enunciado: preguntaAux.enunciadoPregunta,
         opcion1pregunta: preguntaAux.opcion1Pregunta,
         opcion2pregunta: preguntaAux.opcion2Pregunta,
         opcion3pregunta: preguntaAux.opcion3Pregunta,
@@ -64,11 +65,11 @@ const VerExamen = () => {
         respuestaOpcion2pregunta: respuestasAux[i].opcion2CorrectaRespuesta,
         respuestaOpcion3pregunta: respuestasAux[i].opcion3CorrectaRespuesta,
         respuestaOpcion4pregunta: respuestasAux[i].opcion4CorrectaRespuesta,
-        respuestasDesarrollo: respuestasAux[i].desarrollo
+        respuestasDesarrollo: respuestasAux[i].desarrollo,
       };
-      datosPregunta.push(itemDatosPregunta)
+      datosPregunta.push(itemDatosPregunta);
     }
-    console.log(datosPregunta)
+    setEvaluacion(datosPregunta);
   };
   return (
     <Fragment>
@@ -92,6 +93,95 @@ const VerExamen = () => {
                   <Image src={srcFoto} alt="no hay foto"></Image>
                 </Container>
                 <Container className="m-5">
+                  <Fragment>
+                    <Container className="my-5">
+                      {evaluacion == undefined
+                        ? null
+                        : evaluacion.map((pregunta) => (
+                            <Card className="m-5" border="dark">
+                              <Card.Header
+                                className="text-center"
+                                style={{ fontSize: "40px" }}
+                              >
+                                {pregunta.enunciado}
+                              </Card.Header>
+                              <Card.Body>
+                                <Form>
+                                  {pregunta.desarrollo ? (
+                                    <Card>
+                                      <Card.Body border="secondary">
+                                        {pregunta.respuestasDesarrollo}
+                                      </Card.Body>
+                                    </Card>
+                                  ) : null}
+                                  {pregunta.opcion1pregunta == "" ? null : (
+                                    <InputGroup className="mb-3" size="lg">
+                                      <InputGroup.Checkbox
+                                        id="opcion1CorrectaRespuesta"
+                                        defaultChecked={
+                                          pregunta.respuestaOpcion1pregunta
+                                        }
+                                      />
+                                      <Form.Control
+                                        className=" mx-4"
+                                        plaintext
+                                        readOnly
+                                        defaultValue={pregunta.opcion1pregunta}
+                                      />
+                                    </InputGroup>
+                                  )}{pregunta.opcion2pregunta == "" ? null : (
+                                    <InputGroup className="mb-3" size="lg">
+                                      <InputGroup.Checkbox
+                                        id="opcion2CorrectaRespuesta"
+                                        defaultChecked={
+                                          pregunta.respuestaOpcion2pregunta
+                                        }
+                                      />
+                                      <Form.Control
+                                        className=" mx-4"
+                                        plaintext
+                                        readOnly
+                                        defaultValue={pregunta.opcion2pregunta}
+                                      />
+                                    </InputGroup>
+                                  )}{pregunta.opcion3pregunta == "" ? null : (
+                                    <InputGroup className="mb-3" size="lg">
+                                      <InputGroup.Checkbox
+                                        id="opcion3CorrectaRespuesta"
+                                        defaultChecked={
+                                          pregunta.respuestaOpcion3pregunta
+                                        }
+                                      />
+                                      <Form.Control
+                                        className=" mx-4"
+                                        plaintext
+                                        readOnly
+                                        defaultValue={pregunta.opcion3pregunta}
+                                      />
+                                    </InputGroup>
+                                  )}
+                                  {pregunta.opcion4pregunta == "" ? null : (
+                                    <InputGroup className="mb-3" size="lg">
+                                      <InputGroup.Checkbox
+                                        id="opcion4CorrectaRespuesta"
+                                        defaultChecked={
+                                          pregunta.respuestaOpcion4pregunta
+                                        }
+                                      />
+                                      <Form.Control
+                                        className=" mx-4"
+                                        plaintext
+                                        readOnly
+                                        defaultValue={pregunta.opcion4pregunta}
+                                      />
+                                    </InputGroup>
+                                  )}
+                                </Form>{" "}
+                              </Card.Body>{" "}
+                            </Card>
+                          ))}
+                    </Container>
+                  </Fragment>
                   {/* {preguntas.map((preguntas) => (
                     <ItemVerEvaluacion
                       respuestas={respuestas}

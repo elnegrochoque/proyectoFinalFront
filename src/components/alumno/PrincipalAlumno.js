@@ -10,7 +10,7 @@ import { Table } from "react-bootstrap";
 const PrincipalAlumno = () => {
   const { id } = useParams();
   const [error, setError] = useState(false);
-  console.log(id);
+
   const [alumno, setAlumno] = useState();
   const alumnoInfo = () => {
     var requestOptions = {
@@ -28,7 +28,6 @@ const PrincipalAlumno = () => {
       })
       .catch((error) => console.log("error", error));
   };
-  console.log(alumno);
   useEffect(() => {
     alumnoInfo();
   }, []);

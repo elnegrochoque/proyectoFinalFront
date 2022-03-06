@@ -22,8 +22,6 @@ const NuevoUsuarioAdmin = (props) => {
     const handleSubmit = async (e) => {
       
         e.preventDefault();
-        console.log(props.personas);
-
         // validamos que todos los campos esten llenos
         if (usuarioPersona.trim() === "" ||
             passwordPersona.trim() === "" ||
@@ -59,20 +57,24 @@ const NuevoUsuarioAdmin = (props) => {
                 const respuesta = await fetch(URL, parametros);
 
                 if ((await respuesta.status) === 201) {
-                    Swal.fire(
-                        'Usuario creado',
-                        'El usuario fue correctamente creado',
-                        'success'
+                    Swal.fire({
+                        icon: "success",
+                        title: "Creado",
+                        text: "El usuario fue creado",
+                        confirmButtonColor: "#000000",
+                      }
                     )
                     props.consultarAPI();
                     const urlAnterior="/administrador/"+id
                     props.history.push(urlAnterior);
                 }
                 if ((await respuesta.status) === 200) {
-                    Swal.fire(
-                        'Usuario creado',
-                        'El usuario fue correctamente creado',
-                        'success'
+                    Swal.fire({
+                        confirmButtonColor: "#000000",
+                        icon: "success",
+                        title: "Creado",
+                        text: "Usuario correctamente creado",
+                      }
                     )
                     props.consultarAPI();
                     const urlAnterior="/administrador/"+id
@@ -162,7 +164,7 @@ const NuevoUsuarioAdmin = (props) => {
 
                             </DropdownButton>
                             <div className="text-center">
-                                <Button variant="primary" type="submit">
+                                <Button variant="secondary" type="submit">
                                     Crear Usuario
                                 </Button>
 

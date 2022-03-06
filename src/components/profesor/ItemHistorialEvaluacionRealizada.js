@@ -14,7 +14,6 @@ const ItemHistorialEvaluacionRealizada = (props) => {
             const consulta = await fetch(URL);
             const respuesta = await consulta.json();
             setPersona(respuesta);
-            console.log(respuesta)
         } catch (error) {
             console.log(error);
         }
@@ -23,7 +22,7 @@ const ItemHistorialEvaluacionRealizada = (props) => {
     const verEvaluacion = (e) => {
         e.preventDefault();
         const rutaEvaluacion = window.location.href + "/" + props.resultado._id
-        console.log(rutaEvaluacion)
+
         window.location.href = rutaEvaluacion;
     }
 
